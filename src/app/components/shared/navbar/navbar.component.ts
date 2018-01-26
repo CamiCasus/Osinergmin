@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,24 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  estadoActual: number;
-
-  constructor(private _router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  avanzarPaso() {
-    console.log("avanzar");
-
-    this.estadoActual++;
-    this._router.navigate(['/detalle']);
-  }
-
-  regresarPaso() {
-    console.log("regresar");
-
-    this.estadoActual--;
-    this._router.navigate(['/registrar']);
   }
 }
