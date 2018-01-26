@@ -8,6 +8,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { RegistrarComponent } from './components/guia/registrar/registrar.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { DetalleComponent } from './components/guia/detalle/detalle.component';
+import { APPROUTING } from './app.routes';
 
 
 @NgModule({
@@ -17,10 +19,12 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     FooterComponent,
     HeaderComponent,
     RegistrarComponent,
-    NavbarComponent
+    NavbarComponent,
+    DetalleComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    APPROUTING
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,13 +7,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Registrar Guia <span class="sr-only">(current)</span></a>
+        <li class="nav-item"  routerLinkActive="active">
+          <a class="nav-link disabled" [routerLink]="['/registrar']" >Registrar Guia <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Registrar Muestra</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link disabled" [routerLink]="['/detalle']">Registrar Muestra</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link disabled" href="#">Validar Registro</a>
         </li>
       </ul>      
