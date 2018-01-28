@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GuiaService } from '../../../services/guia.service';
+import { Subject } from 'rxjs/Subject';
+import { Guia } from '../../../models/guiaListado';
 
 @Component({
   selector: 'app-listado',
@@ -8,10 +11,23 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  dtOptions: DataTables.Settings = {};
+  public guias: Guia[];
+  dtTrigger: Subject<any> = new Subject();
+
+  constructor(private _router: Router, private _guiaService: GuiaService) { }
 
   ngOnInit() {
-    $('#tblGuias').DataTable();
+    this.dtOptions = {
+      pagingType: 'simple_numbers',
+      pageLength: 10
+    };
+
+    this._guiaService.getGuias()
+      .subscribe(data => {
+        this.guias = data;
+         this.dtTrigger.next();
+      });
   }
 
   irAVistaRegistrar() {
