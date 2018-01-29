@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuiaService } from '../../../services/guia.service';
 import { Subject } from 'rxjs/Subject';
-import { Guia } from '../../../models/guiaListado';
+import { GuiaListado } from '../../../models/guiaListado';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
 
 @Component({
   selector: 'app-listado',
@@ -12,10 +14,12 @@ import { Guia } from '../../../models/guiaListado';
 export class ListComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
-  public guias: Guia[];
+  public guias: GuiaListado[];
   dtTrigger: Subject<any> = new Subject();
 
-  constructor(private _router: Router, private _guiaService: GuiaService) { }
+  constructor(private _router: Router,
+              private _guiaService: GuiaService,
+              private _modal: NgbModal) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -28,6 +32,34 @@ export class ListComponent implements OnInit {
         this.guias = data;
          this.dtTrigger.next();
       });
+  }
+
+  presentarAOsinergmin() {
+    const modalRef = this._modal.open(MessageModalComponent);
+    modalRef.componentInstance.titulo = 'Presentar Osinergmin';
+    modalRef.componentInstance.mensaje = '¿Estás seguro de presentar la Guía a Osinergmin?';
+    modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
+
+    modalRef.result.then((result) => {
+      this._guiaService.presentarGuia();
+    }, (reason) => {});
+
+    return false;
+  }
+
+  validarCodigoVerificacion() {
+    const modalRef = this._modal.open(MessageModalComponent);
+    modalRef.componentInstance.titulo = 'Validar Osinergmin';
+    modalRef.componentInstance.tipoMensaje = TipoMensaje.validarOsinergmin;
+
+    modalRef.result.then((result) => {
+
+      console.log(result);
+
+      this._guiaService.validarCodigo(result);
+    }, (reason) => {});
+
+    return false;
   }
 
   irAVistaRegistrar() {

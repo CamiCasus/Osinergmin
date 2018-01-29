@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { APPROUTING } from './app.routes';
 
@@ -14,7 +15,7 @@ import { RegistrarComponent } from './components/guia/registrar/registrar.compon
 import { GuiaService } from './services/guia.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
-import { Guia } from './models/guiaListado';
+import { MessageModalComponent } from './components/shared/message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,11 @@ import { Guia } from './models/guiaListado';
     HeaderComponent,
     NavbarComponent,
     ListComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    MessageModalComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     APPROUTING,
     HttpClientModule,
@@ -35,6 +38,7 @@ import { Guia } from './models/guiaListado';
   providers: [
     GuiaService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MessageModalComponent]
 })
 export class AppModule { }

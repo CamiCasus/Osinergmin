@@ -1,4 +1,4 @@
-export class Guia {
+export class GuiaListado {
     codigo: string;
     representanteOsinergmin: string;
     representanteIntertek: string;
