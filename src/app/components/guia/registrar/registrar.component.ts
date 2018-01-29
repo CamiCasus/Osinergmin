@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-registrar',
@@ -8,6 +9,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RegistrarComponent implements OnInit {
 
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _route: Router) {
@@ -17,6 +21,12 @@ export class RegistrarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'simple_numbers',
+      pageLength: 10,
+      searching: false,
+      dom: 'frt'
+    };
   }
 
   grabar() {
