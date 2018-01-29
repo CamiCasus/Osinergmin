@@ -12,13 +12,18 @@
     <div class="row">
       <label for="txtCodigoVerificacion" class="col-sm-6 col-form-label">Código de Verificación</label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" id="txtCodigoVerificacion" placeholder="Ingrese Código" (value)="codigoVerificacion">
+        <input #codigoInput type="text" class="form-control" id="txtCodigoVerificacion" placeholder="Ingrese Código">
       </div>
     </div>
   </div>
 </div>
-<div *ngIf="tipoMensaje === tiposMensaje.confirmacion || tipoMensaje === tiposMensaje.validarOsinergmin" class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="activeModal.close(codigoVerificacion)">Aceptar</button>
+<div *ngIf="tipoMensaje === tiposMensaje.confirmacion" class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Aceptar</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+</div>
+
+<div *ngIf="tipoMensaje === tiposMensaje.validarOsinergmin" class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="activeModal.close(codigoInput?.value)">Aceptar</button>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
 </div>
 
