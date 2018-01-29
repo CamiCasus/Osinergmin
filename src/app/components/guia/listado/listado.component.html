@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let guia of guias">
+          <tr *ngFor="let guia of guias;">
             <td>{{ guia.codigo }}</td>
             <td>{{ guia.fechaIngreso }}</td>
             <td>{{ guia.representanteOsinergmin }}</td>
@@ -29,13 +29,13 @@
               <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary" ngbDropdownToggle>Acciones</button>
                 <div ngbDropdownMenu>
-                  <a class="dropdown-item" href="#">Editar</a>
-                  <a class="dropdown-item" href="#">Eliminar</a>
+                  <a class="dropdown-item" [routerLink]="['/registrar', guia.id]">Editar</a>
+                  <a class="dropdown-item" href="#" (click)="eliminar(guia.id)">Eliminar</a>
                   <div role="separator" class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#" (click)="presentarAOsinergmin()">Presentar</a>
-                  <a class="dropdown-item" href="#" (click)="validarCodigoVerificacion()">Validar</a>
+                  <a class="dropdown-item" href="#" (click)="validarCodigoVerificacion(contentValidacion)">Validar</a>
                   <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Registrar Resultado</a>
+                  <a class="dropdown-item" [routerLink]="['/resultado', guia.id]">Registrar Resultado</a>
                 </div>
               </div>
             </td>
@@ -45,3 +45,27 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #contentValidacion let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Validar Osinergmin</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <label for="txtCodigoVerificacion" class="col-sm-6 col-form-label">Código de Verificación</label>
+        <div class="col-sm-6">
+          <input #codigoInput type="text" class="form-control" id="txtCodigoVerificacion" placeholder="Ingrese Código">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c(codigoInput.value)">Aceptar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancelar</button>
+  </div>
+</ng-template>

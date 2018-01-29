@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-registrar',
@@ -8,7 +8,13 @@ import { Router } from '@angular/router';
 })
 export class RegistrarComponent implements OnInit {
 
-  constructor(private _route: Router) { }
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _route: Router) {
+    this._activatedRoute.params.subscribe(params => {
+      console.log(params["id"]);
+    });
+  }
 
   ngOnInit() {
   }

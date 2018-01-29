@@ -16,6 +16,11 @@ import { GuiaService } from './services/guia.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 import { MessageModalComponent } from './components/shared/message-modal/message-modal.component';
+import { InformeEnsayoLiquidoComponent } from './components/guia/informe-ensayo-liquido/informe-ensayo-liquido.component';
+import { InformeEnsayoGlpComponent } from './components/guia/informe-ensayo-glp/informe-ensayo-glp.component';
+import { RegistroResultadoComponent } from './components/guia/registro-resultado/registro-resultado.component';
+import { TipoMuestraPipe } from './pipes/tipo-muestra.pipe';
+import { ResultadoMuestraPopupComponent } from './components/shared/resultado-muestra-popup/resultado-muestra-popup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { MessageModalComponent } from './components/shared/message-modal/message
     NavbarComponent,
     ListComponent,
     RegistrarComponent,
-    MessageModalComponent
+    MessageModalComponent,
+    InformeEnsayoLiquidoComponent,
+    InformeEnsayoGlpComponent,
+    RegistroResultadoComponent,
+    TipoMuestraPipe,
+    ResultadoMuestraPopupComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -39,6 +49,6 @@ import { MessageModalComponent } from './components/shared/message-modal/message
     GuiaService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MessageModalComponent]
+  entryComponents: [MessageModalComponent, ResultadoMuestraPopupComponent]
 })
 export class AppModule { }

@@ -14,12 +14,12 @@ import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/m
 export class ListComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
-  public guias: GuiaListado[];
+  guias: GuiaListado[];
   dtTrigger: Subject<any> = new Subject();
 
   constructor(private _router: Router,
-              private _guiaService: GuiaService,
-              private _modal: NgbModal) { }
+    private _guiaService: GuiaService,
+    private _modal: NgbModal) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
     this._guiaService.getGuias()
       .subscribe(data => {
         this.guias = data;
-         this.dtTrigger.next();
+        this.dtTrigger.next();
       });
   }
 
@@ -42,22 +42,28 @@ export class ListComponent implements OnInit {
 
     modalRef.result.then((result) => {
       this._guiaService.presentarGuia();
-    }, (reason) => {});
+    }, (reason) => { });
 
     return false;
   }
 
-  validarCodigoVerificacion() {
+  eliminar(guiaId) {
     const modalRef = this._modal.open(MessageModalComponent);
-    modalRef.componentInstance.titulo = 'Validar Osinergmin';
-    modalRef.componentInstance.tipoMensaje = TipoMensaje.validarOsinergmin;
+    modalRef.componentInstance.titulo = 'Eliminar Guía';
+    modalRef.componentInstance.mensaje = '¿Estás seguro de eliminar la Guía?';
+    modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
+      this._guiaService.eliminarGuia(guiaId);
+    }, (reason) => { });
 
-      console.log(result);
+    return false;
+  }
 
+  validarCodigoVerificacion(content) {
+    this._modal.open(content).result.then((result) => {
       this._guiaService.validarCodigo(result);
-    }, (reason) => {});
+    }, (reason) => { });
 
     return false;
   }

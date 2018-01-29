@@ -23,6 +23,5 @@ export class MessageModalComponent implements OnInit {
 
 export enum TipoMensaje {
   mensaje = 1,
-  confirmacion = 2,
-  validarOsinergmin = 3
+  confirmacion = 2
 }
