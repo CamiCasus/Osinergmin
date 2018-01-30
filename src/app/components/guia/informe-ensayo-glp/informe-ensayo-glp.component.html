@@ -1,60 +1,156 @@
 <form>
-  <div class="form-group row">
-    <label for="nroGuia" class="col-sm-2 col-form-label">Nro.Guia</label>
-    <div class="col-sm-10">
-      <input type="Guia" class="form-control" id="nroGuia" placeholder="Detallar Guia">
-    </div>      
-  </div>
-  <div class="form-group row">
-    <label for="nroMuestra" class="col-sm-2 col-form-label">Nro. Muestra</label>
-    <div class="col-sm-10">
-      <input type="Muestra" class="form-control" id="nroMuestra" placeholder="Detallar Muestra">
-    </div>    
-  </div>
+    <div class="form-group row">
+        <label for="InfLab" class="col-sm-3 col-form-label">N° Informe Laboratorio</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="InfLab" placeholder="Nro. Informe Laboratorio">
+        </div>    
+    </div>
+    <div class="form-group row">
+        <label for="Observaciones" class="col-sm-3 col-form-label">Observaciones</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="Observaciones" placeholder="Detallar">
+        </div>    
+    </div>
   <ngb-tabset (tabChange)="beforeChange($event)">
     <ngb-tab id="tab-preventchange1" title="Primera">
       <ng-template ngbTabContent>
       <br>
         <div class="form-group row">
-          <label for="Observaciones" class="col-sm-3 col-form-label">Observaciones</label>
-          <div class="col-sm-9">
-            <input type="Muestra" class="form-control" id="Observaciones" placeholder="Detallar">
-          </div>    
-        </div>
-        <div class="form-group row">
-            <label for="InfLab" class="col-sm-3 col-form-label">N° Informe Laboratorio</label>
-            <div class="col-sm-9">
-              <input type="Muestra" class="form-control" id="InfLab" placeholder="Nro. Informe Laboratorio">
-            </div>    
-        </div>
-        <div class="form-group row">
             <label for="DenRel" class="col-sm-3 col-form-label">Densidad Relativa</label>
             <div class="col-sm-9">
-              <input type="Muestra" class="form-control" id="DenRel" placeholder="Densidad Relativa">
+              <input type="text" class="form-control" id="DenRel" placeholder="Densidad Relativa">
             </div>    
         </div>
         <div class="form-group row">
             <label for="PreVapor" class="col-sm-3 col-form-label">Presion de Vapor</label>
             <div class="col-sm-9">
-              <input type="Muestra" class="form-control" id="PreVapor" placeholder="Presion de Vapor (psi)">
+              <input type="text" class="form-control" id="PreVapor" placeholder="Presion de Vapor (psi)">
+            </div>    
+        </div>
+        <div class="form-group row">
+            <label for="OctaMotor" class="col-sm-3 col-form-label">N° Octano Motor</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="OctaMotor" placeholder="Numero de Octano Motor">
+            </div>    
+        </div>
+        <div class="form-group row">
+            <label for="Metano" class="col-sm-3 col-form-label">Metano</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="Metano" placeholder="Metano (%Mol)">
+            </div>    
+        </div>
+        <div class="form-group row">
+            <label for="Etano" class="col-sm-3 col-form-label">Etano</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="Etano" placeholder="Etano (%Mol)">
             </div>    
         </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab id="tab-preventchange2" title="I can't be selected...">
-      <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-        craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-        cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-        yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-        shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-        sint qui sapiente accusamus tattooed echo park.</p>
+    <ngb-tab id="tab-preventchange2" title="Segunda">
+      <ng-template ngbTabContent>
+          <br>
+          <div class="form-group row">
+              <label for="Etileno" class="col-sm-3 col-form-label">Etileno</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Etileno" placeholder="Etileno (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Propano" class="col-sm-3 col-form-label">Propano</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Propano" placeholder="Propano (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Propileno" class="col-sm-3 col-form-label">Propileno</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Propileno" placeholder="Propileno (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Isobutano" class="col-sm-3 col-form-label">Isobutano</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Isobutano" placeholder="Isobutano (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Butano1" class="col-sm-3 col-form-label">N-Butano</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Butano1" placeholder="N-Butano (%Mol)">
+              </div>    
+          </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab title="But I can!" >
+    <ngb-tab title="Tercero" >
       <ng-template ngbTabContent>
-        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+        <br>
+          <div class="form-group row">
+              <label for="Buteno2" class="col-sm-3 col-form-label">Trans 2 Buteno</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Buteno" placeholder="Trans 2 Buteno (% Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Buteno3" class="col-sm-3 col-form-label">1-Buteno</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Buteno3" placeholder="1-Buteno (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Isobutileno" class="col-sm-3 col-form-label">Isobutileno</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Isobutileno" placeholder="Isobutileno (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Cis" class="col-sm-3 col-form-label">Cis 2 Buteno</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Cis" placeholder="Cis 2 Buteno (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Isopentano" class="col-sm-3 col-form-label">Isopentano</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Isopentano" placeholder="Isopentano (%Mol)">
+              </div>    
+          </div>
       </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Cuarto" >
+        <ng-template ngbTabContent>
+          <br>
+          <div class="form-group row">
+              <label for="Pentano" class="col-sm-3 col-form-label">Pentano</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Pentano" placeholder="N-Pentano (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Butadieno" class="col-sm-3 col-form-label">Butadieno</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Butadieno" placeholder="1,3 Butadieno (%Mol)">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="Hexanos" class="col-sm-3 col-form-label">Hexanos</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="Hexanos" placeholder="Hexanos">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="LamCobre" class="col-sm-3 col-form-label">Corrosión a la lámina de cobre</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="LamCobre" placeholder="Lámina de cobre">
+              </div>    
+          </div>
+          <div class="form-group row">
+              <label for="EtilMercaptano" class="col-sm-3 col-form-label">Etil Mercaptano</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="EtilMercaptano" placeholder="Etil mercaptano - FASE VAPOR (ppmv)">
+              </div>    
+          </div>
+        </ng-template>
     </ngb-tab>
   </ngb-tabset>
 </form>
