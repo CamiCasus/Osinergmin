@@ -5,6 +5,8 @@ import { GuiaEntidad } from '../../../models/guiaEntidad';
 import { GuiaService } from '../../../services/guia.service';
 import { NgForm } from '@angular/forms';
 import { AppGlobals } from '../../shared/app.globals';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 
 @Component({
   selector: 'app-registrar',
@@ -22,6 +24,7 @@ export class RegistrarComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _guiaService: GuiaService,
+    private _modal: NgbModal,
     private _route: Router) {
   }
 
@@ -60,6 +63,11 @@ export class RegistrarComponent implements OnInit {
     });
 
     // this._guiaService.grabarGuia(form.value);
+  }
+
+  agregarDetalle() {
+    const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg'});
+    modalRef.componentInstance.tipoContenido = TipoContenido.agregarProducto;
   }
 
   cancelar() {

@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'simple_numbers',
-      pageLength: 10
+      pageLength: 10      
     };
 
     this._guiaService.getGuiasListado()

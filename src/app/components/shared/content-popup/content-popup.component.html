@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title">Ingreso de Resultado {{ tipoMuestra | tipoMuestra }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <app-informe-ensayo-glp *ngIf="tipoContenido === tiposContenido.informeEnsayoGlp"></app-informe-ensayo-glp>
+  <app-informe-ensayo-liquido *ngIf="tipoContenido === tiposContenido.informeEnsayoLiquido"></app-informe-ensayo-liquido>
+  <app-registrar-producto *ngIf="tipoContenido === tiposContenido.agregarProducto"></app-registrar-producto>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Aceptar</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+</div>
