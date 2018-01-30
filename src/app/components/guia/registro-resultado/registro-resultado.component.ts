@@ -33,7 +33,7 @@ export class RegistroResultadoComponent implements OnInit {
       pageLength: 10
     };
 
-    this._guiaService.getDetalleGuia(this.guiaId)
+    this._guiaService.getDetalleListadoGuia(this.guiaId)
       .subscribe(data => {
         this.detalleGuia = data;
         this.dtTrigger.next();
@@ -41,8 +41,7 @@ export class RegistroResultadoComponent implements OnInit {
   }
 
   registrarResultado(tipoMuestra: number) {
-    const modalRef = this._modal.open(ResultadoMuestraPopupComponent, 
-      { size: 'lg'});
+    const modalRef = this._modal.open(ResultadoMuestraPopupComponent, { size: 'lg'});
     modalRef.componentInstance.tipoMuestra = tipoMuestra;
   }
 }

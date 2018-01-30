@@ -21,6 +21,7 @@ import { InformeEnsayoGlpComponent } from './components/guia/informe-ensayo-glp/
 import { RegistroResultadoComponent } from './components/guia/registro-resultado/registro-resultado.component';
 import { TipoMuestraPipe } from './pipes/tipo-muestra.pipe';
 import { ResultadoMuestraPopupComponent } from './components/shared/resultado-muestra-popup/resultado-muestra-popup.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ResultadoMuestraPopupComponent } from './components/shared/resultado-mu
     BrowserModule,
     APPROUTING,
     HttpClientModule,
+    FormsModule,
     DataTablesModule
   ],
   providers: [

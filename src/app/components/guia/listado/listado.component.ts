@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
       pageLength: 10
     };
 
-    this._guiaService.getGuias()
+    this._guiaService.getGuiasListado()
       .subscribe(data => {
         this.guias = data;
         this.dtTrigger.next();

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
+import { GuiaEntidad } from '../../../models/guiaEntidad';
+import { GuiaService } from '../../../services/guia.service';
+import { NgForm } from '@angular/forms';
+import { AppGlobals } from '../../shared/app.globals';
 
 @Component({
   selector: 'app-registrar',
@@ -9,18 +13,31 @@ import { Subject } from 'rxjs/Subject';
 })
 export class RegistrarComponent implements OnInit {
 
+  archivoActual: File;
+  guiaActual: GuiaEntidad;
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  
+
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _guiaService: GuiaService,
     private _route: Router) {
-    this._activatedRoute.params.subscribe(params => {
-      console.log(params["id"]);
-    });
   }
 
   ngOnInit() {
+    this._activatedRoute.params.subscribe(params => {
+      let guiaId = params["id"];
+
+      if (guiaId != null) {
+        this._guiaService.getGuia(guiaId).subscribe(data => {
+          this.guiaActual = data;
+        });
+      } else {
+        this.guiaActual = new GuiaEntidad();
+      }
+    });
+
     this.dtOptions = {
       pagingType: 'simple_numbers',
       pageLength: 10,
@@ -29,8 +46,20 @@ export class RegistrarComponent implements OnInit {
     };
   }
 
-  grabar() {
+  getFiles(event) {
+    this.archivoActual = event.target.files[0];
+  }
 
+  onSubmit(objetoEnviar: any) {
+    objetoEnviar.nombreArchivo = this.archivoActual.name;
+
+    AppGlobals.convertFileToBase64(this.archivoActual)
+      .then((resultado) => {
+        objetoEnviar.guiaAdjunta = resultado;
+        console.log(objetoEnviar);
+    });
+
+    // this._guiaService.grabarGuia(form.value);
   }
 
   cancelar() {
