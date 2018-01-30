@@ -41,7 +41,8 @@ export class RegistroResultadoComponent implements OnInit {
   }
 
   registrarResultado(tipoMuestra: number) {
-    const modalRef = this._modal.open(ResultadoMuestraPopupComponent);
+    const modalRef = this._modal.open(ResultadoMuestraPopupComponent, 
+      { size: 'lg'});
     modalRef.componentInstance.tipoMuestra = tipoMuestra;
   }
 }
