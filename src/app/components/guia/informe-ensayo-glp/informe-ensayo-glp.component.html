@@ -1,20 +1,44 @@
 <form>
-  <div class="form-group">
-    <label for="nroGuia">Numero Guia</label>
-    <input type="Guia" class="form-control" id="nroGuia" placeholder="Enter nroGuia">
+  <div class="form-group row">
+    <label for="nroGuia" class="col-sm-2 col-form-label">Nro.Guia</label>
+    <div class="col-sm-10">
+      <input type="Guia" class="form-control" id="nroGuia" placeholder="Detallar Guia">
+    </div>      
   </div>
-  <div class="form-group">
-    <label for="nroMuestra">Numero Muestra</label>
-    <input type="Muestra" class="form-control" id="nroMuestra" placeholder="Enter nrMuestra">
+  <div class="form-group row">
+    <label for="nroMuestra" class="col-sm-2 col-form-label">Nro. Muestra</label>
+    <div class="col-sm-10">
+      <input type="Muestra" class="form-control" id="nroMuestra" placeholder="Detallar Muestra">
+    </div>    
   </div>
-
   <ngb-tabset (tabChange)="beforeChange($event)">
-    <ngb-tab id="tab-preventchange1" title="Simple">
+    <ngb-tab id="tab-preventchange1" title="Primera">
       <ng-template ngbTabContent>
-        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-        dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-        iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+      <br>
+        <div class="form-group row">
+          <label for="Observaciones" class="col-sm-3 col-form-label">Observaciones</label>
+          <div class="col-sm-9">
+            <input type="Muestra" class="form-control" id="Observaciones" placeholder="Detallar">
+          </div>    
+        </div>
+        <div class="form-group row">
+            <label for="InfLab" class="col-sm-3 col-form-label">N° Informe Laboratorio</label>
+            <div class="col-sm-9">
+              <input type="Muestra" class="form-control" id="InfLab" placeholder="Nro. Informe Laboratorio">
+            </div>    
+        </div>
+        <div class="form-group row">
+            <label for="DenRel" class="col-sm-3 col-form-label">Densidad Relativa</label>
+            <div class="col-sm-9">
+              <input type="Muestra" class="form-control" id="DenRel" placeholder="Densidad Relativa">
+            </div>    
+        </div>
+        <div class="form-group row">
+            <label for="PreVapor" class="col-sm-3 col-form-label">Presion de Vapor</label>
+            <div class="col-sm-9">
+              <input type="Muestra" class="form-control" id="PreVapor" placeholder="Presion de Vapor (psi)">
+            </div>    
+        </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="tab-preventchange2" title="I can't be selected...">
@@ -33,5 +57,5 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-
 </form>
+
