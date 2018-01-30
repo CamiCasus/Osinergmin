@@ -1,52 +1,58 @@
-<div class="card">
-  <div class="card-header">
-    Registro / Modificación de Guías
-  </div>
-  <div class="card-body">
-    <form>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <div class="card">
+    <div class="card-header">
+      Registro / Modificación de Guías
+    </div>
+    <div class="card-body">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtCodigo">Código</label>
-          <input type="text" class="form-control" id="txtCodigo" placeholder="PER-XXXX">
+          <input type="text" class="form-control" name="codigo" id="txtCodigo" placeholder="PER-XXXX" [ngModel]="guiaActual.codigo">
         </div>
         <div class="form-group col-md-6">
           <label for="txtFechaRecepcion">Fecha de Recepción</label>
-          <input type="date" class="form-control" id="txtFechaRecepcion" placeholder="dd/mm/yyyy">
+          <input name="fechaRecepcion" [ngModel]="guiaActual.fechaRecepcion" type="date" class="form-control" id="txtFechaRecepcion"
+            placeholder="dd/mm/yyyy">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="txtRepresentanteLaboratorio">Representante Laboratorio</label>
-          <input type="text" class="form-control" id="txtRepresentanteLaboratorio">
+          <label for="txtRepresentanteIntertek">Representante Laboratorio</label>
+          <input name="representanteIntertek" [ngModel]="guiaActual.representanteIntertek" type="text" class="form-control" id="txtRepresentanteIntertek">
         </div>
         <div class="form-group col-md-6">
-          <label for="txtDniRepresentanteLaboratorio">DNI Representante Laboratorio</label>
-          <input type="text" class="form-control" id="txtDniRepresentanteLaboratorio">
+          <label for="txtDniRepresentanteIntertek">DNI Representante Laboratorio</label>
+          <input name="dniRepresentanteIntertek" [ngModel]="guiaActual.dniRepresentanteIntertek" type="text" class="form-control"
+            id="txtDniRepresentanteIntertek">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtRepresentanteOsinergmin">Representante Osinergmin</label>
-          <input type="text" class="form-control" id="txtRepresentanteOsinergmin">
+          <input name="representanteOsinergmin" [ngModel]="guiaActual.representanteOsinergmin" type="text" class="form-control" id="txtRepresentanteOsinergmin">
         </div>
         <div class="form-group col-md-6">
           <label for="txtDniRepresentanteOsinergmin">DNI Representante Osinergmin</label>
-          <input type="text" class="form-control" id="txtDniRepresentanteOsinergmin">
+          <input name="dniRepresentanteOsinergmin" [ngModel]="guiaActual.dniRepresentanteOsinergmin" type="text" class="form-control"
+            id="txtDniRepresentanteOsinergmin">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="txtSupervisor">Supervisor Extracción de Muestra</label>
-          <input type="text" class="form-control" id="txtSupervisor">
+          <label for="txtSupervisorExtraccionMuestra">Supervisor Extracción de Muestra</label>
+          <input name="supervisorExtraccionMuestra" [ngModel]="guiaActual.supervisorExtraccionMuestra" type="text" class="form-control"
+            id="txtSupervisorExtraccionMuestra">
         </div>
         <div class="form-group col-md-6">
-          <label for="txtArchivo">Seleccionar Archivo</label>
-          <input type="file" class="form-control" id="txtArchivo" lang="es">
+          <label for="txtArchivoGuia">Seleccionar Archivo</label>
+          <input 
+          (change)="getFiles($event)"
+            type="file" class="form-control" id="txtArchivoGuia" lang="es">
         </div>
       </div>
       <div class="form-group">
         <label for="txtComentario">Comentario</label>
-        <textarea class="form-control" id="txtComentario" rows="3"></textarea>
+        <textarea name="comentario" [ngModel]="guiaActual.comentario" class="form-control" id="txtComentario" rows="3"></textarea>
       </div>
 
       <table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered" cellspacing="0">
@@ -71,11 +77,10 @@
           </tr>
         </tbody>
       </table>
-
-    </form>
+    </div>
+    <div class="card-footer text-muted">
+      <button class="btn btn-success" type="submit">Grabar</button>
+      <button (click)="cancelar()" class="btn" type="button">Cancelar</button>
+    </div>
   </div>
-  <div class="card-footer text-muted">
-    <button (click)="grabar()" class="btn btn-success" type="button">Grabar</button>
-    <button (click)="cancelar()" class="btn" type="button">Cancelar</button>
-  </div>
-</div>
+</form>
