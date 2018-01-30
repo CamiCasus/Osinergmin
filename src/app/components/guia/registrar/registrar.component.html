@@ -48,7 +48,30 @@
         <label for="txtComentario">Comentario</label>
         <textarea class="form-control" id="txtComentario" rows="3"></textarea>
       </div>
-      <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+
+      <table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Codigo Producto</th>
+            <th>Cant. de Muestras</th>
+            <th>Tipo de Envase</th>
+            <th>Fecha de Muestreo</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let guia of guias;">
+            <td>{{ guia.codigo }}</td>
+            <td>{{ guia.fechaIngreso }}</td>
+            <td>{{ guia.representanteOsinergmin }}</td>
+            <td>{{ guia.representanteIntertek }}</td>
+            <td>{{ guia.representanteOsinergmin }}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
     </form>
   </div>
   <div class="card-footer text-muted">
