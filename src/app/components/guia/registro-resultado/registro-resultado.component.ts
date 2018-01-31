@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { DetalleGuiaListado } from '../../../models/detalleGuiaListado';
 import { GuiaService } from '../../../services/guia.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ResultadoMuestraPopupComponent } from '../../shared/resultado-muestra-popup/resultado-muestra-popup.component';
+import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 
 @Component({
   selector: 'app-registro-resultado',
@@ -41,7 +41,7 @@ export class RegistroResultadoComponent implements OnInit {
   }
 
   registrarResultado(tipoMuestra: number) {
-    const modalRef = this._modal.open(ResultadoMuestraPopupComponent, { size: 'lg'});
-    modalRef.componentInstance.tipoMuestra = tipoMuestra;
+    const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg'});
+    modalRef.componentInstance.tipoContenido = tipoMuestra;
   }
 }

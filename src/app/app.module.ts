@@ -20,8 +20,9 @@ import { InformeEnsayoLiquidoComponent } from './components/guia/informe-ensayo-
 import { InformeEnsayoGlpComponent } from './components/guia/informe-ensayo-glp/informe-ensayo-glp.component';
 import { RegistroResultadoComponent } from './components/guia/registro-resultado/registro-resultado.component';
 import { TipoMuestraPipe } from './pipes/tipo-muestra.pipe';
-import { ResultadoMuestraPopupComponent } from './components/shared/resultado-muestra-popup/resultado-muestra-popup.component';
+import { ContentPopupComponent } from './components/shared/content-popup/content-popup.component';
 import { FormsModule } from '@angular/forms';
+import { RegistrarProductoComponent } from './components/guia/registrar-producto/registrar-producto.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FormsModule } from '@angular/forms';
     InformeEnsayoGlpComponent,
     RegistroResultadoComponent,
     TipoMuestraPipe,
-    ResultadoMuestraPopupComponent
+    ContentPopupComponent,
+    RegistrarProductoComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -51,6 +53,6 @@ import { FormsModule } from '@angular/forms';
     GuiaService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MessageModalComponent, ResultadoMuestraPopupComponent]
+  entryComponents: [MessageModalComponent, ContentPopupComponent]
 })
 export class AppModule { }
