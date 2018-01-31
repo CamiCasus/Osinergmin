@@ -54,19 +54,21 @@ export class RegistrarComponent implements OnInit {
   }
 
   onSubmit(objetoEnviar: any) {
-    objetoEnviar.nombreArchivo = this.archivoActual.name;
+    if (this.archivoActual) {
+      objetoEnviar.nombreArchivo = this.archivoActual.name;
 
-    AppGlobals.convertFileToBase64(this.archivoActual)
-      .then((resultado) => {
-        objetoEnviar.guiaAdjunta = resultado;
-        console.log(objetoEnviar);
-    });
-
-    // this._guiaService.grabarGuia(form.value);
+      AppGlobals.convertFileToBase64(this.archivoActual)
+        .then((resultado) => {
+          objetoEnviar.guiaAdjunta = resultado;
+          console.log(objetoEnviar);
+        });
+    }
+    
+    console.log(objetoEnviar);
   }
 
   agregarDetalle() {
-    const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg'});
+    const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
     modalRef.componentInstance.tipoContenido = TipoContenido.agregarProducto;
   }
 

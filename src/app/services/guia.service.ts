@@ -32,7 +32,8 @@ export class GuiaService {
   }
 
   grabarGuia(guia: GuiaEntidad) {
-    return this._httpClient.put(`${AppGlobals.BASE_URL}/api/guia/registrar`, guia);
+    console.log('llamando al servicio de registrar');
+    return this._httpClient.post(`${AppGlobals.BASE_URL}/api/guia/registrar`, guia);
   }
 
   eliminarGuia(guiaId) {
