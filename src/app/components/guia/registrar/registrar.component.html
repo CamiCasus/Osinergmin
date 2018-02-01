@@ -46,6 +46,7 @@
         <div class="form-group col-md-6">
           <label for="txtArchivoGuia">Seleccionar Archivo</label>
           <input 
+          [value]="guiaActual.nombreArchivo"
           (change)="getFiles($event)"
             type="file" class="form-control" id="txtArchivoGuia" lang="es">
         </div>
