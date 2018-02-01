@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { AppGlobals } from '../../shared/app.globals';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
+import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 
 @Component({
   selector: 'app-registrar',
@@ -15,10 +16,11 @@ import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup
 })
 export class RegistrarComponent implements OnInit {
 
-  // tslint:disable-next-line:no-inferrable-types
-  loading: boolean = false;
+  guiaId: number;
   archivoActual: File;
   guiaActual: GuiaEntidad;
+
+  detalleGuiaActual: DetalleGuiaEntidad;
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -32,14 +34,15 @@ export class RegistrarComponent implements OnInit {
 
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
-      const guiaId = params['id'];
+      this.guiaId = params['id'];
 
-      if (guiaId != null) {
-        this._guiaService.getGuia(guiaId).subscribe(data => {
+      if (this.guiaId != null) {
+        this._guiaService.getGuia(this.guiaId).subscribe(data => {
           this.guiaActual = data;
         });
       } else {
         this.guiaActual = new GuiaEntidad();
+        this.guiaActual.detalleGuia = [];
       }
     });
 
@@ -61,24 +64,35 @@ export class RegistrarComponent implements OnInit {
 
       AppGlobals.convertFileToBase64(this.archivoActual)
         .then((resultado) => {
+          objetoEnviar.id = this.guiaId;
           objetoEnviar.guiaAdjunta = resultado;
+          objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 
-          console.log(objetoEnviar);
-          this.loading = true;
-
-          this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
-            this.loading = false;
-            this.cancelar();
-          });
+          if(this.guiaId == null){
+            this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
+              this.cancelar();
+            });
+          } else {
+            this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
+              this.cancelar();
+            });
+          }         
         });
     } else {
       alert('debe subir el archivo');
     }
   }
 
-  agregarDetalle() {
+  cargarDetalle(guiaDetalle: DetalleGuiaEntidad) {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
-    modalRef.componentInstance.tipoContenido = TipoContenido.agregarProducto;
+
+    modalRef.componentInstance.tipoContenido = TipoContenido.agregarDetalleGuia;
+    modalRef.componentInstance.titulo = "Registro de Detalle Guia";
+    modalRef.componentInstance.data = guiaDetalle;
+
+    modalRef.result.then((result) => {
+      this.guiaActual.detalleGuia.push(result);
+    }, (reason) => { });
   }
 
   cancelar() {

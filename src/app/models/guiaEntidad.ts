@@ -13,4 +13,11 @@ export class GuiaEntidad {
     nombreArchivo: string;
     guiaAdjunta: string;
     detalleGuia: DetalleGuiaEntidad[];
+
+    /**
+     *
+     */
+    constructor() {
+        this.detalleGuia = [];        
+    }
 }

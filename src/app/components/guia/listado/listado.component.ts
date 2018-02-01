@@ -24,9 +24,13 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'simple_numbers',
-      pageLength: 10      
+      pageLength: 10
     };
 
+    this.cargarGuias();
+  }
+
+  cargarGuias() {
     this._guiaService.getGuiasListado()
       .subscribe(data => {
         this.guias = data;
@@ -54,7 +58,10 @@ export class ListComponent implements OnInit {
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
-      this._guiaService.eliminarGuia(guiaId);
+      this._guiaService.eliminarGuia(guiaId)
+        .subscribe(data => {
+          this.cargarGuias();
+        });
     }, (reason) => { });
 
     return false;

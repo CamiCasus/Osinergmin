@@ -1,0 +1,114 @@
+<div class="card">
+  <div class="card-body" *ngIf="detalleGuiaActual">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtCodigoProducto" class="col-md-5 col-form-label">Código de Producto</label>
+          <div class="col-md-7">
+            <input type="text" class="form-control" name="codigoProducto" id="txtCodigoProducto" placeholder="" [(ngModel)]="detalleGuiaActual.codigoProducto">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtCodigoEstablecimiento" class="col-md-5 col-form-label">Código de Establecimiento</label>
+          <div class="col-md-7">
+            <input type="text" class="form-control" name="codigoEstablecimiento" id="txtCodigoEstablecimiento" [(ngModel)]="detalleGuiaActual.codigoEstablecimiento">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtCantidadMuestras" class="col-md-5 col-form-label">Cantidad de Muestras</label>
+          <div class="col-md-7">
+            <input name="cantidadMuestras" [(ngModel)]="detalleGuiaActual.cantidadMuestras" type="text" class="form-control" id="txtCantidadMuestras">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtFechaMuestreo" class="col-md-5 col-form-label">Fecha de Muestreo</label>
+          <div class="col-md-7">
+            <input name="fechaMuestreo" [(ngModel)]="detalleGuiaActual.fechaMuestreo" type="date" class="form-control" id="txtFechaMuestreo"
+              placeholder="dd/mm/yyyy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtNumeroActa" class="col-md-5 col-form-label">Número de Acta</label>
+          <div class="col-md-7">
+            <input name="numeroActa" [(ngModel)]="detalleGuiaActual.numeroActa" type="text" class="form-control" id="txtNumeroActa">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtNumeroMuestra" class="col-md-5 col-form-label">Número de Muestra</label>
+          <div class="col-md-7">
+            <input name="numeroMuestra" [(ngModel)]="detalleGuiaActual.numeroMuestra" type="text" class="form-control" id="txtNumeroMuestra">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtNumeroPrescintoDirimencia" class="col-md-5 col-form-label">Número de Prescinto Dirimencia</label>
+          <div class="col-md-7">
+            <input name="numeroPrescintoDirimencia" [(ngModel)]="detalleGuiaActual.numeroPrescintoDirimencia" type="text" class="form-control"
+              id="txtNumeroPrescintoDirimencia">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtNumeroPrescintoLaboratorio" class="col-md-5 col-form-label">Número de Prescinto Laboratorio</label>
+          <div class="col-md-7">
+            <input name="numeroPrescintoLaboratorio" [(ngModel)]="detalleGuiaActual.numeroPrescintoLaboratorio" type="text" class="form-control"
+              id="txtNumeroPrescintoLaboratorio">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtOrigenProducto" class="col-md-5 col-form-label">Origen del Producto</label>
+          <div class="col-md-7">
+            <input name="origenProducto" [(ngModel)]="detalleGuiaActual.origenProducto" type="text" class="form-control" id="txtOrigenProducto">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label for="txtTipoEnvase" class="col-md-5 col-form-label">Tipo de Envase</label>
+          <div class="col-md-7">
+            <input name="tipoEnvase" [(ngModel)]="detalleGuiaActual.tipoEnvase" type="text" class="form-control" id="txtTipoEnvase">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="txtArchivo" class="col-md-2 col-form-label">Archivo</label>
+      <div class="col-md-10">
+        <input name="archivo" type="file" class="form-control" id="txtArchivo">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="txtComentario">Comentario</label>
+      <textarea name="comentario" [(ngModel)]="detalleGuiaActual.comentario" class="form-control" id="txtComentario" rows="3"></textarea>
+    </div>
+
+  </div>
+</div>

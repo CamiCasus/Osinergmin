@@ -1,15 +1,27 @@
 <div class="modal-header">
-  <h4 class="modal-title">Ingreso de Resultado {{ tipoMuestra | tipoMuestra }}</h4>
+  <h4 class="modal-title">{{titulo}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
-  <app-informe-ensayo-glp *ngIf="tipoContenido === tiposContenido.informeEnsayoGlp"></app-informe-ensayo-glp>
-  <app-informe-ensayo-liquido *ngIf="tipoContenido === tiposContenido.informeEnsayoLiquido"></app-informe-ensayo-liquido>
-  <app-registrar-producto *ngIf="tipoContenido === tiposContenido.agregarProducto"></app-registrar-producto>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Aceptar</button>
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
-</div>
+
+<ng-container *ngIf="tipoContenido === tiposContenido.agregarDetalleGuia">
+  <div class="modal-body">
+    <app-registrar-detalle #detalleGuia [detalle]="data"></app-registrar-detalle>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="activeModal.close(detalleGuia.detalleGuiaActual)">Aceptar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="tipoContenido !== tiposContenido.agregarDetalleGuia">
+  <div class="modal-body">
+    <app-informe-ensayo-glp *ngIf="tipoContenido === tiposContenido.informeEnsayoGlp"></app-informe-ensayo-glp>
+    <app-informe-ensayo-liquido *ngIf="tipoContenido === tiposContenido.informeEnsayoLiquido"></app-informe-ensayo-liquido>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Aceptar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+  </div>
+</ng-container>

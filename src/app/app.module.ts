@@ -22,7 +22,7 @@ import { RegistroResultadoComponent } from './components/guia/registro-resultado
 import { TipoMuestraPipe } from './pipes/tipo-muestra.pipe';
 import { ContentPopupComponent } from './components/shared/content-popup/content-popup.component';
 import { FormsModule } from '@angular/forms';
-import { RegistrarProductoComponent } from './components/guia/registrar-producto/registrar-producto.component';
+import { RegistrarDetalleComponent } from './components/guia/registrar-detalle/registrar-detalle.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { RegistrarProductoComponent } from './components/guia/registrar-producto
     RegistroResultadoComponent,
     TipoMuestraPipe,
     ContentPopupComponent,
-    RegistrarProductoComponent
+    RegistrarDetalleComponent
   ],
   imports: [
     NgbModule.forRoot(),

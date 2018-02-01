@@ -5,6 +5,7 @@ import { GuiaService } from '../../../services/guia.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
+import { TipoMuestraPipe } from '../../../pipes/tipo-muestra.pipe';
 
 @Component({
   selector: 'app-registro-resultado',
@@ -19,9 +20,10 @@ export class RegistroResultadoComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   constructor(
+    private _tipoMuestraPipe: TipoMuestraPipe,
     private _activatedRoute: ActivatedRoute,
     private _guiaService: GuiaService,
-    private _modal: NgbModal ) {
+    private _modal: NgbModal) {
     this._activatedRoute.params.subscribe(params => {
       this.guiaId = params["id"]
     });
@@ -41,7 +43,10 @@ export class RegistroResultadoComponent implements OnInit {
   }
 
   registrarResultado(tipoMuestra: number) {
-    const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg'});
+    const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
     modalRef.componentInstance.tipoContenido = tipoMuestra;
+
+    var textoTipoMuestra = this._tipoMuestraPipe.transform(tipoMuestra);
+    modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
   }
 }

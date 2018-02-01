@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,18 +8,19 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ContentPopupComponent implements OnInit {
   @Input() tipoContenido: TipoContenido;
+  @Input() titulo: string;
+  @Input() data: any;
+
   tiposContenido = TipoContenido;
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
-    console.log(this.tipoContenido);
   }
-
 }
 
 export enum TipoContenido {
   informeEnsayoGlp = 1,
   informeEnsayoLiquido = 2,
-  agregarProducto = 3
+  agregarDetalleGuia = 3
 }

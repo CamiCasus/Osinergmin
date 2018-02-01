@@ -24,3 +24,7 @@ body {
   .main-container{
     margin-top: 20px;
 }
+
+.modal-lg{
+  max-width: 1100px;
+}

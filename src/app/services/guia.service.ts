@@ -31,12 +31,15 @@ export class GuiaService {
     console.log(`Llamar al servicio de presentar guía con el código ${codigoVerificacion}`);
   }
 
-  grabarGuia(guia: GuiaEntidad) {
-    console.log('llamando al servicio de registrar');
-    return this._httpClient.post(`${AppGlobals.BASE_URL}/api/guia/registrar`, guia);
+  grabarGuia(guia: GuiaEntidad) {    
+    return this._httpClient.post(`${AppGlobals.BASE_URL}/api/guia`, guia);
+  }
+
+  actualizarGuia(guia: GuiaEntidad) {    
+    return this._httpClient.put(`${AppGlobals.BASE_URL}/api/guia`, guia);
   }
 
   eliminarGuia(guiaId) {
-    console.log(`Llamar al servicio para eliminar guía con el codigo ${guiaId}`);
+    return this._httpClient.delete(`${AppGlobals.BASE_URL}/api/guia/${guiaId}`);
   }
 }
