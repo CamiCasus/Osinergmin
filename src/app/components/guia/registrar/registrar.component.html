@@ -87,7 +87,11 @@
       </table>
     </div>
     <div class="card-footer text-muted">
-      <button class="btn btn-success" type="submit">Grabar</button>
+      <button class="btn btn-primary" type="submit" [disabled]= "loading">
+          <i class="fa fa-save"></i> 
+        <!-- <i [ngClass]="{'fa-save': !loading, 'fa-refresh fa-spin': loading}" class="fa"></i> -->
+        Grabar
+      </button>
       <button (click)="cancelar()" class="btn" type="button">Cancelar</button>
     </div>
   </div>

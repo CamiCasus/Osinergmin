@@ -15,6 +15,8 @@ import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup
 })
 export class RegistrarComponent implements OnInit {
 
+  // tslint:disable-next-line:no-inferrable-types
+  loading: boolean = false;
   archivoActual: File;
   guiaActual: GuiaEntidad;
 
@@ -30,7 +32,7 @@ export class RegistrarComponent implements OnInit {
 
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
-      let guiaId = params["id"];
+      const guiaId = params['id'];
 
       if (guiaId != null) {
         this._guiaService.getGuia(guiaId).subscribe(data => {
@@ -60,11 +62,18 @@ export class RegistrarComponent implements OnInit {
       AppGlobals.convertFileToBase64(this.archivoActual)
         .then((resultado) => {
           objetoEnviar.guiaAdjunta = resultado;
+
           console.log(objetoEnviar);
+          this.loading = true;
+
+          this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
+            this.loading = false;
+            this.cancelar();
+          });
         });
+    } else {
+      alert('debe subir el archivo');
     }
-    
-    console.log(objetoEnviar);
   }
 
   agregarDetalle() {

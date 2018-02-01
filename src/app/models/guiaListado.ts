@@ -3,5 +3,5 @@ export class GuiaListado {
     codigo: string;
     representanteOsinergmin: string;
     representanteIntertek: string;
-    fechaRecepccion: Date;
+    fechaRecepcion: Date;
   }

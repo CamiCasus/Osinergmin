@@ -3,7 +3,7 @@ import { DetalleGuiaEntidad } from './detalleGuiaEntidad';
 export class GuiaEntidad {
     id: number;
     codigo: string;
-    fechaRecepcion: Date;
+    fechaRecepcion: string;
     representanteOsinergmin: string;
     dniRepresentanteOsinergmin: string;
     representanteIntertek: string;

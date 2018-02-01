@@ -6,7 +6,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-lg-12">
-          <button (click)="irAVistaRegistrar()" type="button" class="btn btn-success float-right">Agregar</button>
+          <button (click)="irAVistaRegistrar()" type="button" class="btn btn-primary float-right">Agregar</button>
         </div>
       </div>
       <br>
@@ -23,7 +23,7 @@
         <tbody>
           <tr *ngFor="let guia of guias;">
             <td>{{ guia.codigo }}</td>
-            <td>{{ guia.fechaRecepccion }}</td>
+            <td>{{ guia.fechaRecepcion | date:'dd/MM/yyyy' }}</td>
             <td>{{ guia.representanteOsinergmin }}</td>
             <td>{{ guia.representanteIntertek }}</td>
             <td>
