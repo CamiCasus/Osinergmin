@@ -62,7 +62,7 @@ export class ListComponent implements OnInit {
         .subscribe(data => {
           this.cargarGuias();
         });
-    }, (reason) => { });
+    }, (reason) => {});
 
     return false;
   }

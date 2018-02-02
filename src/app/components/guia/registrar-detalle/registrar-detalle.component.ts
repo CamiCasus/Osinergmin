@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
+import { MaestrosService } from '../../../services/maestros.service';
+import { ProductoEntidad } from '../../../models/productoEntidad';
 
 @Component({
   selector: 'app-registrar-detalle',
@@ -9,12 +11,17 @@ import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 export class RegistrarDetalleComponent implements OnInit {
 
   @Input('detalle') detalleGuiaActual: DetalleGuiaEntidad;
+  productos: ProductoEntidad[];
 
-  constructor() { }
+  constructor(private _maestrosService: MaestrosService) { }
 
   ngOnInit() {
     if (this.detalleGuiaActual == null)
       this.detalleGuiaActual = new DetalleGuiaEntidad();
+
+    this._maestrosService.getProductos().subscribe(data => {
+      this.productos = data;
+    });
   }
 
 }

@@ -3,9 +3,13 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="txtCodigoProducto" class="col-md-5 col-form-label">Código de Producto</label>
+          <label for="cblCodigoProducto" class="col-md-5 col-form-label">Código de Producto</label>
           <div class="col-md-7">
-            <input type="text" class="form-control" name="codigoProducto" id="txtCodigoProducto" placeholder="" [(ngModel)]="detalleGuiaActual.codigoProducto">
+            <!-- <input type="text" class="form-control" name="codigoProducto" id="txtCodigoProducto" placeholder="" [(ngModel)]="detalleGuiaActual.codigoProducto"> -->
+            <select class="form-control custom-select" name="codigoProducto" id="cblCodigoProducto" [(ngModel)]="detalleGuiaActual.codigoProducto">
+              <option>--Seleccione--</option>
+              <option *ngFor="let producto of productos" [value]="producto.codigo">{{producto.nombre}}</option>
+            </select>
           </div>
         </div>
       </div>

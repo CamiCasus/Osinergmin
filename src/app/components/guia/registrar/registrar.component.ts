@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
+import { MaestrosService } from '../../../services/maestros.service';
 
 @Component({
   selector: 'app-registrar',
@@ -20,7 +21,6 @@ export class RegistrarComponent implements OnInit {
   guiaId: number;
   archivoActual: File;
   guiaActual: GuiaEntidad;
-
   detalleGuiaActual: DetalleGuiaEntidad;
 
   dtOptions: DataTables.Settings = {};
@@ -97,16 +97,33 @@ export class RegistrarComponent implements OnInit {
     }
   }
 
-  cargarDetalle(guiaDetalle: DetalleGuiaEntidad) {
+  cargarDetalle(guiaDetalle: DetalleGuiaEntidad, index: number) {
+    let guiaAModificar = Object.assign({}, guiaDetalle);
+
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
 
     modalRef.componentInstance.tipoContenido = TipoContenido.agregarDetalleGuia;
     modalRef.componentInstance.titulo = 'Registro de Detalle Guia';
-    modalRef.componentInstance.data = guiaDetalle;
+    modalRef.componentInstance.data = guiaAModificar;
 
     modalRef.result.then((result) => {
-      this.guiaActual.detalleGuia.push(result);
-    });
+      if (guiaDetalle == null)
+        this.guiaActual.detalleGuia.push(result);
+      else {
+        this.guiaActual.detalleGuia[index] = result;
+      }
+    }, (reason) => { });
+  }
+
+  eliminar(detalleGuia: DetalleGuiaEntidad, index: number) {
+    const modalRef = this._modal.open(MessageModalComponent);
+    modalRef.componentInstance.titulo = 'Eliminar Detalle';
+    modalRef.componentInstance.mensaje = '¿Estás seguro de eliminar este Detalle?';
+    modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
+
+    modalRef.result.then((result) => {
+      this.guiaActual.detalleGuia.splice(index, 1);
+    }, (reason) => { });
   }
 
   cancelar() {

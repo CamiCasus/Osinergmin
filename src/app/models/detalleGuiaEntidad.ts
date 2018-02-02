@@ -3,7 +3,7 @@ export class DetalleGuiaEntidad {
     codigoProducto: string;
     codigoEstablecimiento: string;
     cantidadMuestras: number;
-    fechaMuestreo: Date;
+    fechaMuestreo: string;
     numeroActa: string;
     numeroMuestra: number;
     numeroPrescintoDirimencia: string;

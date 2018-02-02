@@ -20,7 +20,6 @@ export class RegistroResultadoComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   constructor(
-    private _tipoMuestraPipe: TipoMuestraPipe,
     private _activatedRoute: ActivatedRoute,
     private _guiaService: GuiaService,
     private _modal: NgbModal) {
@@ -46,7 +45,7 @@ export class RegistroResultadoComponent implements OnInit {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
     modalRef.componentInstance.tipoContenido = tipoMuestra;
 
-    var textoTipoMuestra = this._tipoMuestraPipe.transform(tipoMuestra);
+    var textoTipoMuestra = TipoMuestraPipe.apply(tipoMuestra);
     modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
   }
 }

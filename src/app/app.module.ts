@@ -23,6 +23,7 @@ import { TipoMuestraPipe } from './pipes/tipo-muestra.pipe';
 import { ContentPopupComponent } from './components/shared/content-popup/content-popup.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrarDetalleComponent } from './components/guia/registrar-detalle/registrar-detalle.component';
+import { MaestrosService } from './services/maestros.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { RegistrarDetalleComponent } from './components/guia/registrar-detalle/r
     DataTablesModule
   ],
   providers: [
-    GuiaService
+    GuiaService,
+    MaestrosService
   ],
   bootstrap: [AppComponent],
   entryComponents: [MessageModalComponent, ContentPopupComponent]
