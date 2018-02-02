@@ -24,4 +24,11 @@ export class RegistrarDetalleComponent implements OnInit {
     });
   }
 
+  onChangeProducto(event) {
+    const indexProducto = event.target.options.selectedIndex - 1;
+
+    this.detalleGuiaActual.nombreProducto = this.productos[indexProducto].nombre;
+    this.detalleGuiaActual.tipoProducto = this.productos[indexProducto].tipoProducto;
+  }
+
 }

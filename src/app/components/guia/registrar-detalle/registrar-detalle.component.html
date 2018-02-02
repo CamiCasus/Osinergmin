@@ -3,12 +3,17 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="cblCodigoProducto" class="col-md-5 col-form-label">Código de Producto</label>
+          <label for="cblproductoId" class="col-md-5 col-form-label">Producto</label>
           <div class="col-md-7">
             <!-- <input type="text" class="form-control" name="codigoProducto" id="txtCodigoProducto" placeholder="" [(ngModel)]="detalleGuiaActual.codigoProducto"> -->
-            <select class="form-control custom-select" name="codigoProducto" id="cblCodigoProducto" [(ngModel)]="detalleGuiaActual.codigoProducto">
+            <select 
+                (change)="onChangeProducto($event)"
+                class="form-control custom-select" 
+                name="codigoProducto" id="cblproductoId" 
+                [(ngModel)]="detalleGuiaActual.productoId">
               <option>--Seleccione--</option>
-              <option *ngFor="let producto of productos" [value]="producto.codigo">{{producto.nombre}}</option>
+              <option *ngFor="let producto of productos"
+                [value]="producto.id">{{producto.nombre}}</option>
             </select>
           </div>
         </div>
@@ -110,8 +115,8 @@
     </div>
 
     <div class="form-group">
-      <label for="txtComentario">Comentario</label>
-      <textarea name="comentario" [(ngModel)]="detalleGuiaActual.comentario" class="form-control" id="txtComentario" rows="3"></textarea>
+      <label for="txtObservaciones">Observaciones</label>
+      <textarea name="observaciones" [(ngModel)]="detalleGuiaActual.observaciones" class="form-control" id="txtObservaciones" rows="3"></textarea>
     </div>
 
   </div>

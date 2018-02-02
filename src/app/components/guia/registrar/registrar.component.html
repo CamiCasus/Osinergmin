@@ -63,7 +63,7 @@
         <thead>
           <tr>
             <th>Nº</th>
-            <th>Codigo Producto</th>
+            <th>Producto</th>
             <th>Cant. de Muestras</th>
             <th>Tipo de Envase</th>
             <th>Fecha de Muestreo</th>
@@ -73,7 +73,7 @@
         <tbody>
           <tr *ngFor="let detalleGuia of guiaActual.detalleGuia; let i = index;">
             <td class="text-center">{{ i + 1 }}</td>
-            <td>{{ detalleGuia.codigoProducto }}</td>
+            <td>{{ detalleGuia.nombreProducto }}</td>
             <td>{{ detalleGuia.cantidadMuestras }}</td>
             <td>{{ detalleGuia.tipoEnvase }}</td>
             <td>{{ detalleGuia.fechaMuestreo | date:'dd/MM/yyyy' }}</td>

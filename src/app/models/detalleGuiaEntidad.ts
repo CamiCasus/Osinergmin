@@ -1,6 +1,8 @@
 export class DetalleGuiaEntidad {
     id: number;
-    codigoProducto: string;
+    productoId: number;
+    nombreProducto: string;
+    tipoProducto: number;
     codigoEstablecimiento: string;
     cantidadMuestras: number;
     fechaMuestreo: string;
