@@ -6,7 +6,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col-lg-12">
-          <button (click)="irAVistaRegistrar()" type="button" class="btn btn-primary float-right">Agregar</button>
+          <button (click)="irAVistaRegistrar()" type="button" class="btn btn-primary float-right">
+            <i class="fas fa-plus-circle"></i>&nbsp;Agregar</button>
         </div>
       </div>
       <br>
@@ -28,15 +29,21 @@
             <td>{{ guia.representanteIntertek }}</td>
             <td>
               <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-secondary" ngbDropdownToggle>Acciones</button>
+                <button class="btn btn-outline-secondary" ngbDropdownToggle>
+                  <i class="fas fa-bars"></i>&nbsp;Acciones</button>
                 <div ngbDropdownMenu>
-                  <a class="dropdown-item" [routerLink]="['/registrar', guia.id]">Editar</a>
-                  <a class="dropdown-item" href="#" (click)="eliminar(guia.id)">Eliminar</a>
+                  <a class="dropdown-item" [routerLink]="['/registrar', guia.id]">
+                    <i class="fas fa-edit"></i>&nbsp;Editar</a>
+                  <a class="dropdown-item" href="#" (click)="eliminar(guia.id)">
+                    <i class="fas fa-trash"></i>&nbsp;Eliminar</a>
                   <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#" (click)="presentarAOsinergmin()">Presentar</a>
-                  <a class="dropdown-item" href="#" (click)="validarCodigoVerificacion(contentValidacion)">Validar</a>
+                  <a class="dropdown-item" href="#" (click)="presentarAOsinergmin()">
+                    <i class="fas fa-share-square"></i>&nbsp;Presentar</a>
+                  <a class="dropdown-item" href="#" (click)="validarCodigoVerificacion(contentValidacion)">
+                    <i class="fas fa-balance-scale"></i>&nbsp;Validar</a>
                   <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" [routerLink]="['/resultado', guia.id]">Registrar Resultado</a>
+                  <a class="dropdown-item" [routerLink]="['/resultado', guia.id]">
+                    <i class="fas fa-registered"></i>&nbsp;Registrar Resultado</a>
                 </div>
               </div>
             </td>

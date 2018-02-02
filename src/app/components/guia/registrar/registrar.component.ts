@@ -8,6 +8,7 @@ import { AppGlobals } from '../../shared/app.globals';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
+import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
 
 @Component({
   selector: 'app-registrar',
@@ -59,7 +60,20 @@ export class RegistrarComponent implements OnInit {
   }
 
   onSubmit(objetoEnviar: any) {
+
+    const modalRef = this._modal.open(MessageModalComponent);
+    modalRef.componentInstance.titulo = 'Grabar Guía';
+    modalRef.componentInstance.mensaje = '¿Estás seguro de realizar esta operación?';
+    modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
+
+    modalRef.result.then((result) => {
+      this.grabar(objetoEnviar);
+    });
+  }
+
+  grabar(form: NgForm) {
     if (this.archivoActual) {
+      const objetoEnviar = form.value;
       objetoEnviar.nombreArchivo = this.archivoActual.name;
 
       AppGlobals.convertFileToBase64(this.archivoActual)
@@ -68,7 +82,7 @@ export class RegistrarComponent implements OnInit {
           objetoEnviar.guiaAdjunta = resultado;
           objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 
-          if(this.guiaId == null){
+          if (this.guiaId == null) {
             this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
               this.cancelar();
             });
@@ -76,7 +90,7 @@ export class RegistrarComponent implements OnInit {
             this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
               this.cancelar();
             });
-          }         
+          }
         });
     } else {
       alert('debe subir el archivo');
@@ -87,12 +101,12 @@ export class RegistrarComponent implements OnInit {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
 
     modalRef.componentInstance.tipoContenido = TipoContenido.agregarDetalleGuia;
-    modalRef.componentInstance.titulo = "Registro de Detalle Guia";
+    modalRef.componentInstance.titulo = 'Registro de Detalle Guia';
     modalRef.componentInstance.data = guiaDetalle;
 
     modalRef.result.then((result) => {
       this.guiaActual.detalleGuia.push(result);
-    }, (reason) => { });
+    });
   }
 
   cancelar() {
