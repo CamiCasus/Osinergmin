@@ -14,561 +14,549 @@
     <ngb-tabset (tabChange)="beforeChange($event)">
         <ngb-tab class="nav nav-pills mb-3" id="tab-preventchange1" title="Primera">
             <ng-template ngbTabContent>
-                <table class="table">
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtOctanaje" class="col-sm-6 col-form-label">Octanaje(RON)</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtOctanaje" placeholder="(RON)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtInflacion" class="col-sm-6 col-form-label">Punto Inflamación(°C)</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtInflacion" placeholder="(°C)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtReid" class="col-sm-6 col-form-label">PresiónVapor Reid(psig)</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtReid" placeholder="(psig)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtAzufre1" class="col-sm-6 col-form-label">ContenidoAzufre (ppm)4294</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtAzufre1" placeholder="(ppm)4294">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtAzufre2" class="col-sm-6 col-form-label">ContenidoAzufre (ppm)5453</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtAzufre2" placeholder="(ppm)5453">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtCinematica" class="col-sm-6 col-form-label">ViscosidadCinemática (cSt)"</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtCinematica" placeholder="(cSt)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtManganeso" class="col-sm-6 col-form-label">Cont.Manganeso (mg/l)</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtManganeso" placeholder="(mg/l)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtEscurrimiento" class="col-sm-6 col-form-label">PuntoEscurrimiento (ªC)</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtEscurrimiento" placeholder="(ªC)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtPlomo1" class="col-sm-6 col-form-label">ContenidoPlomo (g Pb/L)</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtPlomo1" placeholder="(g Pb/L)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtPlomo2" class="col-sm-6 col-form-label">ContenidoPlomo(g Pb/L)-ASTM-D-3341</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtPlomo2" placeholder="(g Pb/L)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+              <div class="row padding-top-15 padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtOctanaje" class="col-md-7 col-form-label">Octanaje (RON)</label>
+                      <div class="col-md-5">
+                        <input name="Octanaje"  type="text" class="form-control" id="txtOctanaje">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtPuntoInflamacion" class="col-md-7 col-form-label">Punto Inflamación (°C)</label>
+                      <div class="col-md-5">
+                        <input name="PuntoInflamacion"  type="text" class="form-control" id="txtPuntoInflamacion">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6" >
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtPresionVaporReid" class="col-md-7 col-form-label">Presión Vapor Reid (psig)</label>
+                      <div class="col-md-5">
+                        <input name="PresionVaporReid" type="text" class="form-control" id="txtOctanoVapor">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoAzufre4294" class="col-md-7 col-form-label">Contenido Azufre (ppm)4294</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoAzufre4294"  type="text" class="form-control" id="txtContenidoAzufre4294">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoAzufre5453" class="col-md-7 col-form-label">Contenido Azufre (ppm)5453</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoAzufre5453"  type="text" class="form-control" id="txtContenidoAzufre5453">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtViscosidadCinematica" class="col-md-7 col-form-label">Viscosidad Cinemática (cSt)</label>
+                      <div class="col-md-5">
+                        <input name="ViscosidadCinematica"  type="text" class="form-control" id="txtViscosidadCinematica">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoManganeso" class="col-md-7 col-form-label">Cont. Manganeso (mg/l)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoManganeso"  type="text" class="form-control" id="txtContenidoManganeso">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtPuntoEscurrimiento" class="col-md-7 col-form-label">Punto Escurrimiento (ªC)</label>
+                      <div class="col-md-5">
+                        <input name="PuntoEscurrimiento"  type="text" class="form-control" id="txtPuntoEscurrimiento">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoPlomo" class="col-md-7 col-form-label">Contenido Plomo (g Pb/L)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoPlomo"  type="text" class="form-control" id="txtContenidoPlomo">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoPlomoAstmd3341" class="col-md-7 col-form-label">Contenido  Plomo (g Pb/L) - ASTM D 3341</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoPlomoAstmd3341"  type="text" class="form-control" id="ContenidoPlomoAstmd3341">
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </ng-template>
-        </ngb-tab>
-        <ngb-tab id="tab-preventchange2" title="Segunda">
+          </ngb-tab>
+          <ngb-tab id="tab-preventchange2" title="Segunda">
             <ng-template ngbTabContent>
-                <table class="table">
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtPlomo3" class="col-sm-7 col-form-label">ContenidoPlomo(g Pb/L)-ASTM-D-3237</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtPlomo3" placeholder="(g Pb/L)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM" class="col-sm-7 col-form-label">ASTM-D-86 (PIE)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM" placeholder="(PIE)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM1" class="col-sm-7 col-form-label">ASTM-D-86 (5%)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM1" placeholder="(5%)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM2" class="col-sm-7 col-form-label">ASTM-D-86 (10%)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM2" placeholder="(10%)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM3" class="col-sm-7 col-form-label">ASTM-D-86 (20%)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM3" placeholder="(20%)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM4" class="col-sm-7 col-form-label">ASTM-D-86 (50%)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM4" placeholder="(50%)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM5" class="col-sm-7 col-form-label">ASTM-D-86 (90%)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM5" placeholder="(90%)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM6" class="col-sm-7 col-form-label">ASTM-D-86 (95%)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM6" placeholder="(95%)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM7" class="col-sm-7 col-form-label">ASTM-D-86 (PFE)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM7" placeholder="(PFE)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtASTM8" class="col-sm-7 col-form-label">ASTM-D-86 (RECUP)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtASTM8" placeholder="(RECUP)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+              <div class="row padding-top-15 padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoPlomoAstmd3237" class="col-md-5 col-form-label">Contenido  Plomo (g Pb/L) - ASTM D 3237</label>
+                      <div class="col-md-7">
+                        <input name="ContenidoPlomoAstmd3237"  type="text" class="form-control" id="txtContenidoPlomoAstmd3237">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_pie" class="col-md-5 col-form-label">ASTM D 86 (PIE)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_pie"  type="text" class="form-control" id="txtAstmd86_pie">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_5p" class="col-md-5 col-form-label">ASTM D 86 (5%)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_5p"  type="text" class="form-control" id="txtAstmd86_5p">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_10p" class="col-md-5 col-form-label">ASTM D 86 (10%)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_10p"  type="text" class="form-control" id="txtAstmd86_10p">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_20p" class="col-md-5 col-form-label">ASTM D 86 (20%)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_20p"  type="text" class="form-control" id="txtAstmd86_20p">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_50p " class="col-md-5 col-form-label">ASTM D 86 (50%)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_50p "  type="text" class="form-control" id="txtAstmd86_50p">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_90p " class="col-md-5 col-form-label">ASTM D 86 (90%) </label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_90p "  type="text" class="form-control" id="txtAstmd86_90p">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_95p" class="col-md-5 col-form-label">ASTM D 86 (95%)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_95p"  type="text" class="form-control" id="txtAstmd86_95p">
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_pfe " class="col-md-5 col-form-label">ASTM D 86 (PFE)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_pfe"  type="text" class="form-control" id="txtAstmd86_pfe">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_recup" class="col-md-5 col-form-label">ASTM D 86 (RECUP)</label>
+                      <div class="col-md-7">
+                        <input name="Astmd86_recup"  type="text" class="form-control" id="txtAstmd86_recup">
+                      </div>
+                    </div>
+                  </div>
+                </div>  
             </ng-template>
-        </ngb-tab>
-        <ngb-tab id="tab-preventchange3" title="Tercero">
+          </ngb-tab>
+          <ngb-tab id="tab-preventchange3" title="Tercero">
             <ng-template ngbTabContent>
-                <table class="table">
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtResiduo" class="col-sm-7 col-form-label">ASTM-D-86 (RESIDUO)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtResiduo" placeholder="(RESIDUO)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtPerdidas" class="col-sm-7 col-form-label">ASTM-D-86 (PERDIDAS)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtPerdidas" placeholder="(PERDIDAS)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtAPI" class="col-sm-7 col-form-label">Gravidad ºAPI</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtAPI" placeholder="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtRelativa" class="col-sm-7 col-form-label">Densidad Relativa (g/ml)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtRelativa" placeholder="(g/ml)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtCetano" class="col-sm-7 col-form-label">Indice de Cetano</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtCetano" placeholder="Cetano">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtProcedenciaA" class="col-sm-7 col-form-label">Indice Cetano ProcedenciaA</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtProcedenciaA" placeholder="ProcedenciaA">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtProcedenciaB" class="col-sm-7 col-form-label">Indice Cetano ProcedenciaB</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtProcedenciaB" placeholder="ProcedenciaB">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtBajoAzufre" class="col-sm-7 col-form-label">Indice Cetano Bajo Azufre</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtBajoAzufre" placeholder="Bajo Azufre">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtFAME" class="col-sm-7 col-form-label">Contenido FAME(% Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtFAME" placeholder="(% Vol)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtEtanol" class="col-sm-7 col-form-label">Contenido Etanol(% Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtEtanol" placeholder="(% Vol)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+              <div class="row padding-top-15 padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_residuo" class="col-md-7 col-form-label">ASTM D 86 (RESIDUO)</label>
+                      <div class="col-md-5">
+                        <input name="Astmd86_residuo"  type="text" class="form-control" id="txtAstmd86_residuo">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtAstmd86_perdidas" class="col-md-7 col-form-label">ASTM D 86 (PERDIDAS)</label>
+                      <div class="col-md-5">
+                        <input name="Astmd86_perdidas"  type="text" class="form-control" id="txtAstmd86_perdidas">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtGravidadApi" class="col-md-7 col-form-label">Gravidad ºAPIo</label>
+                      <div class="col-md-5">
+                        <input name="GravidadApi"  type="text" class="form-control" id="txtGravidadApi">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtDensidadRelativa" class="col-md-7 col-form-label">Densidad Relativa (g/ml)</label>
+                      <div class="col-md-5">
+                        <input name="DensidadRelativa"  type="text" class="form-control" id="txtDensidadRelativa">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtIndiceCetanoProcedenciaA" class="col-md-7 col-form-label">Indice de Cetano calculado ecuación 4 variables Proced. A</label>
+                      <div class="col-md-5">
+                        <input name="IndiceCetanoProcedenciaA"  type="text" class="form-control" id="txtIndiceCetanoProcedenciaA">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtIndiceCetanoProcedenciaAProcedenciaB " class="col-md-7 col-form-label">Indice de Cetano calculado ecuación 4 variables Proced. B</label>
+                      <div class="col-md-5">
+                        <input name="IndiceCetanoProcedenciaAProcedenciaB"  type="text" class="form-control" id="txtIndiceCetanoProcedenciaAProcedenciaB">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtIndiceCetano " class="col-md-7 col-form-label">Indice de Cetano </label>
+                      <div class="col-md-5">
+                        <input name="IndiceCetano "  type="text" class="form-control" id="txtIndiceCetano">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtindiceCetanoBajoAzufre" class="col-md-7 col-form-label">Indice de Cetano para bajo azufre</label>
+                      <div class="col-md-5">
+                        <input name="indiceCetanoBajoAzufre"  type="text" class="form-control" id="txtindiceCetanoBajoAzufre">
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoFameVolumen " class="col-md-7 col-form-label">Contenido FAME (% Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoFameVolumen"  type="text" class="form-control" id="txtContenidoFameVolumen">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoEtanolVolumen" class="col-md-7 col-form-label">Contenido Etanol (% Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoEtanolVolumen"  type="text" class="form-control" id="txtContenidoEtanolVolumen">
+                      </div>
+                    </div>
+                  </div>
+                </div>  
             </ng-template>
-        </ngb-tab>
-        <ngb-tab id="tab-preventchange4" title="Cuarto">
+          </ngb-tab>
+          <ngb-tab id="tab-preventchange4" title="Cuarto">
             <ng-template ngbTabContent>
-                <table class="table">
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtOxigenados" class="col-sm-7 col-form-label">Total Oxigenados(%Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtOxigenados" placeholder="(%Vol)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtOxigeno" class="col-sm-7 col-form-label">Total Oxigeno(% masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtOxigeno" placeholder="(% masa)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtMTBE" class="col-sm-7 col-form-label">Contenido MTBE(%Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtMTBE" placeholder="(%Vol)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtRelativa" class="col-sm-7 col-form-label">Contenido TAME(%Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtRelativa" placeholder="(%Vol)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtETBE" class="col-sm-7 col-form-label">Contenido ETBE(%Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtETBE" placeholder="(%Vol)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtMetanol" class="col-sm-7 col-form-label">Contenido METANOL(%Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtMetanol" placeholder="(%Vol)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtTerbutanol" class="col-sm-7 col-form-label">Contenido TERT-BUTANOL(%Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtTerbutanol" placeholder="(%Vol)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtDipe" class="col-sm-7 col-form-label">Contenido DIPE(%Vol)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtDipe" placeholder="(%Vol)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtMTBE1" class="col-sm-7 col-form-label">Contenido MTBE(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtMTBE1" placeholder="(%masa)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtTame" class="col-sm-7 col-form-label">Contenido TAME(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtTame" placeholder="(%masa)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+            <div class="row padding-top-15 padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtTotalOxigenadosVolumen" class="col-md-7 col-form-label">Total Oxigenados (%Vol)</label>
+                      <div class="col-md-5">
+                        <input name="TotalOxigenadosVolumen"  type="text" class="form-control" id="txtTotalOxigenadosVolumen">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtTotalOxigeno" class="col-md-7 col-form-label">Total Oxigeno (% masa)</label>
+                      <div class="col-md-5">
+                        <input name="TotalOxigeno"  type="text" class="form-control" id="txtTotalOxigeno">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoMtbeVolumen" class="col-md-7 col-form-label">Contenido de MTBE(%Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoMtbeVolumen"  type="text" class="form-control" id="txtContenidoMtbeVolumen">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoTameVolumen" class="col-md-7 col-form-label">Contenido de TAME(%Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoTameVolumen"  type="text" class="form-control" id="txtContenidoTameVolumen">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoEtbeVolumen" class="col-md-7 col-form-label">Contenido de ETBE(%Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoEtbeVolumen"  type="text" class="form-control" id="txtContenidoEtbeVolumen">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoMetanolVolumen" class="col-md-7 col-form-label">Contenido de METANOL(%Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoMetanolVolumen"  type="text" class="form-control" id="txtContenidoMetanolVolumen">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoTertbutanoVolumen" class="col-md-7 col-form-label">Contenido de TERT-BUTANOL(%Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoTertbutanoVolumen"  type="text" class="form-control" id="txtContenidoTertbutanoVolumen">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoDipeVolumen " class="col-md-7 col-form-label">Contenido de DIPE(%Vol)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoDipeVolumen"  type="text" class="form-control" id="txtContenidoDipeVolumen">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding-left-6">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoMtbeMasa " class="col-md-7 col-form-label">Contenido de MTBE(%masa) </label>
+                      <div class="col-md-5">
+                        <input name="ContenidoMtbeMasa"  type="text" class="form-control" id="txtContenidoMtbeMasa">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="txtContenidoTameMasa" class="col-md-7 col-form-label">Contenido de TAME(%masa)</label>
+                      <div class="col-md-5">
+                        <input name="ContenidoTameMasa"  type="text" class="form-control" id="txtContenidoTameMasa">
+                      </div>
+                    </div>
+                  </div>
+                </div>  
             </ng-template>
-        </ngb-tab>
-        <ngb-tab id="tab-preventchange5" title="Quinto">
-            <ng-template ngbTabContent>
-                <table class="table">
-                    <tr>
-                        <td>
+          </ngb-tab>
+          <ngb-tab id="tab-preventchange5" title="Quinto">
+                <ng-template ngbTabContent>
+                <div class="row padding-top-15 padding-left-6">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtContenidoEtbeMasa" class="col-md-7 col-form-label">Contenido de ETBE(%masa)</label>
+                          <div class="col-md-5">
+                            <input name="ContenidoEtbeMasa"  type="text" class="form-control" id="txtContenidoEtbeMasa">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtContenidoEtanolMasa" class="col-md-7 col-form-label">Contenido de ETANOL(%masa)</label>
+                          <div class="col-md-5">
+                            <input name="ContenidoEtanolMasa"  type="text" class="form-control" id="txtContenidoEtanolMasa">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="row padding-left-6">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtContenidoMetanolMasaa" class="col-md-7 col-form-label">Contenido de METANOL(%masa)</label>
+                          <div class="col-md-5">
+                            <input name="ContenidoMetanolMasa"  type="text" class="form-control" id="txtContenidoMetanolMasa">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtContenidoTertbutanoMasa" class="col-md-7 col-form-label">Contenido de TERT-BUTANOL(%masa)</label>
+                          <div class="col-md-5">
+                            <input name="ContenidoTertbutanoMasa"  type="text" class="form-control" id="txtContenidoTertbutanoMasa">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row padding-left-6">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtContenidoDipeMasa" class="col-md-7 col-form-label">Contenido de DIPE(%masa)</label>
+                          <div class="col-md-5">
+                            <input name="ContenidoDipeMasa"  type="text" class="form-control" id="txtContenidoDipeMasa">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtTotalOxigenadosMasa" class="col-md-7 col-form-label">Total Oxigenados (%masa)</label>
+                          <div class="col-md-5">
+                            <input name="TotalOxigenadosMasa"  type="text" class="form-control" id="txtTotalOxigenadosMasan">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row padding-left-6">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtReaccionAlAgua" class="col-md-7 col-form-label">Reacción al agua (ml)</label>
+                          <div class="col-md-5">
+                            <input name="ReaccionAlAgua"  type="text" class="form-control" id="txtReaccionAlAgua">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtContenidoSolidos " class="col-md-7 col-form-label">Contenido de Sólidos (mg/L)</label>
+                          <div class="col-md-5">
+                            <input name="ContenidoSolidos"  type="text" class="form-control" id="txtContenidoSolidos">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row padding-left-6">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtContenidoGomas " class="col-md-7 col-form-label">Contenido de Gomas (mg/100 mL) </label>
+                          <div class="col-md-5">
+                            <input name="ContenidoGomas"  type="text" class="form-control" id="txtContenidoGomas">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="txtPuntoCongelamiento" class="col-md-7 col-form-label">Punto congelamiento (ªC)</label>
+                          <div class="col-md-5">
+                            <input name="puntoCongelamiento"  type="text" class="form-control" id="puntoCongelamiento">
+                          </div>
+                        </div>
+                      </div>
+                    </div>  
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab id="tab-preventchange6" title="Sexto">
+                    <ng-template ngbTabContent>
+                    <div class="row padding-top-15 padding-left-6">
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtEtbe" class="col-sm-7 col-form-label">Contenido ETBE(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtEtbe" placeholder="(%masa)">
-                                </div>
+                              <label for="txtAguaSedimentos" class="col-md-7 col-form-label">Agua y sedimentos (%V/V)</label>
+                              <div class="col-md-5">
+                                <input name="AguaSedimentos"  type="text" class="form-control" id="txtAguaSedimentos">
+                              </div>
                             </div>
-                        </td>
-                        <td>
+                          </div>
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtEtanol" class="col-sm-7 col-form-label">Contenido ETANOL(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtEtanol" placeholder="(% masa)">
-                                </div>
+                              <label for="txtDeterminacionBenceno" class="col-md-7 col-form-label">Determinación de Benceno</label>
+                              <div class="col-md-5">
+                                <input name="DeterminacionBenceno"  type="text" class="form-control" id="txtDeterminacionBenceno">
+                              </div>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+                          </div>
+                        </div>
+                      <div class="row padding-left-6">
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtMetanol1" class="col-sm-7 col-form-label">Contenido METANOL(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtMetanol1" placeholder="(%masa)">
-                                </div>
+                              <label for="txtAguaPorDestilacion" class="col-md-7 col-form-label">Agua por destilación</label>
+                              <div class="col-md-5">
+                                <input name="AguaPorDestilacion"  type="text" class="form-control" id="txtAguaPorDestilacion">
+                              </div>
                             </div>
-                        </td>
-                        <td>
+                          </div>
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtTertbutamol1" class="col-sm-7 col-form-label">Contenido TERT-BUTANOL(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtTertbutamol1" placeholder="(%masa)">
-                                </div>
+                              <label for="txtColor" class="col-md-7 col-form-label">Color</label>
+                              <div class="col-md-5">
+                                <input name="Color"  type="text" class="form-control" id="txtColor">
+                              </div>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+                          </div>
+                        </div>
+                        <div class="row padding-left-6">
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtDipe" class="col-sm-7 col-form-label">Contenido DIPE(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtDipe" placeholder="(%masa)">
-                                </div>
+                              <label for="txtContaminacionParticulas" class="col-md-7 col-form-label">Contaminación particulas por filtración de laboratorio mg/L</label>
+                              <div class="col-md-5">
+                                <input name="ContaminacionParticulas"  type="text" class="form-control" id="txtContaminacionParticulas">
+                              </div>
                             </div>
-                        </td>
-                        <td>
+                          </div>
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtOxigenos1" class="col-sm-7 col-form-label">Total Oxigenados(%masa)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtOxigenos1" placeholder="(%masa)">
-                                </div>
+                              <label for="txtIndiceCetanoFame" class="col-md-7 col-form-label">Indice de Cetano calculado ecuación 4 variables Determinación de FAME en combustibles de aviación (mg/kg)</label>
+                              <div class="col-md-5">
+                                <input name="IndiceCetanoFame"  type="text" class="form-control" id="txtContenidoMetanolVolumen">
+                              </div>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+                          </div>
+                        </div>
+                        <div class="row padding-left-6">
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtReaccionAgua" class="col-sm-7 col-form-label">Reacción al agua (ml)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtReaccionAgua" placeholder="(ml)">
-                                </div>
+                              <label for="txtResultadoFinal" class="col-md-7 col-form-label">Resultado Final</label>
+                              <div class="col-md-5">
+                                <input name="ResultadoFinal"  type="text" class="form-control" id="txtRresultadoFinal">
+                              </div>
                             </div>
-                        </td>
-                        <td>
+                          </div>
+                          <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="txtSolidos" class="col-sm-7 col-form-label">Contenido Sólidos (mg/L)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtSolidos" placeholder="(mg/L)">
-                                </div>
+                              <label for="txtRemanenteRetirado " class="col-md-7 col-form-label">Remanente Retirado</label>
+                              <div class="col-md-5">
+                                <input name="RemanenteRetirado"  type="text" class="form-control" id="txtRemanenteRetirado">
+                              </div>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtGomas" class="col-sm-7 col-form-label">Contenido Gomas(mg/100mL)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtGomas" placeholder="(mg/100mL)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtCongelamiento" class="col-sm-7 col-form-label">Punto congelamiento(ªC)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtCongelamiento" placeholder="(ªC)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </ng-template>
-        </ngb-tab>
-        <ngb-tab id="tab-preventchange6" title="Sexto">
-            <ng-template ngbTabContent>
-                <table class="table">
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtAguaSedimentos" class="col-sm-7 col-form-label">Agua y sedimentos(%V/V)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtAguaSedimentos" placeholder="(%V/V)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtBenceno" class="col-sm-7 col-form-label">Determinación Benceno</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtBenceno" placeholder="">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtDestilacion" class="col-sm-7 col-form-label">Agua por destilación</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtDestilacion" placeholder="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                                <div class="form-group row">
-                                        <label for="txtColor" class="col-sm-7 col-form-label">Color</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="txtColor" placeholder="">
-                                        </div>
-                                    </div> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtCalCetano" class="col-sm-7 col-form-label">Indice de Cetano FAME en combustibles de aviación (mg/kg)</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtCalCetano" placeholder="(mg/kg)">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                    <label for="txtParticulas" class="col-sm-7 col-form-label">Contaminación particulas por filtracion de laboratorio mg/L</label>
-                                    <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="txtParticulas" placeholder="(mg/L)">
-                                    </div>
-                                </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtResusFinal" class="col-sm-7 col-form-label">Resultado Final</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtResusFinal" placeholder="">
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group row">
-                                <label for="txtSolidos" class="col-sm-7 col-form-label">Remanente Retirado</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="txtSolidos" placeholder="(mg/L)">
-                                </div>
-                            </div>
-                        </td>
-                    </tr> 
-                </table>
-            </ng-template>
-        </ngb-tab>
+                          </div>
+                        </div>  
+                    </ng-template>
+                  </ngb-tab>
     </ngb-tabset>
 </form>

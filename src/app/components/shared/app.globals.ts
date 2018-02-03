@@ -3,8 +3,8 @@ import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class AppGlobals {
-    // public static BASE_URL = 'http://10.26.10.148:1010';
-    public static BASE_URL = 'http://localhost:54525';
+    public static BASE_URL = 'http://10.26.10.148:1010';
+    // public static BASE_URL = 'http://localhost:54525';
 
     public static convertFileToBase64(fileInput: File): Promise<string> {
 
