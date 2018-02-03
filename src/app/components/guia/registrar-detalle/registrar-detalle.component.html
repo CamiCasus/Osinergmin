@@ -5,7 +5,6 @@
         <div class="form-group row">
           <label for="cblproductoId" class="col-md-5 col-form-label">Producto</label>
           <div class="col-md-7">
-            <!-- <input type="text" class="form-control" name="codigoProducto" id="txtCodigoProducto" placeholder="" [(ngModel)]="detalleGuiaActual.codigoProducto"> -->
             <select 
                 (change)="onChangeProducto($event)"
                 class="form-control custom-select" 
@@ -99,9 +98,16 @@
       </div>
       <div class="col-md-6">
         <div class="form-group row">
-          <label for="txtTipoEnvase" class="col-md-5 col-form-label">Tipo de Envase</label>
+          <label for="cblTipoEnvase" class="col-md-5 col-form-label">Tipo de Envase</label>
           <div class="col-md-7">
-            <input name="tipoEnvase" [(ngModel)]="detalleGuiaActual.tipoEnvase" type="text" class="form-control" id="txtTipoEnvase">
+            <select 
+              class="form-control custom-select" 
+              name="tipoEnvase" id="cblTipoEnvase" 
+              [(ngModel)]="detalleGuiaActual.tipoEnvase">
+            <option>--Seleccione--</option>
+            <option *ngFor="let envase of envases"
+              [value]="envase.id">{{envase.nombre}}</option>
+          </select>
           </div>
         </div>
       </div>
