@@ -3,13 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { GuiaEntidad } from '../../../models/guiaEntidad';
 import { GuiaService } from '../../../services/guia.service';
-import { NgForm } from '@angular/forms';
 import { AppGlobals } from '../../shared/app.globals';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
 import { MaestrosService } from '../../../services/maestros.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registrar',
@@ -26,6 +26,8 @@ export class RegistrarComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
+  forma: FormGroup;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _guiaService: GuiaService,
@@ -40,10 +42,13 @@ export class RegistrarComponent implements OnInit {
       if (this.guiaId != null) {
         this._guiaService.getGuia(this.guiaId).subscribe(data => {
           this.guiaActual = data;
+          this.setForm(this.guiaActual);
         });
       } else {
         this.guiaActual = new GuiaEntidad();
         this.guiaActual.detalleGuia = [];
+
+        this.setForm(this.guiaActual);
       }
     });
 
@@ -55,23 +60,53 @@ export class RegistrarComponent implements OnInit {
     };
   }
 
+  setForm(guiaActual: GuiaEntidad) {
+    this.forma = new FormGroup({
+      'codigo': new FormControl(guiaActual.codigo, Validators.required),
+      'fechaRecepcion': new FormControl(guiaActual.fechaRecepcion, Validators.required),
+      'representanteIntertek': new FormControl(guiaActual.representanteIntertek, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(100)
+      ]),
+      'dniRepresentanteIntertek': new FormControl(guiaActual.dniRepresentanteIntertek, [
+        Validators.required,
+        Validators.pattern('^[0-9]{8}$')
+      ]),
+      'representanteOsinergmin': new FormControl(guiaActual.representanteOsinergmin, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(100)
+      ]),
+      'dniRepresentanteOsinergmin': new FormControl(guiaActual.dniRepresentanteOsinergmin, [
+        Validators.required,
+        Validators.pattern('^[0-9]{8}$')
+      ]),
+      'supervisorExtraccionMuestra': new FormControl(guiaActual.supervisorExtraccionMuestra, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(100)
+      ]),
+      'comentario': new FormControl(guiaActual.comentario, Validators.maxLength(1000))
+    });
+  }
+
   getFiles(event) {
     this.archivoActual = event.target.files[0];
   }
 
-  onSubmit(objetoEnviar: any) {
-
+  onSubmit() {
     const modalRef = this._modal.open(MessageModalComponent);
     modalRef.componentInstance.titulo = 'Grabar Guía';
     modalRef.componentInstance.mensaje = '¿Estás seguro de realizar esta operación?';
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
-      this.grabar(objetoEnviar);
-    });
+      this.grabar(this.forma);
+    }, result => { });
   }
 
-  grabar(form: NgForm) {
+  grabar(form: FormGroup) {
     if (this.archivoActual) {
       const objetoEnviar = form.value;
       objetoEnviar.nombreArchivo = this.archivoActual.name;
@@ -98,7 +133,7 @@ export class RegistrarComponent implements OnInit {
   }
 
   cargarDetalle(guiaDetalle: DetalleGuiaEntidad, index: number) {
-    let guiaAModificar = Object.assign({}, guiaDetalle);
+    const guiaAModificar = Object.assign({}, guiaDetalle);
 
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
 
@@ -107,9 +142,9 @@ export class RegistrarComponent implements OnInit {
     modalRef.componentInstance.data = guiaAModificar;
 
     modalRef.result.then((result) => {
-      if (guiaDetalle == null)
+      if (guiaDetalle == null) {
         this.guiaActual.detalleGuia.push(result);
-      else {
+      } else {
         this.guiaActual.detalleGuia[index] = result;
       }
     }, (reason) => { });

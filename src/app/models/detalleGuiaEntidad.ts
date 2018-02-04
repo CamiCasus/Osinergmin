@@ -14,4 +14,4 @@ export class DetalleGuiaEntidad {
     tipoEnvase: string;
     archivoMuestra: File;
     observaciones: string;
-} 
+}

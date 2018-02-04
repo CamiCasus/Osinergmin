@@ -3,6 +3,7 @@ import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 import { MaestrosService } from '../../../services/maestros.service';
 import { ProductoEntidad } from '../../../models/productoEntidad';
 import { EnvaseEntidad } from '../../../models/envaseEntidad';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registrar-detalle',
@@ -16,12 +17,16 @@ export class RegistrarDetalleComponent implements OnInit {
   productos: ProductoEntidad[];
   envases: EnvaseEntidad[];
 
+  formaDetalle: FormGroup;
+
   constructor(private _maestrosService: MaestrosService) { }
 
   ngOnInit() {
     if (this.detalleGuiaActual == null) {
       this.detalleGuiaActual = new DetalleGuiaEntidad();
     }
+
+    this.setForm(this.detalleGuiaActual);
 
     this._maestrosService.getProductos().subscribe(data => {
       this.productos = data;
@@ -32,11 +37,32 @@ export class RegistrarDetalleComponent implements OnInit {
     });
   }
 
+  setForm(detalleGuiaActual: DetalleGuiaEntidad) {
+    this.formaDetalle = new FormGroup({
+      'productoId': new FormControl(detalleGuiaActual.productoId, Validators.required),
+      'codigoEstablecimiento': new FormControl(detalleGuiaActual.codigoEstablecimiento, Validators.required),
+      'cantidadMuestras': new FormControl(detalleGuiaActual.cantidadMuestras, [
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ]),
+      'fechaMuestreo': new FormControl(detalleGuiaActual.fechaMuestreo, Validators.required),
+      'numeroActa': new FormControl(detalleGuiaActual.numeroActa, Validators.required),
+      'numeroMuestra': new FormControl(detalleGuiaActual.numeroMuestra, Validators.required),
+      'numeroPrescintoDirimencia': new FormControl(detalleGuiaActual.numeroPrescintoDirimencia, Validators.required),
+      'numeroPrescintoLaboratorio': new FormControl(detalleGuiaActual.numeroPrescintoLaboratorio, Validators.required),
+      'origenProducto': new FormControl(detalleGuiaActual.origenProducto, Validators.required),
+      'tipoEnvase': new FormControl(detalleGuiaActual.tipoEnvase, Validators.required),
+      'observaciones': new FormControl(detalleGuiaActual.observaciones)
+    });
+  }
+
   onChangeProducto(event) {
     const indexProducto = event.target.options.selectedIndex - 1;
 
-    this.detalleGuiaActual.nombreProducto = this.productos[indexProducto].nombre;
-    this.detalleGuiaActual.tipoProducto = this.productos[indexProducto].tipoProducto;
+    if (indexProducto > 0) {
+      this.detalleGuiaActual.nombreProducto = this.productos[indexProducto].nombre;
+      this.detalleGuiaActual.tipoProducto = this.productos[indexProducto].tipoProducto;
+    }
   }
 
 }

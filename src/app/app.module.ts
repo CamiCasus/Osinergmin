@@ -21,7 +21,7 @@ import { InformeEnsayoGlpComponent } from './components/guia/informe-ensayo-glp/
 import { RegistroResultadoComponent } from './components/guia/registro-resultado/registro-resultado.component';
 import { TipoMuestraPipe } from './pipes/tipo-muestra.pipe';
 import { ContentPopupComponent } from './components/shared/content-popup/content-popup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrarDetalleComponent } from './components/guia/registrar-detalle/registrar-detalle.component';
 import { MaestrosService } from './services/maestros.service';
 
@@ -48,7 +48,8 @@ import { MaestrosService } from './services/maestros.service';
     APPROUTING,
     HttpClientModule,
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   providers: [
     GuiaService,
