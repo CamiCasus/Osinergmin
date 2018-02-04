@@ -31,11 +31,11 @@ export class GuiaService {
     console.log(`Llamar al servicio de presentar guía con el código ${codigoVerificacion}`);
   }
 
-  grabarGuia(guia: GuiaEntidad) {    
+  grabarGuia(guia: GuiaEntidad) {
     return this._httpClient.post(`${AppGlobals.BASE_URL}/api/guia`, guia);
   }
 
-  actualizarGuia(guia: GuiaEntidad) {    
+  actualizarGuia(guia: GuiaEntidad) {
     return this._httpClient.put(`${AppGlobals.BASE_URL}/api/guia`, guia);
   }
 

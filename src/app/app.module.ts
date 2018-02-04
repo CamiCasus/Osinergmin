@@ -24,6 +24,8 @@ import { ContentPopupComponent } from './components/shared/content-popup/content
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrarDetalleComponent } from './components/guia/registrar-detalle/registrar-detalle.component';
 import { MaestrosService } from './services/maestros.service';
+import { LoginComponent } from './components/shared/login/login.component';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { MaestrosService } from './services/maestros.service';
     RegistroResultadoComponent,
     TipoMuestraPipe,
     ContentPopupComponent,
-    RegistrarDetalleComponent
+    RegistrarDetalleComponent,
+    LoginComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -53,7 +56,8 @@ import { MaestrosService } from './services/maestros.service';
   ],
   providers: [
     GuiaService,
-    MaestrosService
+    MaestrosService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent],
   entryComponents: [MessageModalComponent, ContentPopupComponent]
