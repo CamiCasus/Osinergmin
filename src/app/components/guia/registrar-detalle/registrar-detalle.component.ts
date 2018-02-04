@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 import { MaestrosService } from '../../../services/maestros.service';
 import { ProductoEntidad } from '../../../models/productoEntidad';
@@ -14,6 +14,7 @@ export class RegistrarDetalleComponent implements OnInit {
 
   // tslint:disable-next-line:no-input-rename
   @Input('detalle') detalleGuiaActual: DetalleGuiaEntidad;
+  @ViewChild('fileDetalle') fileDetalle: ElementRef;
   productos: ProductoEntidad[];
   envases: EnvaseEntidad[];
 
@@ -52,17 +53,36 @@ export class RegistrarDetalleComponent implements OnInit {
       'numeroPrescintoLaboratorio': new FormControl(detalleGuiaActual.numeroPrescintoLaboratorio, Validators.required),
       'origenProducto': new FormControl(detalleGuiaActual.origenProducto, Validators.required),
       'tipoEnvase': new FormControl(detalleGuiaActual.tipoEnvase, Validators.required),
-      'observaciones': new FormControl(detalleGuiaActual.observaciones)
+      'observaciones': new FormControl(detalleGuiaActual.observaciones),
+      'nombreArchivo': new FormControl(),
+      'archivoAdjuntoTemp': new FormControl(),
+      'nombreProducto': new FormControl(),
+      'tipoProducto': new FormControl()
     });
+  }
+
+  getFiles(event) {
+    const archivoActual = event.target.files[0];
+    this.detalleGuiaActual.nombreArchivo = archivoActual.name;
+
+    this.formaDetalle.patchValue({
+      'nombreArchivo': archivoActual.name,
+      'archivoAdjuntoTemp': archivoActual
+    });
+  }
+
+  openFileBrowser() {
+    this.fileDetalle.nativeElement.dispatchEvent(new MouseEvent('click', { bubbles: false }));
   }
 
   onChangeProducto(event) {
     const indexProducto = event.target.options.selectedIndex - 1;
 
     if (indexProducto > 0) {
-      this.detalleGuiaActual.nombreProducto = this.productos[indexProducto].nombre;
-      this.detalleGuiaActual.tipoProducto = this.productos[indexProducto].tipoProducto;
+      this.formaDetalle.patchValue({
+        'nombreProducto': this.productos[indexProducto].nombre,
+        'tipoProducto': this.productos[indexProducto].tipoProducto
+      });
     }
   }
-
 }

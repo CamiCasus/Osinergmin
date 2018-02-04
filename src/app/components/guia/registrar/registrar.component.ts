@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { GuiaEntidad } from '../../../models/guiaEntidad';
@@ -18,6 +18,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class RegistrarComponent implements OnInit {
 
+  @ViewChild('fileGuia') fileGuia: ElementRef;
   guiaId: number;
   archivoActual: File;
   guiaActual: GuiaEntidad;
@@ -93,6 +94,11 @@ export class RegistrarComponent implements OnInit {
 
   getFiles(event) {
     this.archivoActual = event.target.files[0];
+    this.guiaActual.nombreArchivo = this.archivoActual.name;
+  }
+
+  openFileBrowser() {
+    this.fileGuia.nativeElement.dispatchEvent(new MouseEvent('click', { bubbles: false }));
   }
 
   onSubmit() {
@@ -102,39 +108,41 @@ export class RegistrarComponent implements OnInit {
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
-      this.grabar(this.forma);
+      const objetoEnviar = this.forma.value;
+
+      if (this.archivoActual != null) {
+        AppGlobals.convertFileToBase64(this.archivoActual).then((resultado) => {
+          objetoEnviar.nombreArchivo = this.archivoActual.name;
+          objetoEnviar.guiaAdjunta = resultado;
+
+          this.grabar(objetoEnviar);
+        });
+      } else {
+        objetoEnviar.nombreArchivo = this.guiaActual.nombreArchivo;
+        objetoEnviar.guiaAdjunta = this.guiaActual.guiaAdjunta;
+        this.grabar(objetoEnviar);
+      }
+
     }, result => { });
   }
 
-  grabar(form: FormGroup) {
-    if (this.archivoActual) {
-      const objetoEnviar = form.value;
-      objetoEnviar.nombreArchivo = this.archivoActual.name;
+  grabar(objetoEnviar: any) {
+    objetoEnviar.id = this.guiaId;
+    objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 
-      AppGlobals.convertFileToBase64(this.archivoActual)
-        .then((resultado) => {
-          objetoEnviar.id = this.guiaId;
-          objetoEnviar.guiaAdjunta = resultado;
-          objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
-
-          if (this.guiaId == null) {
-            this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
-              this.cancelar();
-            });
-          } else {
-            this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
-              this.cancelar();
-            });
-          }
-        });
+    if (this.guiaId == null) {
+      this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
+        this.cancelar();
+      });
     } else {
-      alert('debe subir el archivo');
+      this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
+        this.cancelar();
+      });
     }
   }
 
   cargarDetalle(guiaDetalle: DetalleGuiaEntidad, index: number) {
     const guiaAModificar = Object.assign({}, guiaDetalle);
-
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
 
     modalRef.componentInstance.tipoContenido = TipoContenido.agregarDetalleGuia;
@@ -142,10 +150,26 @@ export class RegistrarComponent implements OnInit {
     modalRef.componentInstance.data = guiaAModificar;
 
     modalRef.result.then((result) => {
-      if (guiaDetalle == null) {
-        this.guiaActual.detalleGuia.push(result);
+      if (result.archivoAdjuntoTemp != null) {
+        AppGlobals.convertFileToBase64(result.archivoAdjuntoTemp).then((resultado) => {
+          result.nombreArchivo = result.archivoAdjuntoTemp.name;
+          result.fotoMuestra = resultado;
+
+          if (guiaDetalle == null) {
+            this.guiaActual.detalleGuia.push(result);
+          } else {
+            this.guiaActual.detalleGuia[index] = result;
+          }
+        });
       } else {
-        this.guiaActual.detalleGuia[index] = result;
+        if (guiaDetalle != null) {
+          result.nombreArchivo = guiaDetalle.nombreArchivo;
+          result.fotoMuestra = guiaDetalle.fotoMuestra;
+
+          this.guiaActual.detalleGuia[index] = result;
+        } else {
+          this.guiaActual.detalleGuia.push(result);
+        }
       }
     }, (reason) => { });
   }

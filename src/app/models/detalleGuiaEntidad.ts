@@ -12,6 +12,8 @@ export class DetalleGuiaEntidad {
     numeroPrescintoLaboratorio: string;
     origenProducto: string;
     tipoEnvase: string;
-    archivoMuestra: File;
+    nombreArchivo: string;
+    fotoMuestra: string;
     observaciones: string;
+    archivoAdjuntoTemp: File;
 }

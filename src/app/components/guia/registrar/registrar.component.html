@@ -64,8 +64,9 @@
           </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="txtArchivoGuia">Seleccionar Archivo</label>
-          <input (change)="getFiles($event)" type="file" class="form-control" id="txtArchivoGuia">
+            <input #fileGuia type="file" class="form-control d-sm-none" id="txtArchivoGuia" (change)="getFiles($event)" >         
+            <button (click)="openFileBrowser()" type="button" class="btn btn-outline-primary ">
+                <i class="fas fa-file fa-5x"></i>&nbsp;{{guiaActual.nombreArchivo}}</button>  
         </div>
       </div>
       <div class="form-group">

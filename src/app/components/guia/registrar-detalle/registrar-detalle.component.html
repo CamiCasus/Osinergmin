@@ -6,12 +6,13 @@
           <div class="form-group row">
             <label for="cblproductoId" class="col-md-5 col-form-label">Producto</label>
             <div class="col-md-7">
-              <select (change)="onChangeProducto($event)" class="form-control custom-select" formControlName="productoId" id="cblproductoId" [ngClass]="{'is-invalid': !formaDetalle.get('productoId').valid && formaDetalle.get('productoId').touched }">
+              <select (change)="onChangeProducto($event)" class="form-control custom-select" formControlName="productoId" id="cblproductoId"
+                [ngClass]="{'is-invalid': !formaDetalle.get('productoId').valid && formaDetalle.get('productoId').touched }">
                 <option *ngFor="let producto of productos" [value]="producto.id">{{producto.nombre}}</option>
               </select>
               <div class="invalid-feedback">
-                  Seleccione un producto
-                </div>
+                Seleccione un producto
+              </div>
             </div>
           </div>
         </div>
@@ -21,8 +22,8 @@
             <div class="col-md-7">
               <input type="text" class="form-control" formControlName="codigoEstablecimiento" id="txtCodigoEstablecimiento" [ngClass]="{'is-invalid': !formaDetalle.get('codigoEstablecimiento').valid && formaDetalle.get('codigoEstablecimiento').touched }">
               <div class="invalid-feedback">
-                  Ingrese código de establecimiento
-                </div>
+                Ingrese código de establecimiento
+              </div>
             </div>
           </div>
         </div>
@@ -126,25 +127,40 @@
                 <option *ngFor="let envase of envases" [value]="envase.id">{{envase.nombre}}</option>
               </select>
               <div class="invalid-feedback">
-                  Seleccione un tipo de Envase
-                </div>
+                Seleccione un tipo de Envase
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="form-group row">
-        <label for="txtArchivo" class="col-md-2 col-form-label">Archivo</label>
-        <div class="col-md-10">
-          <input type="file" class="form-control" id="txtArchivo">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="cblTipoEnvase" class="col-md-5 col-form-label">Foto</label>
+            <div class="col-md-7">
+              <input #fileDetalle type="file" class="form-control d-sm-none" (change)="getFiles($event)">
+              <button (click)="openFileBrowser()" type="button" class="btn btn-outline-primary btn-block text-left">
+                <i class="fas fa-file fa-5x"></i>&nbsp;
+                <ng-container *ngIf="detalleGuiaActual.nombreArchivo != null">
+                  {{detalleGuiaActual.nombreArchivo}}
+                </ng-container>
+                <ng-container *ngIf="detalleGuiaActual.nombreArchivo == null">
+                  Seleccione una foto
+                </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="cblTipoEnvase" class="col-md-5 col-form-label">Observaciones</label>
+            <div class="col-md-7">
+              <textarea formControlName="observaciones" class="form-control" id="txtObservaciones" rows="3"></textarea>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="txtObservaciones">Observaciones</label>
-        <textarea formControlName="observaciones" class="form-control" id="txtObservaciones" rows="3"></textarea>
-      </div>
-
     </div>
   </div>
 </form>
