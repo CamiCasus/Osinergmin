@@ -26,6 +26,9 @@ import { RegistrarDetalleComponent } from './components/guia/registrar-detalle/r
 import { MaestrosService } from './services/maestros.service';
 import { LoginComponent } from './components/shared/login/login.component';
 import { AuthenticationService } from './services/authentication.service';
+import { AlertComponent } from './components/shared/alert/alert.component';
+import { AlertService } from './services/alert.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { AuthenticationService } from './services/authentication.service';
     TipoMuestraPipe,
     ContentPopupComponent,
     RegistrarDetalleComponent,
-    LoginComponent
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -57,7 +61,9 @@ import { AuthenticationService } from './services/authentication.service';
   providers: [
     GuiaService,
     MaestrosService,
-    AuthenticationService
+    AuthenticationService,
+    AlertService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [MessageModalComponent, ContentPopupComponent]

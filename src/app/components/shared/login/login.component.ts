@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private _alertService: AlertService,
     private _authenticationService: AuthenticationService,
     private _router: Router) { }
 
@@ -28,21 +30,24 @@ export class LoginComponent implements OnInit {
 
   setForm() {
     this.forma = new FormGroup({
-      'usuario': new FormControl(),
-      'password': new FormControl()
+      'usuario': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required)
     });
   }
 
   login() {
     this.loading = true;
     this._authenticationService.login(this.forma.value)
-      .subscribe(
-      data => {
-        console.log(this.returnUrl);
-        this._router.navigate([this.returnUrl]);
+      .subscribe(response => {
+        if (response) {
+          this._router.navigate([this.returnUrl]);
+        } else {
+          this._alertService.error('Usuario o Credenciales inválidas');
+          this.loading = false;
+        }
       },
       error => {
-        // this.alertService.error(error);
+        this._alertService.error('El servicio de autenticación no está disponible');
         this.loading = false;
       });
   }

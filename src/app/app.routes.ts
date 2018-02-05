@@ -6,17 +6,18 @@ import { InformeEnsayoGlpComponent } from './components/guia/informe-ensayo-glp/
 import { RegistroResultadoComponent } from './components/guia/registro-resultado/registro-resultado.component';
 import { HomeComponent } from './components/shared/home/home.component';
 import { LoginComponent } from './components/shared/login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 const ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'listado', component: ListComponent },
-    { path: 'registrar', component: RegistrarComponent },
-    { path: 'registrar/:id', component: RegistrarComponent },
-    { path: 'resultado/:id', component: RegistroResultadoComponent },
-    { path: 'ensayoLiquido/:id', component: InformeEnsayoLiquidoComponent },
-    { path: 'ensayoGlp/:id', component: InformeEnsayoGlpComponent },
-    { path: '**', pathMatch: 'full', redirectTo: 'home' }
+    { path: 'listado', component: ListComponent, canActivate: [ AuthGuardService] },
+    { path: 'registrar', component: RegistrarComponent, canActivate: [ AuthGuardService] },
+    { path: 'registrar/:id', component: RegistrarComponent, canActivate: [ AuthGuardService] },
+    { path: 'resultado/:id', component: RegistroResultadoComponent, canActivate: [ AuthGuardService] },
+    { path: 'ensayoLiquido/:id', component: InformeEnsayoLiquidoComponent, canActivate: [ AuthGuardService] },
+    { path: 'ensayoGlp/:id', component: InformeEnsayoGlpComponent, canActivate: [ AuthGuardService] },
+    { path: '**', redirectTo: 'listado' }
 ];
 
 export const APPROUTING = RouterModule.forRoot(ROUTES);

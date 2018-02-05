@@ -10,19 +10,20 @@ export class AuthenticationService {
   constructor(private _httpClient: HttpClient) { }
 
   login(usuarioEntidad: LoginEntidad) {
-    return this._httpClient.post<any>(`${AppGlobals.BASE_URL}/api/autenticar`, usuarioEntidad).map(user => {
-        // login successful if there's a jwt token in the response
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
+    return this._httpClient.post<any>(`${AppGlobals.BASE_URL}/api/autenticar`, usuarioEntidad).map(response => {
+      if (response) {
+        localStorage.setItem('currentUser', JSON.stringify(usuarioEntidad));
+      }
 
-        return user;
-      });
+      return response;
+    });
   }
 
   logout() {
-    // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+  }
+
+  isAutenticated() {
+    return localStorage.getItem('currentUser') != null;
   }
 }
