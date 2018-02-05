@@ -7,7 +7,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtCodigo">Código</label>
-          <input formControlName="codigo" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('codigo').valid && forma.get('codigo').touched}"
+          <input formControlName="codigo" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('codigo').valid}"
             id="txtCodigo" placeholder="PER-XXXX">
             <div class="invalid-feedback">
                 Ingrese un código
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group col-md-6">
           <label for="txtFechaRecepcion">Fecha de Recepción</label>
-          <input formControlName="fechaRecepcion" type="date" class="form-control" id="txtFechaRecepcion" [ngClass]="{'is-invalid': !forma.get('fechaRecepcion').valid && forma.get('fechaRecepcion').touched}"
+          <input formControlName="fechaRecepcion" type="date" class="form-control" id="txtFechaRecepcion" [ngClass]="{'is-invalid': !forma.get('fechaRecepcion').valid}"
             placeholder="dd/mm/yyyy">
           <div class="invalid-feedback">
             Ingrese una fecha
@@ -25,14 +25,14 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtRepresentanteIntertek">Representante Laboratorio</label>
-          <input formControlName="representanteIntertek" type="text" class="form-control" id="txtRepresentanteIntertek" [ngClass]="{'is-invalid': !forma.get('representanteIntertek').valid && forma.get('representanteIntertek').touched}">
+          <input formControlName="representanteIntertek" type="text" class="form-control" id="txtRepresentanteIntertek" [ngClass]="{'is-invalid': !forma.get('representanteIntertek').valid}">
           <div class="invalid-feedback"> 
             Ingrese un representante
           </div>
         </div>
         <div class="form-group col-md-6">
           <label for="txtDniRepresentanteIntertek">DNI Representante Laboratorio</label>
-          <input formControlName="dniRepresentanteIntertek" maxlength="8" type="text" class="form-control" id="txtDniRepresentanteIntertek" [ngClass]="{'is-invalid': !forma.get('dniRepresentanteIntertek').valid && forma.get('dniRepresentanteIntertek').touched}">
+          <input formControlName="dniRepresentanteIntertek" maxlength="8" type="text" class="form-control" id="txtDniRepresentanteIntertek" [ngClass]="{'is-invalid': !forma.get('dniRepresentanteIntertek').valid}">
           <div class="invalid-feedback">
             Ingrese un DNI válido
           </div>
@@ -41,14 +41,14 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtRepresentanteOsinergmin">Representante Osinergmin</label>
-          <input formControlName="representanteOsinergmin" type="text" class="form-control" id="txtRepresentanteOsinergmin" [ngClass]="{'is-invalid': !forma.get('representanteOsinergmin').valid && forma.get('representanteOsinergmin').touched}">
+          <input formControlName="representanteOsinergmin" type="text" class="form-control" id="txtRepresentanteOsinergmin" [ngClass]="{'is-invalid': !forma.get('representanteOsinergmin').valid}">
           <div class="invalid-feedback">
             Ingrese un representante Osinergmin
           </div>
         </div>
         <div class="form-group col-md-6">
           <label for="txtDniRepresentanteOsinergmin">DNI Representante Osinergmin</label>
-          <input formControlName="dniRepresentanteOsinergmin" maxlength="8" type="text" class="form-control" id="txtDniRepresentanteOsinergmin" [ngClass]="{'is-invalid': !forma.get('dniRepresentanteOsinergmin').valid && forma.get('dniRepresentanteOsinergmin').touched}">
+          <input formControlName="dniRepresentanteOsinergmin" maxlength="8" type="text" class="form-control" id="txtDniRepresentanteOsinergmin" [ngClass]="{'is-invalid': !forma.get('dniRepresentanteOsinergmin').valid}">
           <div class="invalid-feedback">
             Ingrese un DNI válido
           </div>
@@ -57,7 +57,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtSupervisorExtraccionMuestra">Supervisor Extracción de Muestra</label>
-          <input formControlName="supervisorExtraccionMuestra" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('supervisorExtraccionMuestra').valid && forma.get('supervisorExtraccionMuestra').touched}"
+          <input formControlName="supervisorExtraccionMuestra" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('supervisorExtraccionMuestra').valid}"
             id="txtSupervisorExtraccionMuestra">
           <div class="invalid-feedback">
             Ingrese un supervisor
@@ -71,7 +71,7 @@
       </div>
       <div class="form-group">
         <label for="txtComentario">Comentario</label>
-        <textarea formControlName="comentario" class="form-control" id="txtComentario" rows="3" [ngClass]="{'is-invalid': !forma.get('comentario').valid && forma.get('comentario').touched}"></textarea>
+        <textarea formControlName="comentario" class="form-control" id="txtComentario" rows="3" [ngClass]="{'is-invalid': !forma.get('comentario').valid}"></textarea>
         <div class="invalid-feedback">
             Ingrese un comentario
           </div>

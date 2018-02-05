@@ -7,7 +7,7 @@
             <label for="cblproductoId" class="col-md-5 col-form-label">Producto</label>
             <div class="col-md-7">
               <select (change)="onChangeProducto($event)" class="form-control custom-select" formControlName="productoId" id="cblproductoId"
-                [ngClass]="{'is-invalid': !formaDetalle.get('productoId').valid && formaDetalle.get('productoId').touched }">
+                [ngClass]="{'is-invalid': !formaDetalle.get('productoId').valid}">
                 <option *ngFor="let producto of productos" [value]="producto.id">{{producto.nombre}}</option>
               </select>
               <div class="invalid-feedback">
@@ -20,7 +20,7 @@
           <div class="form-group row">
             <label for="txtCodigoEstablecimiento" class="col-md-5 col-form-label">Código de Establecimiento</label>
             <div class="col-md-7">
-              <input type="text" class="form-control" formControlName="codigoEstablecimiento" id="txtCodigoEstablecimiento" [ngClass]="{'is-invalid': !formaDetalle.get('codigoEstablecimiento').valid && formaDetalle.get('codigoEstablecimiento').touched }">
+              <input type="text" class="form-control" formControlName="codigoEstablecimiento" id="txtCodigoEstablecimiento" [ngClass]="{'is-invalid': !formaDetalle.get('codigoEstablecimiento').valid}">
               <div class="invalid-feedback">
                 Ingrese código de establecimiento
               </div>
@@ -34,7 +34,7 @@
           <div class="form-group row">
             <label for="txtCantidadMuestras" class="col-md-5 col-form-label">Cantidad de Muestras</label>
             <div class="col-md-7">
-              <input formControlName="cantidadMuestras" type="text" class="form-control" id="txtCantidadMuestras" [ngClass]="{'is-invalid': !formaDetalle.get('cantidadMuestras').valid && formaDetalle.get('cantidadMuestras').touched}">
+              <input formControlName="cantidadMuestras" type="text" class="form-control" id="txtCantidadMuestras" [ngClass]="{'is-invalid': !formaDetalle.get('cantidadMuestras').valid}">
               <div class="invalid-feedback">
                 Ingrese cantidad de muestras
               </div>
@@ -45,7 +45,7 @@
           <div class="form-group row">
             <label for="txtFechaMuestreo" class="col-md-5 col-form-label">Fecha de Muestreo</label>
             <div class="col-md-7">
-              <input formControlName="fechaMuestreo" type="date" class="form-control" id="txtFechaMuestreo" [ngClass]="{'is-invalid': !formaDetalle.get('fechaMuestreo').valid && formaDetalle.get('fechaMuestreo').touched}"
+              <input formControlName="fechaMuestreo" type="date" class="form-control" id="txtFechaMuestreo" [ngClass]="{'is-invalid': !formaDetalle.get('fechaMuestreo').valid}"
                 placeholder="dd/mm/yyyy">
               <div class="invalid-feedback">
                 Ingrese fecha de muestreo
@@ -60,7 +60,7 @@
           <div class="form-group row">
             <label for="txtNumeroActa" class="col-md-5 col-form-label">Número de Acta</label>
             <div class="col-md-7">
-              <input formControlName="numeroActa" type="text" class="form-control" id="txtNumeroActa" [ngClass]="{'is-invalid': !formaDetalle.get('numeroActa').valid && formaDetalle.get('numeroActa').touched}">
+              <input formControlName="numeroActa" type="text" class="form-control" id="txtNumeroActa" [ngClass]="{'is-invalid': !formaDetalle.get('numeroActa').valid}">
               <div class="invalid-feedback">
                 Ingrese número de acta
               </div>
@@ -71,7 +71,7 @@
           <div class="form-group row">
             <label for="txtNumeroMuestra" class="col-md-5 col-form-label">Número de Muestra</label>
             <div class="col-md-7">
-              <input formControlName="numeroMuestra" type="text" class="form-control" id="txtNumeroMuestra" [ngClass]="{'is-invalid': !formaDetalle.get('numeroMuestra').valid && formaDetalle.get('numeroMuestra').touched}">
+              <input formControlName="numeroMuestra" type="text" class="form-control" id="txtNumeroMuestra" [ngClass]="{'is-invalid': !formaDetalle.get('numeroMuestra').valid}">
               <div class="invalid-feedback">
                 Ingrese número de muestra
               </div>
@@ -85,7 +85,7 @@
           <div class="form-group row">
             <label for="txtNumeroPrescintoDirimencia" class="col-md-5 col-form-label">Número de Prescinto Dirimencia</label>
             <div class="col-md-7">
-              <input formControlName="numeroPrescintoDirimencia" type="text" class="form-control" [ngClass]="{'is-invalid': !formaDetalle.get('numeroPrescintoDirimencia').valid && formaDetalle.get('numeroPrescintoDirimencia').touched}"
+              <input formControlName="numeroPrescintoDirimencia" type="text" class="form-control" [ngClass]="{'is-invalid': !formaDetalle.get('numeroPrescintoDirimencia').valid }"
                 id="txtNumeroPrescintoDirimencia">
               <div class="invalid-feedback">
                 Ingrese número de Prescinto Dirimencia
@@ -97,7 +97,7 @@
           <div class="form-group row">
             <label for="txtNumeroPrescintoLaboratorio" class="col-md-5 col-form-label">Número de Prescinto Laboratorio</label>
             <div class="col-md-7">
-              <input formControlName="numeroPrescintoLaboratorio" type="text" class="form-control" [ngClass]="{'is-invalid': !formaDetalle.get('numeroPrescintoLaboratorio').valid && formaDetalle.get('numeroPrescintoLaboratorio').touched}"
+              <input formControlName="numeroPrescintoLaboratorio" type="text" class="form-control" [ngClass]="{'is-invalid': !formaDetalle.get('numeroPrescintoLaboratorio').valid }"
                 id="txtNumeroPrescintoLaboratorio">
               <div class="invalid-feedback">
                 Ingrese número de Prescinto Laboratorio
@@ -112,7 +112,7 @@
           <div class="form-group row">
             <label for="txtOrigenProducto" class="col-md-5 col-form-label">Origen del Producto</label>
             <div class="col-md-7">
-              <input formControlName="origenProducto" type="text" class="form-control" id="txtOrigenProducto" [ngClass]="{'is-invalid': !formaDetalle.get('origenProducto').valid && formaDetalle.get('origenProducto').touched}">
+              <input formControlName="origenProducto" type="text" class="form-control" id="txtOrigenProducto" [ngClass]="{'is-invalid': !formaDetalle.get('origenProducto').valid}">
               <div class="invalid-feedback">
                 Ingrese origen del producto
               </div>
@@ -123,7 +123,7 @@
           <div class="form-group row">
             <label for="cblTipoEnvase" class="col-md-5 col-form-label">Tipo de Envase</label>
             <div class="col-md-7">
-              <select class="form-control custom-select" formControlName="tipoEnvase" id="cblTipoEnvase" [ngClass]="{'is-invalid': !formaDetalle.get('tipoEnvase').valid && formaDetalle.get('tipoEnvase').touched}">
+              <select class="form-control custom-select" formControlName="tipoEnvase" id="cblTipoEnvase" [ngClass]="{'is-invalid': !formaDetalle.get('tipoEnvase').valid}">
                 <option *ngFor="let envase of envases" [value]="envase.id">{{envase.nombre}}</option>
               </select>
               <div class="invalid-feedback">

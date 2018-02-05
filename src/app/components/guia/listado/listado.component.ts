@@ -65,7 +65,10 @@ export class ListComponent implements OnInit {
       this._guiaService.eliminarGuia(guiaId)
         .subscribe(data => {
           this.loading = false;
-          this._router.navigate(['/listado']);
+          this._guiaService.getGuiasListado()
+            .subscribe(data => {
+              this.guias = data;
+            });
         });
     }, (reason) => { });
 
