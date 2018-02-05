@@ -29,6 +29,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AlertComponent } from './components/shared/alert/alert.component';
 import { AlertService } from './services/alert.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     ContentPopupComponent,
     RegistrarDetalleComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    LoadingComponent
   ],
   imports: [
     NgbModule.forRoot(),

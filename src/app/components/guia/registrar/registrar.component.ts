@@ -10,6 +10,7 @@ import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
 import { MaestrosService } from '../../../services/maestros.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-registrar',
@@ -18,6 +19,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class RegistrarComponent implements OnInit {
 
+  loading: boolean;
   @ViewChild('fileGuia') fileGuia: ElementRef;
   guiaId: number;
   archivoActual: File;
@@ -33,7 +35,8 @@ export class RegistrarComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _guiaService: GuiaService,
     private _modal: NgbModal,
-    private _route: Router) {
+    private _route: Router,
+    private _alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -57,7 +60,8 @@ export class RegistrarComponent implements OnInit {
       pagingType: 'simple_numbers',
       pageLength: 10,
       searching: false,
-      dom: 'frt'
+      dom: 'frt',
+      language: AppGlobals.getSpanishDataTable()
     };
   }
 
@@ -127,15 +131,23 @@ export class RegistrarComponent implements OnInit {
   }
 
   grabar(objetoEnviar: any) {
+
+    this.loading = true;
     objetoEnviar.id = this.guiaId;
     objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 
     if (this.guiaId == null) {
       this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
-        this.cancelar();
+        this.loading = false;
+        if (data.exito) {
+          this.cancelar();
+        } else {
+          this._alertService.error(data.mensaje);
+        }
       });
     } else {
       this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
+        this.loading = false;
         this.cancelar();
       });
     }

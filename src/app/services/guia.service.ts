@@ -5,6 +5,7 @@ import { GuiaListado } from '../models/guiaListado';
 import { DetalleGuiaListado } from '../models/detalleGuiaListado';
 import { GuiaEntidad } from '../models/guiaEntidad';
 import { AppGlobals } from '../components/shared/app.globals';
+import { OsinergminResponse } from '../models/osinergminResponse';
 
 @Injectable()
 export class GuiaService {
@@ -31,12 +32,12 @@ export class GuiaService {
     console.log(`Llamar al servicio de presentar guía con el código ${codigoVerificacion}`);
   }
 
-  grabarGuia(guia: GuiaEntidad) {
-    return this._httpClient.post(`${AppGlobals.BASE_URL}/api/guia`, guia);
+  grabarGuia(guia: GuiaEntidad): Observable<OsinergminResponse> {
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia`, guia);
   }
 
-  actualizarGuia(guia: GuiaEntidad) {
-    return this._httpClient.put(`${AppGlobals.BASE_URL}/api/guia`, guia);
+  actualizarGuia(guia: GuiaEntidad): Observable<OsinergminResponse> {
+    return this._httpClient.put<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia`, guia);
   }
 
   eliminarGuia(guiaId) {
