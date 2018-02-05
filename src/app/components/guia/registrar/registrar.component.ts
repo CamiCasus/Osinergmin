@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { GuiaEntidad } from '../../../models/guiaEntidad';
 import { GuiaService } from '../../../services/guia.service';
-import { NgForm } from '@angular/forms';
 import { AppGlobals } from '../../shared/app.globals';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
 import { MaestrosService } from '../../../services/maestros.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-registrar',
@@ -18,6 +19,8 @@ import { MaestrosService } from '../../../services/maestros.service';
 })
 export class RegistrarComponent implements OnInit {
 
+  loading: boolean;
+  @ViewChild('fileGuia') fileGuia: ElementRef;
   guiaId: number;
   archivoActual: File;
   guiaActual: GuiaEntidad;
@@ -26,11 +29,14 @@ export class RegistrarComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
+  forma: FormGroup;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _guiaService: GuiaService,
     private _modal: NgbModal,
-    private _route: Router) {
+    private _route: Router,
+    private _alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -40,10 +46,13 @@ export class RegistrarComponent implements OnInit {
       if (this.guiaId != null) {
         this._guiaService.getGuia(this.guiaId).subscribe(data => {
           this.guiaActual = data;
+          this.setForm(this.guiaActual);
         });
       } else {
         this.guiaActual = new GuiaEntidad();
         this.guiaActual.detalleGuia = [];
+
+        this.setForm(this.guiaActual);
       }
     });
 
@@ -51,55 +60,101 @@ export class RegistrarComponent implements OnInit {
       pagingType: 'simple_numbers',
       pageLength: 10,
       searching: false,
-      dom: 'frt'
+      dom: 'frt',
+      language: AppGlobals.getSpanishDataTable()
     };
+  }
+
+  setForm(guiaActual: GuiaEntidad) {
+    this.forma = new FormGroup({
+      'codigo': new FormControl(guiaActual.codigo, Validators.required),
+      'fechaRecepcion': new FormControl(guiaActual.fechaRecepcion, Validators.required),
+      'representanteIntertek': new FormControl(guiaActual.representanteIntertek, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(100)
+      ]),
+      'dniRepresentanteIntertek': new FormControl(guiaActual.dniRepresentanteIntertek, [
+        Validators.required,
+        Validators.pattern('^[0-9]{8}$')
+      ]),
+      'representanteOsinergmin': new FormControl(guiaActual.representanteOsinergmin, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(100)
+      ]),
+      'dniRepresentanteOsinergmin': new FormControl(guiaActual.dniRepresentanteOsinergmin, [
+        Validators.required,
+        Validators.pattern('^[0-9]{8}$')
+      ]),
+      'supervisorExtraccionMuestra': new FormControl(guiaActual.supervisorExtraccionMuestra, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(100)
+      ]),
+      'comentario': new FormControl(guiaActual.comentario, Validators.maxLength(1000))
+    });
   }
 
   getFiles(event) {
     this.archivoActual = event.target.files[0];
+    this.guiaActual.nombreArchivo = this.archivoActual.name;
   }
 
-  onSubmit(objetoEnviar: any) {
+  openFileBrowser() {
+    this.fileGuia.nativeElement.dispatchEvent(new MouseEvent('click', { bubbles: false }));
+  }
 
+  onSubmit() {
     const modalRef = this._modal.open(MessageModalComponent);
     modalRef.componentInstance.titulo = 'Grabar Guía';
     modalRef.componentInstance.mensaje = '¿Estás seguro de realizar esta operación?';
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
-      this.grabar(objetoEnviar);
-    });
+      const objetoEnviar = this.forma.value;
+
+      if (this.archivoActual != null) {
+        AppGlobals.convertFileToBase64(this.archivoActual).then((resultado) => {
+          objetoEnviar.nombreArchivo = this.archivoActual.name;
+          objetoEnviar.guiaAdjunta = resultado;
+
+          this.grabar(objetoEnviar);
+        });
+      } else {
+        objetoEnviar.nombreArchivo = this.guiaActual.nombreArchivo;
+        objetoEnviar.guiaAdjunta = this.guiaActual.guiaAdjunta;
+        this.grabar(objetoEnviar);
+      }
+
+    }, result => { });
   }
 
-  grabar(form: NgForm) {
-    if (this.archivoActual) {
-      const objetoEnviar = form.value;
-      objetoEnviar.nombreArchivo = this.archivoActual.name;
+  grabar(objetoEnviar: any) {
 
-      AppGlobals.convertFileToBase64(this.archivoActual)
-        .then((resultado) => {
-          objetoEnviar.id = this.guiaId;
-          objetoEnviar.guiaAdjunta = resultado;
-          objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
+    this.loading = true;
+    objetoEnviar.id = this.guiaId;
+    objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 
-          if (this.guiaId == null) {
-            this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
-              this.cancelar();
-            });
-          } else {
-            this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
-              this.cancelar();
-            });
-          }
-        });
+    if (this.guiaId == null) {
+      this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
+        this.loading = false;
+        if (data.exito) {
+          this.cancelar();
+        } else {
+          this._alertService.error(data.mensaje);
+        }
+      });
     } else {
-      alert('debe subir el archivo');
+      this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
+        this.loading = false;
+        this.cancelar();
+      });
     }
   }
 
   cargarDetalle(guiaDetalle: DetalleGuiaEntidad, index: number) {
-    let guiaAModificar = Object.assign({}, guiaDetalle);
-
+    const guiaAModificar = Object.assign({}, guiaDetalle);
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
 
     modalRef.componentInstance.tipoContenido = TipoContenido.agregarDetalleGuia;
@@ -107,10 +162,26 @@ export class RegistrarComponent implements OnInit {
     modalRef.componentInstance.data = guiaAModificar;
 
     modalRef.result.then((result) => {
-      if (guiaDetalle == null)
-        this.guiaActual.detalleGuia.push(result);
-      else {
-        this.guiaActual.detalleGuia[index] = result;
+      if (result.archivoAdjuntoTemp != null) {
+        AppGlobals.convertFileToBase64(result.archivoAdjuntoTemp).then((resultado) => {
+          result.nombreArchivo = result.archivoAdjuntoTemp.name;
+          result.fotoMuestra = resultado;
+
+          if (guiaDetalle == null) {
+            this.guiaActual.detalleGuia.push(result);
+          } else {
+            this.guiaActual.detalleGuia[index] = result;
+          }
+        });
+      } else {
+        if (guiaDetalle != null) {
+          result.nombreArchivo = guiaDetalle.nombreArchivo;
+          result.fotoMuestra = guiaDetalle.fotoMuestra;
+
+          this.guiaActual.detalleGuia[index] = result;
+        } else {
+          this.guiaActual.detalleGuia.push(result);
+        }
       }
     }, (reason) => { });
   }

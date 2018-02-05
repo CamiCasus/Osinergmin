@@ -10,8 +10,10 @@
     <app-registrar-detalle #detalleGuia [detalle]="data"></app-registrar-detalle>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="activeModal.close(detalleGuia.detalleGuiaActual)">Aceptar</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+    <button type="button" class="btn btn-primary" [disabled] = "!detalleGuia.formaDetalle.valid" (click)="activeModal.close(detalleGuia.formaDetalle.value)">
+        <i class="fas fa-check"></i>&nbsp;Aceptar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">
+        <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
   </div>
 </ng-container>
 
@@ -21,7 +23,9 @@
     <app-informe-ensayo-liquido *ngIf="tipoContenido === tiposContenido.informeEnsayoLiquido"></app-informe-ensayo-liquido>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Aceptar</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">
+        <i class="fas fa-check"></i>&nbsp;Aceptar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">
+        <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
   </div>
 </ng-container>

@@ -43,7 +43,7 @@ export class RegistroResultadoComponent implements OnInit {
 
   registrarResultado(tipoMuestra: number) {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
-    modalRef.componentInstance.tipoContenido = TipoContenido.informeEnsayoLiquido;
+    modalRef.componentInstance.tipoContenido = TipoContenido.informeEnsayoGlp;
 
     // var textoTipoMuestra = TipoMuestraPipe.apply(tipoMuestra);
     // modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;

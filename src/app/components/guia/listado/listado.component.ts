@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { GuiaListado } from '../../../models/guiaListado';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
+import { AppGlobals } from '../../shared/app.globals';
 
 @Component({
   selector: 'app-listado',
@@ -13,6 +14,7 @@ import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/m
 })
 export class ListComponent implements OnInit {
 
+  loading: boolean;
   dtOptions: DataTables.Settings = {};
   guias: GuiaListado[];
   dtTrigger: Subject<any> = new Subject();
@@ -24,7 +26,8 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'simple_numbers',
-      pageLength: 10
+      pageLength: 10,
+      language: AppGlobals.getSpanishDataTable()
     };
 
     this.cargarGuias();
@@ -58,11 +61,16 @@ export class ListComponent implements OnInit {
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
+      this.loading = true;
       this._guiaService.eliminarGuia(guiaId)
         .subscribe(data => {
-          this.cargarGuias();
+          this.loading = false;
+          this._guiaService.getGuiasListado()
+            .subscribe(data => {
+              this.guias = data;
+            });
         });
-    }, (reason) => {});
+    }, (reason) => { });
 
     return false;
   }
@@ -79,4 +87,3 @@ export class ListComponent implements OnInit {
     this._router.navigate(['/registrar']);
   }
 }
-

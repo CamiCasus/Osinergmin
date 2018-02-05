@@ -21,9 +21,15 @@ import { InformeEnsayoGlpComponent } from './components/guia/informe-ensayo-glp/
 import { RegistroResultadoComponent } from './components/guia/registro-resultado/registro-resultado.component';
 import { TipoMuestraPipe } from './pipes/tipo-muestra.pipe';
 import { ContentPopupComponent } from './components/shared/content-popup/content-popup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrarDetalleComponent } from './components/guia/registrar-detalle/registrar-detalle.component';
 import { MaestrosService } from './services/maestros.service';
+import { LoginComponent } from './components/shared/login/login.component';
+import { AuthenticationService } from './services/authentication.service';
+import { AlertComponent } from './components/shared/alert/alert.component';
+import { AlertService } from './services/alert.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,10 @@ import { MaestrosService } from './services/maestros.service';
     RegistroResultadoComponent,
     TipoMuestraPipe,
     ContentPopupComponent,
-    RegistrarDetalleComponent
+    RegistrarDetalleComponent,
+    LoginComponent,
+    AlertComponent,
+    LoadingComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -48,11 +57,15 @@ import { MaestrosService } from './services/maestros.service';
     APPROUTING,
     HttpClientModule,
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   providers: [
     GuiaService,
-    MaestrosService
+    MaestrosService,
+    AuthenticationService,
+    AlertService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [MessageModalComponent, ContentPopupComponent]

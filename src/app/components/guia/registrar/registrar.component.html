@@ -1,55 +1,80 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <div class="card">
+<form [formGroup]="forma" (ngSubmit)="onSubmit()" *ngIf="guiaActual">
+  <div class="card" >
     <div class="card-header">
       Registro / Modificación de Guías
     </div>
-    <div class="card-body" *ngIf="guiaActual">
+    <div class="card-body">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtCodigo">Código</label>
-          <input type="text" class="form-control" name="codigo" id="txtCodigo" placeholder="PER-XXXX" [ngModel]="guiaActual.codigo">
+          <input formControlName="codigo" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('codigo').valid}"
+            id="txtCodigo" placeholder="PER-XXXX">
+            <div class="invalid-feedback">
+                Ingrese un código
+              </div>
         </div>
         <div class="form-group col-md-6">
           <label for="txtFechaRecepcion">Fecha de Recepción</label>
-          <input name="fechaRecepcion" [ngModel]="guiaActual.fechaRecepcion" type="date" class="form-control" id="txtFechaRecepcion"
+          <input formControlName="fechaRecepcion" type="date" class="form-control" id="txtFechaRecepcion" [ngClass]="{'is-invalid': !forma.get('fechaRecepcion').valid}"
             placeholder="dd/mm/yyyy">
+          <div class="invalid-feedback">
+            Ingrese una fecha
+          </div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtRepresentanteIntertek">Representante Laboratorio</label>
-          <input name="representanteIntertek" [ngModel]="guiaActual.representanteIntertek" type="text" class="form-control" id="txtRepresentanteIntertek">
+          <input formControlName="representanteIntertek" type="text" class="form-control" id="txtRepresentanteIntertek" [ngClass]="{'is-invalid': !forma.get('representanteIntertek').valid}">
+          <div class="invalid-feedback"> 
+            Ingrese un representante
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="txtDniRepresentanteIntertek">DNI Representante Laboratorio</label>
-          <input name="dniRepresentanteIntertek" [ngModel]="guiaActual.dniRepresentanteIntertek" type="text" class="form-control" id="txtDniRepresentanteIntertek">
+          <input formControlName="dniRepresentanteIntertek" maxlength="8" type="text" class="form-control" id="txtDniRepresentanteIntertek" [ngClass]="{'is-invalid': !forma.get('dniRepresentanteIntertek').valid}">
+          <div class="invalid-feedback">
+            Ingrese un DNI válido
+          </div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtRepresentanteOsinergmin">Representante Osinergmin</label>
-          <input name="representanteOsinergmin" [ngModel]="guiaActual.representanteOsinergmin" type="text" class="form-control" id="txtRepresentanteOsinergmin">
+          <input formControlName="representanteOsinergmin" type="text" class="form-control" id="txtRepresentanteOsinergmin" [ngClass]="{'is-invalid': !forma.get('representanteOsinergmin').valid}">
+          <div class="invalid-feedback">
+            Ingrese un representante Osinergmin
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="txtDniRepresentanteOsinergmin">DNI Representante Osinergmin</label>
-          <input name="dniRepresentanteOsinergmin" [ngModel]="guiaActual.dniRepresentanteOsinergmin" type="text" class="form-control"
-            id="txtDniRepresentanteOsinergmin">
+          <input formControlName="dniRepresentanteOsinergmin" maxlength="8" type="text" class="form-control" id="txtDniRepresentanteOsinergmin" [ngClass]="{'is-invalid': !forma.get('dniRepresentanteOsinergmin').valid}">
+          <div class="invalid-feedback">
+            Ingrese un DNI válido
+          </div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtSupervisorExtraccionMuestra">Supervisor Extracción de Muestra</label>
-          <input name="supervisorExtraccionMuestra" [ngModel]="guiaActual.supervisorExtraccionMuestra" type="text" class="form-control"
+          <input formControlName="supervisorExtraccionMuestra" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('supervisorExtraccionMuestra').valid}"
             id="txtSupervisorExtraccionMuestra">
+          <div class="invalid-feedback">
+            Ingrese un supervisor
+          </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="txtArchivoGuia">Seleccionar Archivo</label>
-          <input (change)="getFiles($event)" type="file" class="form-control" id="txtArchivoGuia" lang="es">
+            <input #fileGuia type="file" class="form-control d-sm-none" id="txtArchivoGuia" (change)="getFiles($event)" >         
+            <button (click)="openFileBrowser()" type="button" class="btn btn-outline-primary ">
+                <i class="fas fa-file fa-5x"></i>&nbsp;{{guiaActual.nombreArchivo}}</button>  
         </div>
       </div>
       <div class="form-group">
         <label for="txtComentario">Comentario</label>
-        <textarea name="comentario" [ngModel]="guiaActual.comentario" class="form-control" id="txtComentario" rows="3"></textarea>
+        <textarea formControlName="comentario" class="form-control" id="txtComentario" rows="3" [ngClass]="{'is-invalid': !forma.get('comentario').valid}"></textarea>
+        <div class="invalid-feedback">
+            Ingrese un comentario
+          </div>
       </div>
 
       <div class="row">
@@ -92,8 +117,11 @@
         </tbody>
       </table>
     </div>
+
+    <app-loading *ngIf="loading" ></app-loading>
+
     <div class="card-footer text-muted">
-      <button class="btn btn-primary" type="submit">
+      <button class="btn btn-primary" type="submit" [disabled] = "!forma.valid" >
         <i class="fas fa-save"></i>&nbsp;Grabar
       </button>
       <button (click)="cancelar()" class="btn" type="button">
