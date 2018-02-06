@@ -110,11 +110,18 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
-            <label for="txtOrigenProducto" class="col-md-5 col-form-label">Origen del Producto</label>
+            <label for="cblOrigenProducto" class="col-md-5 col-form-label">Origen del Producto</label>
             <div class="col-md-7">
-              <input formControlName="origenProducto" type="text" class="form-control" id="txtOrigenProducto" [ngClass]="{'is-invalid': !formaDetalle.get('origenProducto').valid}">
+              <!-- <input formControlName="origenProducto" type="text" class="form-control" id="txtOrigenProducto" [ngClass]="{'is-invalid': !formaDetalle.get('origenProducto').valid}">
               <div class="invalid-feedback">
                 Ingrese origen del producto
+              </div> -->
+              <select class="form-control custom-select" formControlName="origenProducto" id="cblOrigenProducto"
+                [ngClass]="{'is-invalid': !formaDetalle.get('origenProducto').valid}">
+                <option *ngFor="let origen of origenesProducto" [value]="origen.id">{{origen.nombre}}</option>
+              </select>
+              <div class="invalid-feedback">
+                Seleccione el origen del producto
               </div>
             </div>
           </div>
@@ -124,7 +131,7 @@
             <label for="cblTipoEnvase" class="col-md-5 col-form-label">Tipo de Envase</label>
             <div class="col-md-7">
               <select class="form-control custom-select" formControlName="tipoEnvase" id="cblTipoEnvase" [ngClass]="{'is-invalid': !formaDetalle.get('tipoEnvase').valid}">
-                <option *ngFor="let envase of envases" [value]="envase.id">{{envase.nombre}}</option>
+                <option *ngFor="let envase of envases" [value]="envase.valor">{{envase.nombre}}</option>
               </select>
               <div class="invalid-feedback">
                 Seleccione un tipo de Envase

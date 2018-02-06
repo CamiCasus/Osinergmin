@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppGlobals } from '../components/shared/app.globals';
 import { ProductoEntidad } from '../models/productoEntidad';
 import { Observable } from 'rxjs/Observable';
-import { EnvaseEntidad } from '../models/envaseEntidad';
+import { ItemTablaEntidad } from '../models/itemTablaEntidad';
 
 @Injectable()
 export class MaestrosService {
@@ -14,7 +14,11 @@ export class MaestrosService {
     return this._httpClient.get<ProductoEntidad[]>(`${AppGlobals.BASE_URL}/api/maestros/productos`);
   }
 
-  getEnvases(): Observable<EnvaseEntidad[]> {
-    return this._httpClient.get<EnvaseEntidad[]>(`${AppGlobals.BASE_URL}/api/maestros/envases`);
+  getEnvases(): Observable<ItemTablaEntidad[]> {
+    return this._httpClient.get<ItemTablaEntidad[]>(`${AppGlobals.BASE_URL}/api/maestros/envases`);
+  }
+
+  getOrigenProducto(): Observable<ItemTablaEntidad[]> {
+    return this._httpClient.get<ItemTablaEntidad[]>(`${AppGlobals.BASE_URL}/api/maestros/origenProducto`);
   }
 }

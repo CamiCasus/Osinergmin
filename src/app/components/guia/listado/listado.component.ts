@@ -34,21 +34,24 @@ export class ListComponent implements OnInit {
   }
 
   cargarGuias() {
+    this.loading = true;
     this._guiaService.getGuiasListado()
       .subscribe(data => {
+        this.loading = false;
+
         this.guias = data;
         this.dtTrigger.next();
       });
   }
 
-  presentarAOsinergmin() {
+  presentarAOsinergmin(guiaId) {
     const modalRef = this._modal.open(MessageModalComponent);
     modalRef.componentInstance.titulo = 'Presentar Osinergmin';
     modalRef.componentInstance.mensaje = '¿Estás seguro de presentar la Guía a Osinergmin?';
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
-      this._guiaService.presentarGuia();
+      this._guiaService.presentarGuia(guiaId);
     }, (reason) => { });
 
     return false;
@@ -65,10 +68,7 @@ export class ListComponent implements OnInit {
       this._guiaService.eliminarGuia(guiaId)
         .subscribe(data => {
           this.loading = false;
-          this._guiaService.getGuiasListado()
-            .subscribe(data => {
-              this.guias = data;
-            });
+          this.dtTrigger.next();
         });
     }, (reason) => { });
 
@@ -76,9 +76,9 @@ export class ListComponent implements OnInit {
   }
 
   validarCodigoVerificacion(content) {
-    this._modal.open(content).result.then((result) => {
-      this._guiaService.validarCodigo(result);
-    }, (reason) => { });
+    // this._modal.open(content).result.then((result) => {
+    //   this._guiaService.validarMuestra(result);
+    // }, (reason) => { });
 
     return false;
   }

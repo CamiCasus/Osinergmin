@@ -24,12 +24,16 @@ export class GuiaService {
     return this._httpClient.get<GuiaEntidad>(`${AppGlobals.BASE_URL}/api/guia/${guiaId}`);
   }
 
-  presentarGuia() {
-    console.log('Llamar al servicio para presentar guia');
+  presentarGuia(guiaId: number) {
+    return this._httpClient.get<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia/presentar/${guiaId}`);
   }
 
-  validarCodigo(codigoVerificacion: string) {
-    console.log(`Llamar al servicio de presentar guía con el código ${codigoVerificacion}`);
+  validarMuestra(codigoVerificacion: number, guiaId: number) {
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia/validarMuestra`,
+      {
+        guiaId: guiaId,
+        codigoVerificacion: codigoVerificacion
+      });
   }
 
   grabarGuia(guia: GuiaEntidad): Observable<OsinergminResponse> {

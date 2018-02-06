@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { DetalleGuiaEntidad } from '../../../models/detalleGuiaEntidad';
 import { MaestrosService } from '../../../services/maestros.service';
 import { ProductoEntidad } from '../../../models/productoEntidad';
-import { EnvaseEntidad } from '../../../models/envaseEntidad';
+import { ItemTablaEntidad } from '../../../models/itemTablaEntidad';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,8 @@ export class RegistrarDetalleComponent implements OnInit {
   @Input('detalle') detalleGuiaActual: DetalleGuiaEntidad;
   @ViewChild('fileDetalle') fileDetalle: ElementRef;
   productos: ProductoEntidad[];
-  envases: EnvaseEntidad[];
+  envases: ItemTablaEntidad[];
+  origenesProducto: ItemTablaEntidad[];
 
   formaDetalle: FormGroup;
 
@@ -35,6 +36,10 @@ export class RegistrarDetalleComponent implements OnInit {
 
     this._maestrosService.getEnvases().subscribe(data => {
       this.envases = data;
+    });
+
+    this._maestrosService.getOrigenProducto().subscribe(data => {
+      this.origenesProducto = data;
     });
   }
 
