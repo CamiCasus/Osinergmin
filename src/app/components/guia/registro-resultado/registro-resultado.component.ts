@@ -20,9 +20,9 @@ export class RegistroResultadoComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _guiaService: GuiaService,
-    private _modal: NgbModal) {
+    public _activatedRoute: ActivatedRoute,
+    public _guiaService: GuiaService,
+    public _modal: NgbModal) {
     this._activatedRoute.params.subscribe(params => {
       this.guiaId = params["id"]
     });

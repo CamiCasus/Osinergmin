@@ -11,8 +11,8 @@ export class MessageModalComponent implements OnInit {
   @Input() mensaje: string;
   @Input() tipoMensaje: TipoMensaje = TipoMensaje.mensaje;
 
-  private codigoVerificacion: string;
-  private tiposMensaje = TipoMensaje;
+  public codigoVerificacion: string;
+  public tiposMensaje = TipoMensaje;
 
   constructor(public activeModal: NgbActiveModal) {
   }

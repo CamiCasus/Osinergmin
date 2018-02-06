@@ -21,7 +21,7 @@ export class RegistrarDetalleComponent implements OnInit {
 
   formaDetalle: FormGroup;
 
-  constructor(private _maestrosService: MaestrosService) { }
+  constructor(public _maestrosService: MaestrosService) { }
 
   ngOnInit() {
     if (this.detalleGuiaActual == null) {

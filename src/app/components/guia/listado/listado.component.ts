@@ -19,9 +19,9 @@ export class ListComponent implements OnInit {
   guias: GuiaListado[];
   dtTrigger: Subject<any> = new Subject();
 
-  constructor(private _router: Router,
-    private _guiaService: GuiaService,
-    private _modal: NgbModal) { }
+  constructor(public _router: Router,
+    public _guiaService: GuiaService,
+    public _modal: NgbModal) { }
 
   ngOnInit() {
     this.dtOptions = {

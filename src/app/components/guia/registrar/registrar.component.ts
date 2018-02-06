@@ -32,11 +32,11 @@ export class RegistrarComponent implements OnInit {
   forma: FormGroup;
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _guiaService: GuiaService,
-    private _modal: NgbModal,
-    private _route: Router,
-    private _alertService: AlertService) {
+    public _activatedRoute: ActivatedRoute,
+    public _guiaService: GuiaService,
+    public _modal: NgbModal,
+    public _route: Router,
+    public _alertService: AlertService) {
   }
 
   ngOnInit() {

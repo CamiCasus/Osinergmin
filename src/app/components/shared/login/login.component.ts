@@ -16,10 +16,10 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   constructor(
-    private route: ActivatedRoute,
-    private _alertService: AlertService,
-    private _authenticationService: AuthenticationService,
-    private _router: Router) { }
+    public route: ActivatedRoute,
+    public _alertService: AlertService,
+    public _authenticationService: AuthenticationService,
+    public _router: Router) { }
 
   ngOnInit() {
     this.setForm();
