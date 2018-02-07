@@ -6,6 +6,7 @@ import { GuiaListado } from '../../../models/guiaListado';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
 import { AppGlobals } from '../../shared/app.globals';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-listado',
@@ -21,6 +22,7 @@ export class ListComponent implements OnInit {
 
   constructor(public _router: Router,
     public _guiaService: GuiaService,
+    public _alertService: AlertService,
     public _modal: NgbModal) { }
 
   ngOnInit() {
@@ -53,7 +55,13 @@ export class ListComponent implements OnInit {
     modalRef.result.then((result) => {
       this.loading = true;
       this._guiaService.presentarGuia(guiaId).subscribe(data => {
-        this.loading = false;       
+        this.loading = false;      
+        
+        if (data.exito) {
+          this._alertService.success("Se presentó satisfactoriamente la guía a osinergmin");
+        } else {
+          this._alertService.error(data.mensaje);
+        }
       });
     }, (reason) => { });
 
@@ -71,7 +79,7 @@ export class ListComponent implements OnInit {
       this._guiaService.eliminarGuia(guiaId)
         .subscribe(data => {
           this.loading = false;
-          this.dtTrigger.next();
+          // this.dtTrigger.next();
         });
     }, (reason) => { });
 
@@ -82,7 +90,13 @@ export class ListComponent implements OnInit {
     this._modal.open(content).result.then((result) => {
       this.loading = true;
       this._guiaService.validarMuestra(result, guiaId).subscribe(data => {
-        this.loading = false;       
+        this.loading = false;    
+        
+        if (data.exito) {
+          this._alertService.success("Se realizó la validación correctamente para el código ingresado");
+        } else {
+          this._alertService.error(data.mensaje);
+        }
       });
     }, (reason) => { });
 
