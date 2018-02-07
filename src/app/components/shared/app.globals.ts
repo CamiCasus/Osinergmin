@@ -35,20 +35,22 @@ export class AppGlobals {
         };
     }
 
-    public static convertFileToBuferArray(fileInput: File): Promise<string> {
+    public static convertFileToBinaryString(fileInput: File): Promise<string> {
         const promise = new Promise<string>((resolve, reject) => {
             let resultado: string;
 
             const myReader: FileReader = new FileReader();
 
             myReader.onloadend = (e) => {
-                // resultado = myReader.result.split(',')[1];
-                resolve(myReader.result);
+                var arrayBuffer = myReader.result,
+                    array = new Uint8Array(arrayBuffer),
+                    binaryString = String.fromCharCode.apply(null, array);
+                resolve(binaryString);
             };
 
             myReader.readAsArrayBuffer(fileInput);
         });
 
         return promise;
-    }  
+    }
 }

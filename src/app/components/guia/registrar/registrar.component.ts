@@ -100,7 +100,7 @@ export class RegistrarComponent implements OnInit {
     });
   }
 
-  getFiles(event) {    
+  getFiles(event) {
     this.archivoActual = event.target.files[0];
     this.guiaActual.nombreArchivo = this.archivoActual.name;
 
@@ -123,7 +123,7 @@ export class RegistrarComponent implements OnInit {
       const objetoEnviar = this.forma.value;
 
       if (this.archivoActual != null) {
-        AppGlobals.convertFileToBuferArray(this.archivoActual).then((resultado) => {
+        AppGlobals.convertFileToBinaryString(this.archivoActual).then((resultado) => {
           objetoEnviar.nombreArchivo = this.archivoActual.name;
           objetoEnviar.guiaAdjunta = resultado;
 
@@ -139,6 +139,8 @@ export class RegistrarComponent implements OnInit {
   }
 
   grabar(objetoEnviar: any) {
+
+    console.log(objetoEnviar);
 
     this.loading = true;
     objetoEnviar.id = this.guiaId;
@@ -156,7 +158,11 @@ export class RegistrarComponent implements OnInit {
     } else {
       this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
         this.loading = false;
-        this.cancelar();
+        if (data.exito) {
+          this.cancelar();
+        } else {
+          this._alertService.error(data.mensaje);
+        }
       });
     }
   }
@@ -171,7 +177,7 @@ export class RegistrarComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result.archivoAdjuntoTemp != null) {
-        AppGlobals.convertFileToBuferArray(result.archivoAdjuntoTemp).then((resultado) => {
+        AppGlobals.convertFileToBinaryString(result.archivoAdjuntoTemp).then((resultado) => {
           result.nombreArchivo = result.archivoAdjuntoTemp.name;
           result.fotoMuestra = resultado;
 

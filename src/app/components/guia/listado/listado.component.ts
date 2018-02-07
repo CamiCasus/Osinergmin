@@ -51,7 +51,7 @@ export class ListComponent implements OnInit {
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
-      this._guiaService.presentarGuia(guiaId);
+      this._guiaService.presentarGuia(guiaId).subscribe();
     }, (reason) => { });
 
     return false;
@@ -77,7 +77,7 @@ export class ListComponent implements OnInit {
 
   validarCodigoVerificacion(content, guiaId: number) {
     this._modal.open(content).result.then((result) => {
-      this._guiaService.validarMuestra(result, guiaId);
+      this._guiaService.validarMuestra(result, guiaId).subscribe();;
     }, (reason) => { });
 
     return false;
