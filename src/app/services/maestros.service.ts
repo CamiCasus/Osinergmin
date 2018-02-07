@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppGlobals } from '../components/shared/app.globals';
 import { ProductoEntidad } from '../models/productoEntidad';
 import { Observable } from 'rxjs/Observable';
+import { catchError, retry } from 'rxjs/operators';
 import { ItemTablaEntidad } from '../models/itemTablaEntidad';
 
 @Injectable()

@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
           this._alertService.error('Usuario o Credenciales inválidas');
           this.loading = false;
         }
-      },
+      }, 
       error => {
         this._alertService.error('El servicio de autenticación no está disponible');
         this.loading = false;

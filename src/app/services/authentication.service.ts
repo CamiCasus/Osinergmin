@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { catchError, retry } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import { LoginEntidad } from '../models/loginEntidad';
 import { AppGlobals } from '../components/shared/app.globals';

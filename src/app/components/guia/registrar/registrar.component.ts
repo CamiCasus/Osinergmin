@@ -44,7 +44,11 @@ export class RegistrarComponent implements OnInit {
       this.guiaId = params['id'];
 
       if (this.guiaId != null) {
+        this.loading = true;
+
         this._guiaService.getGuia(this.guiaId).subscribe(data => {
+          this.loading = false;
+
           this.guiaActual = data;
           this.setForm(this.guiaActual);
         });
@@ -96,9 +100,13 @@ export class RegistrarComponent implements OnInit {
     });
   }
 
-  getFiles(event) {
+  getFiles(event) {    
     this.archivoActual = event.target.files[0];
     this.guiaActual.nombreArchivo = this.archivoActual.name;
+
+    // AppGlobals.convertFileToBase64(this.archivoActual).then((resultado) => {
+    //   console.log(resultado);
+    // });
   }
 
   openFileBrowser() {
@@ -115,7 +123,7 @@ export class RegistrarComponent implements OnInit {
       const objetoEnviar = this.forma.value;
 
       if (this.archivoActual != null) {
-        AppGlobals.convertFileToBase64(this.archivoActual).then((resultado) => {
+        AppGlobals.convertFileToBuferArray(this.archivoActual).then((resultado) => {
           objetoEnviar.nombreArchivo = this.archivoActual.name;
           objetoEnviar.guiaAdjunta = resultado;
 
@@ -163,7 +171,7 @@ export class RegistrarComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result.archivoAdjuntoTemp != null) {
-        AppGlobals.convertFileToBase64(result.archivoAdjuntoTemp).then((resultado) => {
+        AppGlobals.convertFileToBuferArray(result.archivoAdjuntoTemp).then((resultado) => {
           result.nombreArchivo = result.archivoAdjuntoTemp.name;
           result.fotoMuestra = resultado;
 

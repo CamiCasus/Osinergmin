@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { catchError, retry } from 'rxjs/operators';
 import { GuiaListado } from '../models/guiaListado';
 import { DetalleGuiaListado } from '../models/detalleGuiaListado';
 import { GuiaEntidad } from '../models/guiaEntidad';

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { APPROUTING } from './app.routes';
 
@@ -28,6 +28,8 @@ import { AlertComponent } from './components/shared/alert/alert.component';
 import { AlertService } from './services/alert.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { HttpErrorInterceptor } from './components/shared/httpErrorInterceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -56,12 +58,17 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     DataTablesModule,
     ReactiveFormsModule
   ],
-  providers: [
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true
+  },
     GuiaService,
     MaestrosService,
     AuthenticationService,
     AlertService,
-    AuthGuardService
+    AuthGuardService,
+    HttpErrorInterceptor
   ],
   bootstrap: [AppComponent],
   entryComponents: [MessageModalComponent, ContentPopupComponent]

@@ -75,10 +75,10 @@ export class ListComponent implements OnInit {
     return false;
   }
 
-  validarCodigoVerificacion(content) {
-    // this._modal.open(content).result.then((result) => {
-    //   this._guiaService.validarMuestra(result);
-    // }, (reason) => { });
+  validarCodigoVerificacion(content, guiaId: number) {
+    this._modal.open(content).result.then((result) => {
+      this._guiaService.validarMuestra(result, guiaId);
+    }, (reason) => { });
 
     return false;
   }

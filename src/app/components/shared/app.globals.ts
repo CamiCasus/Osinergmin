@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 @Injectable()
 export class AppGlobals {
@@ -33,21 +35,20 @@ export class AppGlobals {
         };
     }
 
-    public static convertFileToBase64(fileInput: File): Promise<string> {
-
+    public static convertFileToBuferArray(fileInput: File): Promise<string> {
         const promise = new Promise<string>((resolve, reject) => {
             let resultado: string;
 
             const myReader: FileReader = new FileReader();
 
             myReader.onloadend = (e) => {
-                resultado = myReader.result.split(',')[1];
-                resolve(resultado);
+                // resultado = myReader.result.split(',')[1];
+                resolve(myReader.result);
             };
 
-            myReader.readAsDataURL(fileInput);
+            myReader.readAsArrayBuffer(fileInput);
         });
 
         return promise;
-    }
+    }  
 }
