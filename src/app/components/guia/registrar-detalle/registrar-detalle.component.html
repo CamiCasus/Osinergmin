@@ -147,7 +147,7 @@
             <label for="cblTipoEnvase" class="col-md-5 col-form-label">Foto</label>
             <div class="col-md-7">
               <input #fileDetalle type="file" class="form-control d-sm-none" (change)="getFiles($event)">
-              <button (click)="openFileBrowser()" type="button" class="btn btn-outline-primary btn-block text-left">
+              <button (click)="openFileBrowser()" type="button" class="btn btn-outline-primary btn-sm btn-block text-left">
                 <i class="fas fa-file fa-5x"></i>&nbsp;
                 <ng-container *ngIf="detalleGuiaActual.nombreArchivo != null">
                   {{detalleGuiaActual.nombreArchivo}}

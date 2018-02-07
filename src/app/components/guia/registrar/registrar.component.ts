@@ -103,8 +103,8 @@ export class RegistrarComponent implements OnInit {
   getFiles(event) {
     this.archivoActual = event.target.files[0];
     this.guiaActual.nombreArchivo = this.archivoActual.name;
-
-    // AppGlobals.convertFileToBase64(this.archivoActual).then((resultado) => {
+    // console.log("mostrar contenido archivo");
+    // AppGlobals.convertFileToBinaryString(event.target.files[0]).then((resultado) => {
     //   console.log(resultado);
     // });
   }
@@ -121,6 +121,8 @@ export class RegistrarComponent implements OnInit {
 
     modalRef.result.then((result) => {
       const objetoEnviar = this.forma.value;
+
+      this.loading = true;
 
       if (this.archivoActual != null) {
         AppGlobals.convertFileToBinaryString(this.archivoActual).then((resultado) => {
@@ -139,10 +141,7 @@ export class RegistrarComponent implements OnInit {
   }
 
   grabar(objetoEnviar: any) {
-
-    console.log(objetoEnviar);
-
-    this.loading = true;
+    
     objetoEnviar.id = this.guiaId;
     objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 

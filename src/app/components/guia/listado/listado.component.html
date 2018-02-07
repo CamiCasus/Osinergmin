@@ -1,4 +1,4 @@
-<app-loading *ngIf="loading" ></app-loading>
+
 <div class="container-fluid">
   <div class="card">
     <div class="card-header">
@@ -7,7 +7,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-lg-12">
-          <button (click)="irAVistaRegistrar()" type="button" class="btn btn-primary float-right">
+          <button (click)="irAVistaRegistrar()" type="button" class="btn btn-primary btn-sm float-right">
             <i class="fas fa-plus-circle"></i>&nbsp;Agregar</button>
         </div>
       </div>
@@ -30,7 +30,7 @@
             <td>{{ guia.representanteIntertek }}</td>
             <td>
               <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-secondary" ngbDropdownToggle>
+                <button class="btn btn-outline-secondary btn-sm" ngbDropdownToggle>
                   <i class="fas fa-bars"></i>&nbsp;Acciones</button>
                 <div ngbDropdownMenu>
                   <a class="dropdown-item" [routerLink]="['/registrar', guia.id]">
@@ -55,7 +55,7 @@
   </div>
 </div>
 
-
+<app-loading *ngIf="loading" ></app-loading>
 <ng-template #contentValidacion let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Validar Osinergmin</h4>
