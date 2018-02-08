@@ -47,9 +47,15 @@ export class RegistrarComponent implements OnInit {
         this.loading = true;
 
         this._guiaService.getGuia(this.guiaId).subscribe(data => {
-          this.loading = false;
+          if (data == null) {
+            this._route.navigate(['/listado']);
+            this._alertService.error("Ocurrió un error durante la consulta, por favor intente en unos momentos");
+            return false;
+          }
 
+          this.loading = false;
           this.guiaActual = data;
+
           this.setForm(this.guiaActual);
         });
       } else {
@@ -103,10 +109,6 @@ export class RegistrarComponent implements OnInit {
   getFiles(event) {
     this.archivoActual = event.target.files[0];
     this.guiaActual.nombreArchivo = this.archivoActual.name;
-    // console.log("mostrar contenido archivo");
-    // AppGlobals.convertFileToBinaryString(event.target.files[0]).then((resultado) => {
-    //   console.log(resultado);
-    // });
   }
 
   openFileBrowser() {
@@ -149,7 +151,10 @@ export class RegistrarComponent implements OnInit {
     if (this.guiaId == null) {
       this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
         this.loading = false;
-        if (data.exito) {
+
+        if (data == null) {
+          this._alertService.error("Ocurrió un error durante el registro, por favor intente en unos momentos");
+        } else if (data.exito) {
           this.cancelar();
         } else {
           this._alertService.error(data.mensaje);
@@ -158,7 +163,9 @@ export class RegistrarComponent implements OnInit {
     } else {
       this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
         this.loading = false;
-        if (data.exito) {
+        if (data == null) {
+          this._alertService.error("Ocurrió un error durante la actualización, por favor intente en unos momentos");
+        } else if (data.exito) {
           this.cancelar();
         } else {
           this._alertService.error(data.mensaje);
