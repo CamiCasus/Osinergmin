@@ -22,5 +22,37 @@ export class InformeEnsayoGlpComponent implements OnInit {
     if (this.infoEnsayoGlp == null) {
       this.infoEnsayoGlp = new InformeEnsayoGlpEntidad();
   }
+
+  this.setForm(this.infoEnsayoGlp);
+
   }
+
+  setForm (infoEnsayoGlp : InformeEnsayoGlpEntidad) {
+    this.formaGlp = new FormGroup({
+      'id': new FormControl(),
+      'observaciones': new FormControl(),
+      'numeroInformeLaboratorio': new FormControl(),
+      'densidadRelativa': new FormControl(),
+      'presionVapor': new FormControl(),
+      'numeroOctanoMotor': new FormControl(),
+      'metanoMol': new FormControl(),
+      'etanoMol': new FormControl(),
+      'etilenoMol': new FormControl(),
+      'propanoMol': new FormControl(),
+      'propilenoMol': new FormControl(),
+      'isobutanoMol': new FormControl(),
+      'nbutanoMol': new FormControl(),
+      'trans2butenoMol': new FormControl(),
+      'butenoMol': new FormControl(),
+      'isobutilenoMol': new FormControl(),
+      'cis2butenoMol': new FormControl(),
+      'isopentanoMol': new FormControl(),
+      'npentanoMol': new FormControl(),
+      'butadienoMol': new FormControl(),
+      'hexano': new FormControl(),
+      'corrosionLaminaCobre': new FormControl(),
+      'determinacionEtilMercaptano': new FormControl()
+    });
+  }
+
 }
