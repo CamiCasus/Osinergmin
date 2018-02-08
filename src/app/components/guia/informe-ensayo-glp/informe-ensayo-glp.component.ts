@@ -1,5 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { infoEnsayoGlp } from '../../../models/infoEnsayoGlp';
+import { InformeEnsayoGlpEntidad } from '../../../models/infoEnsayoGlp';
 import { MaestrosService } from '../../../services/maestros.service';
 import { ItemTablaEntidad } from '../../../models/itemTablaEntidad';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class InformeEnsayoGlpComponent implements OnInit {
 
   // tslint:disable-next-line:no-input-rename
-  @Input('infoglp') infoEnsayoGlp: infoEnsayoGlp;
+  @Input('infoglp') infoEnsayoGlp: InformeEnsayoGlpEntidad;
 
   formaGlp: FormGroup;
 
@@ -20,7 +20,7 @@ export class InformeEnsayoGlpComponent implements OnInit {
 
   ngOnInit() {
     if (this.infoEnsayoGlp == null) {
-      this.infoEnsayoGlp = new infoEnsayoGlp();
+      this.infoEnsayoGlp = new InformeEnsayoGlpEntidad();
   }
   }
 }
