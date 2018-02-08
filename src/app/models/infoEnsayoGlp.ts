@@ -1,4 +1,4 @@
-export class infoEnsayoGlp {
+export class InformeEnsayoGlpEntidad {
     id: number;
     observaciones: string;
     numeroInformeLaboratorio: string;
