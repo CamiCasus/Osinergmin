@@ -13,7 +13,7 @@ export class AuthenticationService {
   login(usuarioEntidad: LoginEntidad) {
     return this._httpClient.post<any>(`${AppGlobals.BASE_URL}/api/autenticar`, usuarioEntidad).map(response => {
       if (response) {
-        localStorage.setItem('currentUser', JSON.stringify(usuarioEntidad));
+        localStorage.setItem('auth_token', response.auth_token);
       }
 
       return response;
@@ -21,10 +21,14 @@ export class AuthenticationService {
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('auth_token');
   }
 
   isAutenticated() {
-    return localStorage.getItem('currentUser') != null;
+    return localStorage.getItem('auth_token') != null;
+  }
+
+  getAuthorizationToken() {
+    return localStorage.getItem('auth_token');
   }
 }

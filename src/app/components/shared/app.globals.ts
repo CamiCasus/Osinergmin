@@ -23,10 +23,10 @@ export class AppGlobals {
             // 'sInfoThousands':  ',',
             'loadingRecords': 'Cargando...',
             'paginate': {
-                'first': 'Primero',
-                'last': 'Último',
-                'next': 'Siguiente',
-                'previous': 'Anterior'
+                'first': '<<',
+                'last': '>>',
+                'next': '>',
+                'previous': '<'
             },
             'aria': {
                 'sortAscending': ': Activar para ordenar la columna de manera ascendente',
