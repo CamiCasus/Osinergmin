@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
+import { InformeEnsayoCombustibleEntidad } from '../../../models/infoEnsayoCombustible';
+import { MaestrosService } from '../../../services/maestros.service';
+import { ItemTablaEntidad } from '../../../models/itemTablaEntidad';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-informe-ensayo-liquido',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformeEnsayoLiquidoComponent implements OnInit {
 
-  constructor() { }
+  // tslint:disable-next-line:no-input-rename
+  @Input('infoliquido') infoEnsayoCombustible: InformeEnsayoCombustibleEntidad;
+
+  formaLiquido: FormGroup;
+
+  constructor(public _maestrosService: MaestrosService) { }
 
   ngOnInit() {
+    if (this.infoEnsayoCombustible == null) {
+      this.infoEnsayoCombustible = new InformeEnsayoCombustibleEntidad();
+    }
   }
 
 }
