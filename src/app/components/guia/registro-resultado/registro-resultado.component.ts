@@ -14,6 +14,7 @@ import { TipoMuestraPipe } from '../../../pipes/tipo-muestra.pipe';
 })
 export class RegistroResultadoComponent implements OnInit {
 
+  loading: boolean;
   guiaId: number;
   dtOptions: DataTables.Settings = {};
   detalleGuia: DetalleGuiaListado[];
@@ -34,8 +35,10 @@ export class RegistroResultadoComponent implements OnInit {
       pageLength: 10
     };
 
+    this.loading = true;
     this._guiaService.getDetalleListadoGuia(this.guiaId)
       .subscribe(data => {
+        this.loading = false;
         this.detalleGuia = data;
         this.dtTrigger.next();
       });
@@ -43,9 +46,9 @@ export class RegistroResultadoComponent implements OnInit {
 
   registrarResultado(tipoMuestra: number) {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
-    modalRef.componentInstance.tipoContenido = TipoContenido.informeEnsayoGlp;
+    var textoTipoMuestra = new TipoMuestraPipe().transform(tipoMuestra);
 
-    // var textoTipoMuestra = TipoMuestraPipe.apply(tipoMuestra);
-    // modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
+    modalRef.componentInstance.tipoContenido = tipoMuestra;    
+    modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
   }
 }

@@ -20,7 +20,7 @@ export class ContentPopupComponent implements OnInit {
 }
 
 export enum TipoContenido {
-  informeEnsayoGlp = 1,
-  informeEnsayoLiquido = 2,
+  informeEnsayoLiquido = 1,
+  informeEnsayoGlp = 2,
   agregarDetalleGuia = 3
 }
