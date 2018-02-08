@@ -1,14 +1,14 @@
-<form>
+<form [formGroup]="formaGlp" (ngSubmit)="onSubmit()" *ngIf="infoEnsayoGlp">
   <div class="form-group row">
     <label for="txtInfLab" class="col-sm-3 col-form-label">N° Informe Laboratorio</label>
     <div class="col-sm-9">
-      <input type="text" class="form-control form-control-sm" id="txtInfLab" placeholder="Nro. Informe Laboratorio">
+      <input formControlName="numeroInformeLaboratorio" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !forma.get('numeroInformeLaboratorio').valid}" id="txtInfLab" placeholder="Nro. Informe Laboratorio">
     </div>
   </div>
   <div class="form-group row">
     <label for="txtObservaciones" class="col-sm-3 col-form-label">Observaciones</label>
     <div class="col-sm-9">
-      <input type="text" class="form-control form-control-sm" id="txtObservaciones" placeholder="Detallar">
+      <input formControlName="observaciones" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !forma.get('observaciones').valid}" id="txtObservaciones" placeholder="Detallar">
     </div>
   </div>
   <ngb-tabset>
@@ -19,7 +19,7 @@
             <div class="form-group row">
               <label for="txtDensidadRelativa" class="col-md-5 col-form-label">Densidad Relativa</label>
               <div class="col-md-7">
-                <input name="DensidadRelativa" type="text" class="form-control form-control-sm" id="txtDensidadRelativa">
+                <input formControlName="densidadRelativa" name="DensidadRelativa" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !forma.get('densidadRelativa').valid}" id="txtDensidadRelativa">
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@
             <div class="form-group row">
               <label for="txtPresionVapor" class="col-md-5 col-form-label">Presión de Vapor</label>
               <div class="col-md-7">
-                <input name="PresionVapor" type="text" class="form-control form-control-sm" id="txtPresionVapor">
+                <input formControlName="presionVapor" [ngClass]="{'is-invalid': !forma.get('presionVapor').valid}" name="PresionVapor" type="text" class="form-control form-control-sm" id="txtPresionVapor">
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
             <div class="form-group row">
               <label for="txtOctanoMotor" class="col-md-5 col-form-label">N° Octano Motor</label>
               <div class="col-md-7">
-                <input name="OctanoMotor" type="text" class="form-control form-control-sm" id="txtOctanoVapor">
+                <input formControlName="numeroOctanoMotor" [ngClass]="{'is-invalid': !forma.get('numeroOctanoMotor').valid}" name="OctanoMotor" type="text" class="form-control form-control-sm" id="txtOctanoVapor">
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@
             <div class="form-group row">
               <label for="txtMetano" class="col-md-5 col-form-label">Metano (%Mol)</label>
               <div class="col-md-7">
-                <input name="Metano" type="text" class="form-control form-control-sm" id="txtMetano">
+                <input formControlName="metanoMol" [ngClass]="{'is-invalid': !forma.get('metanoMol').valid}" name="Metano" type="text" class="form-control form-control-sm" id="txtMetano">
               </div>
             </div>
           </div>
