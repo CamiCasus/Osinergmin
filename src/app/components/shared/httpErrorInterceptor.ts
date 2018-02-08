@@ -32,7 +32,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           console.error(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
 
-        this._router.navigate(['/listado']);
+        // this._router.navigate(['/listado']);
 
         // ...optionally return a default fallback value so app can continue (pick one)
         // which could be a default value (which has to be a HttpResponse here)
