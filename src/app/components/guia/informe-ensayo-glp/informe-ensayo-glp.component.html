@@ -2,13 +2,13 @@
   <div class="form-group row">
     <label for="txtInfLab" class="col-sm-3 col-form-label">N° Informe Laboratorio</label>
     <div class="col-sm-9">
-      <input formControlName="numeroInformeLaboratorio" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !forma.get('numeroInformeLaboratorio').valid}" id="txtInfLab" placeholder="Nro. Informe Laboratorio">
+      <input formControlName="numeroInformeLaboratorio" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !formaGlp.get('numeroInformeLaboratorio').valid}" id="txtInfLab" placeholder="Nro. Informe Laboratorio">
     </div>
   </div>
   <div class="form-group row">
     <label for="txtObservaciones" class="col-sm-3 col-form-label">Observaciones</label>
     <div class="col-sm-9">
-      <input formControlName="observaciones" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !forma.get('observaciones').valid}" id="txtObservaciones" placeholder="Detallar">
+      <input formControlName="observaciones" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !formaGlp.get('observaciones').valid}" id="txtObservaciones" placeholder="Detallar">
     </div>
   </div>
   <ngb-tabset>
@@ -19,7 +19,7 @@
             <div class="form-group row">
               <label for="txtDensidadRelativa" class="col-md-5 col-form-label">Densidad Relativa</label>
               <div class="col-md-7">
-                <input formControlName="densidadRelativa" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !forma.get('densidadRelativa').valid}" id="txtDensidadRelativa">
+                <input formControlName="densidadRelativa" type="text" class="form-control form-control-sm" [ngClass]="{'is-invalid': !formaGlp.get('densidadRelativa').valid}" id="txtDensidadRelativa">
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@
             <div class="form-group row">
               <label for="txtPresionVapor" class="col-md-5 col-form-label">Presión de Vapor</label>
               <div class="col-md-7">
-                <input formControlName="presionVapor" [ngClass]="{'is-invalid': !forma.get('presionVapor').valid}" type="text" class="form-control form-control-sm" id="txtPresionVapor">
+                <input formControlName="presionVapor" [ngClass]="{'is-invalid': !formaGlp.get('presionVapor').valid}" type="text" class="form-control form-control-sm" id="txtPresionVapor">
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
             <div class="form-group row">
               <label for="txtOctanoMotor" class="col-md-5 col-form-label">N° Octano Motor</label>
               <div class="col-md-7">
-                <input formControlName="numeroOctanoMotor" [ngClass]="{'is-invalid': !forma.get('numeroOctanoMotor').valid}" type="text" class="form-control form-control-sm" id="txtOctanoVapor">
+                <input formControlName="numeroOctanoMotor" [ngClass]="{'is-invalid': !formaGlp.get('numeroOctanoMotor').valid}" type="text" class="form-control form-control-sm" id="txtOctanoVapor">
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@
             <div class="form-group row">
               <label for="txtMetano" class="col-md-5 col-form-label">Metano (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="metanoMol" [ngClass]="{'is-invalid': !forma.get('metanoMol').valid}" type="text" class="form-control form-control-sm" id="txtMetano">
+                <input formControlName="metanoMol" [ngClass]="{'is-invalid': !formaGlp.get('metanoMol').valid}" type="text" class="form-control form-control-sm" id="txtMetano">
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
             <div class="form-group row">
               <label for="txtEtano" class="col-md-5 col-form-label">Etano (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="etanoMol" [ngClass]="{'is-invalid': !forma.get('etanoMol').valid}" type="text" class="form-control form-control-sm" id="txtEtano">
+                <input formControlName="etanoMol" [ngClass]="{'is-invalid': !formaGlp.get('etanoMol').valid}" type="text" class="form-control form-control-sm" id="txtEtano">
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
             <div class="form-group row">
               <label for="txtEtileno" class="col-md-5 col-form-label">Etileno (%Mol)"</label>
               <div class="col-md-7">
-                <input formControlName="etilenoMol" [ngClass]="{'is-invalid': !forma.get('etilenoMol').valid}" type="text" class="form-control form-control-sm" id="txtEtileno">
+                <input formControlName="etilenoMol" [ngClass]="{'is-invalid': !formaGlp.get('etilenoMol').valid}" type="text" class="form-control form-control-sm" id="txtEtileno">
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
             <div class="form-group row">
               <label for="txtPropano" class="col-md-5 col-form-label">Propano (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="propanoMol" [ngClass]="{'is-invalid': !forma.get('propanoMol').valid}" type="text" class="form-control form-control-sm" id="txtPropano">
+                <input formControlName="propanoMol" [ngClass]="{'is-invalid': !formaGlp.get('propanoMol').valid}" type="text" class="form-control form-control-sm" id="txtPropano">
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
             <div class="form-group row">
               <label for="txtPropileno" class="col-md-5 col-form-label">Propileno (%Mol)"</label>
               <div class="col-md-7">
-                <input formControlName="propilenoMol" [ngClass]="{'is-invalid': !forma.get('propilenoMol').valid}" type="text" class="form-control form-control-sm" id="txtPropileno">
+                <input formControlName="propilenoMol" [ngClass]="{'is-invalid': !formaGlp.get('propilenoMol').valid}" type="text" class="form-control form-control-sm" id="txtPropileno">
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
             <div class="form-group row">
               <label for="txtIsobutano" class="col-md-5 col-form-label">Isobutano (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="isobutanoMol" [ngClass]="{'is-invalid': !forma.get('isobutanoMol').valid}" type="text" class="form-control form-control-sm" id="txtIsobutano">
+                <input formControlName="isobutanoMol" [ngClass]="{'is-invalid': !formaGlp.get('isobutanoMol').valid}" type="text" class="form-control form-control-sm" id="txtIsobutano">
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@
             <div class="form-group row">
               <label for="txtButano" class="col-md-5 col-form-label">N-Butano (%Mol)"</label>
               <div class="col-md-7">
-                <input formControlName="nbutanoMol" [ngClass]="{'is-invalid': !forma.get('nbutanoMol').valid}" type="text" class="form-control form-control-sm" id="Butano">
+                <input formControlName="nbutanoMol" [ngClass]="{'is-invalid': !formaGlp.get('nbutanoMol').valid}" type="text" class="form-control form-control-sm" id="Butano">
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@
             <div class="form-group row">
               <label for="txtTransButeno" class="col-md-5 col-form-label">Trans 2 Buteno(% Mol)</label>
               <div class="col-md-7">
-                <input formControlName="trans2butenoMol" [ngClass]="{'is-invalid': !forma.get('trans2butenoMol').valid}" type="text" class="form-control form-control-sm" id="txtTransButeno">
+                <input formControlName="trans2butenoMol" [ngClass]="{'is-invalid': !formaGlp.get('trans2butenoMol').valid}" type="text" class="form-control form-control-sm" id="txtTransButeno">
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@
             <div class="form-group row">
               <label for="txtButeno" class="col-md-5 col-form-label">1-Buteno (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="butenoMol" [ngClass]="{'is-invalid': !forma.get('butenoMol').valid}" type="text" class="form-control form-control-sm" id="txtButeno">
+                <input formControlName="butenoMol" [ngClass]="{'is-invalid': !formaGlp.get('butenoMol').valid}" type="text" class="form-control form-control-sm" id="txtButeno">
               </div>
             </div>
           </div>
@@ -131,7 +131,7 @@
             <div class="form-group row">
               <label for="txtIsobutileno" class="col-md-5 col-form-label">Isobutileno (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="isobutilenoMol" [ngClass]="{'is-invalid': !forma.get('isobutilenoMol').valid}" type="text" class="form-control form-control-sm" id="txtIsobutileno">
+                <input formControlName="isobutilenoMol" [ngClass]="{'is-invalid': !formaGlp.get('isobutilenoMol').valid}" type="text" class="form-control form-control-sm" id="txtIsobutileno">
               </div>
             </div>
           </div>
@@ -139,7 +139,7 @@
             <div class="form-group row">
               <label for="txtCisButeno" class="col-md-5 col-form-label">Cis 2 Buteno (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="cis2butenoMol" [ngClass]="{'is-invalid': !forma.get('cis2butenoMol').valid}" type="text" class="form-control form-control-sm" id="txtCisButeno">
+                <input formControlName="cis2butenoMol" [ngClass]="{'is-invalid': !formaGlp.get('cis2butenoMol').valid}" type="text" class="form-control form-control-sm" id="txtCisButeno">
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@
             <div class="form-group row">
               <label for="txtIsopentano" class="col-md-5 col-form-label">Isopentano (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="isopentanoMol" [ngClass]="{'is-invalid': !forma.get('isopentanoMol').valid}" type="text" class="form-control form-control-sm" id="txtIsopentano">
+                <input formControlName="isopentanoMol" [ngClass]="{'is-invalid': !formaGlp.get('isopentanoMol').valid}" type="text" class="form-control form-control-sm" id="txtIsopentano">
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@
             <div class="form-group row">
               <label for="txtNPentano " class="col-md-5 col-form-label">N- Pentano (%Mol)</label>
               <div class="col-md-7">
-                <input formControlName="npentanoMol" [ngClass]="{'is-invalid': !forma.get('npentanoMol').valid}" type="text" class="form-control form-control-sm" id="txtNPentano">
+                <input formControlName="npentanoMol" [ngClass]="{'is-invalid': !formaGlp.get('npentanoMol').valid}" type="text" class="form-control form-control-sm" id="txtNPentano">
               </div>
             </div>
           </div>
@@ -167,7 +167,7 @@
             <div class="form-group row">
               <label for="txtButadieno " class="col-md-5 col-form-label">1,3 Butadieno </label>
               <div class="col-md-7">
-                <input formControlName="butadienoMol" [ngClass]="{'is-invalid': !forma.get('butadienoMol').valid}" type="text" class="form-control form-control-sm" id="txtButadieno">
+                <input formControlName="butadienoMol" [ngClass]="{'is-invalid': !formaGlp.get('butadienoMol').valid}" type="text" class="form-control form-control-sm" id="txtButadieno">
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@
             <div class="form-group row">
               <label for="txtHexanos" class="col-md-5 col-form-label">Hexanos</label>
               <div class="col-md-7">
-                <input formControlName="hexano" [ngClass]="{'is-invalid': !forma.get('hexano').valid}" type="text" class="form-control form-control-sm" id="txtHexanos">
+                <input formControlName="hexano" [ngClass]="{'is-invalid': !formaGlp.get('hexano').valid}" type="text" class="form-control form-control-sm" id="txtHexanos">
               </div>
             </div>
           </div>
@@ -185,7 +185,7 @@
             <div class="form-group row">
               <label for="txtCorrosionLaminaCobre " class="col-md-5 col-form-label">Corrosión a la lámina de cobre </label>
               <div class="col-md-7">
-                <input formControlName="corrosionLaminaCobre" [ngClass]="{'is-invalid': !forma.get('corrosionLaminaCobre').valid}" type="text" class="form-control form-control-sm" id="txtCorrosionLaminaCobre">
+                <input formControlName="corrosionLaminaCobre" [ngClass]="{'is-invalid': !formaGlp.get('corrosionLaminaCobre').valid}" type="text" class="form-control form-control-sm" id="txtCorrosionLaminaCobre">
               </div>
             </div>
           </div>
@@ -193,7 +193,7 @@
             <div class="form-group row">
               <label for="txtDeterminacionEtilMercaptano" class="col-md-5 col-form-label">Determinación de Etil Mercaptano - FASE VAPOR (ppmv)</label>
               <div class="col-md-7">
-                <input formControlName="determinacionEtilMercaptano" [ngClass]="{'is-invalid': !forma.get('determinacionEtilMercaptano').valid}" type="text" class="form-control form-control-sm" id="txtDeterminacionEtilMercaptano">
+                <input formControlName="determinacionEtilMercaptano" [ngClass]="{'is-invalid': !formaGlp.get('determinacionEtilMercaptano').valid}" type="text" class="form-control form-control-sm" id="txtDeterminacionEtilMercaptano">
               </div>
             </div>
           </div>
