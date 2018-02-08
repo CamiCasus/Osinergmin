@@ -53,13 +53,13 @@ export class ListComponent implements OnInit {
     modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
 
     modalRef.result.then((result) => {
-      
+
       this.loading = true;
       this._guiaService.presentarGuia(guiaId).subscribe(data => {
-        this.loading = false;      
-        
+        this.loading = false;
+
         if (data.exito) {
-          this._alertService.success("Se presentó satisfactoriamente la guía a osinergmin");
+          this._alertService.success('Se presentó satisfactoriamente la guía a osinergmin');
         } else {
           this._alertService.error(data.mensaje);
         }
@@ -91,10 +91,10 @@ export class ListComponent implements OnInit {
     this._modal.open(content).result.then((result) => {
       this.loading = true;
       this._guiaService.validarMuestra(result, guiaId).subscribe(data => {
-        this.loading = false;    
-        
+        this.loading = false;
+
         if (data.exito) {
-          this._alertService.success("Se realizó la validación correctamente para el código ingresado");
+          this._alertService.success('Se realizó la validación correctamente para el código ingresado');
         } else {
           this._alertService.error(data.mensaje);
         }

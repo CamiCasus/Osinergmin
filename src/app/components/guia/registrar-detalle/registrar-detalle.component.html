@@ -118,7 +118,7 @@
               </div> -->
               <select class="form-control custom-select" formControlName="origenProducto" id="cblOrigenProducto"
                 [ngClass]="{'is-invalid': !formaDetalle.get('origenProducto').valid}">
-                <option *ngFor="let origen of origenesProducto" [value]="origen.id">{{origen.nombre}}</option>
+                <option *ngFor="let origen of origenesProducto" [value]="origen.valor">{{origen.nombre}}</option>
               </select>
               <div class="invalid-feedback">
                 Seleccione el origen del producto

@@ -141,10 +141,11 @@ export class RegistrarComponent implements OnInit {
   }
 
   grabar(objetoEnviar: any) {
-    
+
     objetoEnviar.id = this.guiaId;
     objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 
+    console.log(objetoEnviar);
     if (this.guiaId == null) {
       this._guiaService.grabarGuia(objetoEnviar).subscribe(data => {
         this.loading = false;
