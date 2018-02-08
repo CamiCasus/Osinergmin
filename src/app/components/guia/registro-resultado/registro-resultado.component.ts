@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 import { TipoMuestraPipe } from '../../../pipes/tipo-muestra.pipe';
+import { AppGlobals } from '../../shared/app.globals';
 
 @Component({
   selector: 'app-registro-resultado',
@@ -32,7 +33,8 @@ export class RegistroResultadoComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'simple_numbers',
-      pageLength: 10
+      pageLength: 10,
+      language: AppGlobals.getSpanishDataTable()
     };
 
     this.loading = true;
