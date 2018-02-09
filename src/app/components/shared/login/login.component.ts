@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
     this._authenticationService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/listado';
+    console.log(this.returnUrl);
   }
 
   setForm() {
@@ -40,11 +41,12 @@ export class LoginComponent implements OnInit {
     this._authenticationService.login(this.forma.value)
       .subscribe(response => {
         if (response) {
-          
+          localStorage.setItem('auth_token', response.auth_token);
           this._router.navigate([this.returnUrl]);
         } else {
           this._alertService.error('Usuario o Credenciales inválidas');
           this.loading = false;
+
         }
       }, 
       error => {

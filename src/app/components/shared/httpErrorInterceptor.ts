@@ -1,27 +1,31 @@
-import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse,
-         HttpErrorResponse } from '@angular/common/http';
+import { Injectable, Injector } from '@angular/core';
+import {
+  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse,
+  HttpErrorResponse
+} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/operator/retry'; // don't forget the imports
 import { Router } from '@angular/router';
+import { AlertService } from '../../services/alert.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-    /**
-     *
-     */
-    constructor(public _router: Router) {
-        
-        
-    }
+  /**
+   *
+   */
+  constructor(public _router: Router, public _injector: Injector) {
+
+
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .catch((err: HttpErrorResponse) => {
+        const alertService = this._injector.get(AlertService);
 
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
@@ -32,15 +36,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           console.error(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
 
-        // this._router.navigate(['/listado']);
+        if (err.status == 401) {
+          this._router.navigate(['/login', { queryParams: { returnUrl: request.urlWithParams } }]);
+          alertService.error("No tiene acceso a la pantalla solicitada");
+        }
 
-        // ...optionally return a default fallback value so app can continue (pick one)
-        // which could be a default value (which has to be a HttpResponse here)
-        // return Observable.of(new HttpResponse({body: [{name: "Default value..."}]}));
-        // or simply an empty observable
-
-        // return Observable.empty<HttpEvent<any>>();
-        return Observable.of(new HttpResponse({body: null}));
+        return Observable.of(new HttpResponse({ body: null }));
       });
   }
 }

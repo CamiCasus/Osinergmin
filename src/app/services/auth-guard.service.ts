@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { RouterStateSnapshot, ActivatedRouteSnapshot, Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from './authentication.service';
+import { AlertService } from './alert.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
   constructor(
-    private _authenticationService: AuthenticationService,
-    private _router: Router) { }
+    public _authenticationService: AuthenticationService,
+    public _alertService: AlertService,
+    public _router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,7 +19,8 @@ export class AuthGuardService implements CanActivate {
     if (this._authenticationService.isAutenticated()) {
       return true;
     } else {
-      this._router.navigate(['/login']);
+      this._router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      this._alertService.error("Su sesión ha expirado, vuelva a loguearse por favor"); 
       return false;
     }
   }
