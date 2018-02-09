@@ -52,13 +52,10 @@ export class GuiaService {
   }
 
   presentarEnsayoGLP(informeEnsayoGlp: InformeEnsayoGlpEntidad): Observable<OsinergminResponse> {
-    console.log("Presentar ensayo GLP...");
-    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoGLP`, informeEnsayoGlp);
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia/registrarInformeEnsayoGlp`, informeEnsayoGlp);
   }
 
   presentarEnsayoLiquido(informeEnsayoLiquido: InformeEnsayoCombustibleEntidad): Observable<OsinergminResponse> {
-
-    console.log("Presentar ensayo liquido...");
-    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoLiquido`, informeEnsayoLiquido);
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia/registrarInformeEnsayoLiquido`, informeEnsayoLiquido);
   }
 }
