@@ -90,8 +90,8 @@ export class InformeEnsayoLiquidoComponent implements OnInit {
       'aguaSedimentos': new FormControl(),
       'determinacionBenceno': new FormControl(),
       'aguaPorDestilacion': new FormControl(),
-      'contaminacionparticulas': new FormControl(),
-      'indiceCetanoFame': new FormControl(),
+      'contaminacionParticulas': new FormControl(),
+      'indiceCetanoFme': new FormControl(),
       'color': new FormControl(),
       'resultadoFinal': new FormControl(),
       'remanenteRetirado': new FormControl()

@@ -48,15 +48,15 @@ export class InformeEnsayoCombustibleEntidad {
     contenidoTertbutanoMasa: string;
     contenidoDipeMasa: string;
     totalOxigenadosMasa: string;
-    reaccionAlAgua: string;
+    reaccionAlAgua: number;
     contenidoSolidos: string;
     contenidoGomas: string;
     puntoCongelamiento: string;
     aguaSedimentos: string;
     determinacionBenceno: number;
     aguaPorDestilacion: string;
-    contaminacionparticulas: string;
-    indiceCetanoFame: string;
+    contaminacionParticulas: string;
+    indiceCetanoFme: string;
     color: string;
     resultadoFinal: string;
     remanenteRetirado: string;
