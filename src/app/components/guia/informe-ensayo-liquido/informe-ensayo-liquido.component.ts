@@ -3,6 +3,10 @@ import { InformeEnsayoCombustibleEntidad } from '../../../models/infoEnsayoCombu
 import { MaestrosService } from '../../../services/maestros.service';
 import { ItemTablaEntidad } from '../../../models/itemTablaEntidad';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertService } from '../../../services/alert.service';
+import { GuiaService } from '../../../services/guia.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
 
 @Component({
   selector: 'app-informe-ensayo-liquido',
@@ -13,10 +17,15 @@ export class InformeEnsayoLiquidoComponent implements OnInit {
 
   // tslint:disable-next-line:no-input-rename
   @Input('infoliquido') infoEnsayoCombustible: InformeEnsayoCombustibleEntidad;
-
+  loading: boolean;
   formaLiquido: FormGroup;
 
-  constructor(public _maestrosService: MaestrosService) { }
+  constructor(
+    public _maestrosService: MaestrosService,
+    public _modal: NgbModal,
+    public _guiaService: GuiaService,
+    public _alertService: AlertService
+  ) { }
 
   ngOnInit() {
     if (this.infoEnsayoCombustible == null) {
@@ -91,4 +100,26 @@ export class InformeEnsayoLiquidoComponent implements OnInit {
     });
   }
 
+  presentarAOsinergmin(EnsayoLiquidoId) {
+    const modalRef = this._modal.open(MessageModalComponent);
+    modalRef.componentInstance.titulo = 'Grabar Ensayo Liquido';
+    modalRef.componentInstance.mensaje = '¿Estás seguro de realizar esta operación?';
+    modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
+
+    modalRef.result.then((result) => {
+      this.loading = true;
+      this._guiaService.presentarEnsayoLiquido(EnsayoLiquidoId).subscribe(data => {
+        this.loading = false;
+
+        if (data.exito) {
+          this._alertService.success('Se presentó satisfactoriamente el Ensayo Liquido a osinergmin');
+        } else {
+          this._alertService.error(data.mensaje);
+        }
+      });
+
+    }, result => { });
+
+    return false;
+  }
 }

@@ -48,4 +48,12 @@ export class GuiaService {
   eliminarGuia(guiaId) {
     return this._httpClient.delete(`${AppGlobals.BASE_URL}/api/guia/${guiaId}`);
   }
+
+  presentarEnsayoGLP(EnsayoGLPId: number): Observable<OsinergminResponse> {
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoGLP`, EnsayoGLPId);
+  }
+
+  presentarEnsayoLiquido(EnsayoLiquidoId: number): Observable<OsinergminResponse> {
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoLiquido`, EnsayoLiquidoId);
+  }
 }
