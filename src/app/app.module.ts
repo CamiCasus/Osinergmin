@@ -4,7 +4,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { APPROUTING } from './app.routes';
 
-
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -30,6 +29,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { HttpErrorInterceptor } from './components/shared/httpErrorInterceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './components/shared/authInterceptor';
 
 @NgModule({
   declarations: [
@@ -62,13 +62,18 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     provide: HTTP_INTERCEPTORS,
     useClass: HttpErrorInterceptor,
     multi: true
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
   },
     GuiaService,
     MaestrosService,
     AuthenticationService,
     AlertService,
     AuthGuardService,
-    HttpErrorInterceptor
+    HttpErrorInterceptor,
+    AuthInterceptor
   ],
   bootstrap: [AppComponent],
   entryComponents: [MessageModalComponent, ContentPopupComponent]

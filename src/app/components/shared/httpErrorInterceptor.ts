@@ -40,7 +40,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         // or simply an empty observable
 
         // return Observable.empty<HttpEvent<any>>();
-        return Observable.of(new HttpResponse({body: [{}]}));
+        return Observable.of(new HttpResponse({body: null}));
       });
   }
 }
