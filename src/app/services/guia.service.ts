@@ -7,6 +7,8 @@ import { DetalleGuiaListado } from '../models/detalleGuiaListado';
 import { GuiaEntidad } from '../models/guiaEntidad';
 import { AppGlobals } from '../components/shared/app.globals';
 import { OsinergminResponse } from '../models/osinergminResponse';
+import { InformeEnsayoCombustibleEntidad } from '../models/informeEnsayoCombustibleEntidad';
+import { InformeEnsayoGlpEntidad } from '../models/informeEnsayoGlpEntidad';
 
 @Injectable()
 export class GuiaService {
@@ -49,11 +51,14 @@ export class GuiaService {
     return this._httpClient.delete(`${AppGlobals.BASE_URL}/api/guia/${guiaId}`);
   }
 
-  presentarEnsayoGLP(EnsayoGLPId: number): Observable<OsinergminResponse> {
-    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoGLP`, EnsayoGLPId);
+  presentarEnsayoGLP(informeEnsayoGlp: InformeEnsayoGlpEntidad): Observable<OsinergminResponse> {
+    console.log("Presentar ensayo GLP...");
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoGLP`, informeEnsayoGlp);
   }
 
-  presentarEnsayoLiquido(EnsayoLiquidoId: number): Observable<OsinergminResponse> {
-    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoLiquido`, EnsayoLiquidoId);
+  presentarEnsayoLiquido(informeEnsayoLiquido: InformeEnsayoCombustibleEntidad): Observable<OsinergminResponse> {
+
+    console.log("Presentar ensayo liquido...");
+    return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/EnsayoLiquido`, informeEnsayoLiquido);
   }
 }

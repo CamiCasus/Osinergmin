@@ -10,22 +10,34 @@
     <app-registrar-detalle #detalleGuia [detalle]="data"></app-registrar-detalle>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-info" [disabled] = "!detalleGuia.formaDetalle.valid" (click)="activeModal.close(detalleGuia.formaDetalle.value)">
-        <i class="fas fa-check"></i>&nbsp;Aceptar</button>
+    <button type="button" class="btn btn-info" [disabled]="!detalleGuia.formaDetalle.valid" (click)="activeModal.close(detalleGuia.formaDetalle.value)">
+      <i class="fas fa-check"></i>&nbsp;Aceptar</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">
-        <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
+      <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
   </div>
 </ng-container>
 
-<ng-container *ngIf="tipoContenido !== tiposContenido.agregarDetalleGuia">
+<ng-container *ngIf="tipoContenido === tiposContenido.informeEnsayoGlp">
   <div class="modal-body">
-    <app-informe-ensayo-glp *ngIf="tipoContenido === tiposContenido.informeEnsayoGlp"></app-informe-ensayo-glp>
-    <app-informe-ensayo-liquido *ngIf="tipoContenido === tiposContenido.informeEnsayoLiquido"></app-informe-ensayo-liquido>
+    <app-informe-ensayo-glp #informeGlp></app-informe-ensayo-glp>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-info" (click)="activeModal.close('Close click')">
-        <i class="fas fa-check"></i>&nbsp;Aceptar</button>
+    <button type="button" class="btn btn-info" [disabled]="!informeGlp.formaGlp.valid" (click)="activeModal.close(informeGlp.formaGlp.value)">
+      <i class="fas fa-check"></i>&nbsp;Aceptar</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">
-        <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
+      <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="tipoContenido === tiposContenido.informeEnsayoLiquido">
+  <div class="modal-body">
+    <app-informe-ensayo-liquido #informeLiquido></app-informe-ensayo-liquido>
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" [disabled]="!informeLiquido.formaLiquido.valid" (click)="activeModal.close(informeLiquido.formaLiquido.value)">
+      <i class="fas fa-check"></i>&nbsp;Aceptar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">
+      <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
   </div>
 </ng-container>

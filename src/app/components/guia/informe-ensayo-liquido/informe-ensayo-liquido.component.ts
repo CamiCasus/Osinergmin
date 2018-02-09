@@ -1,5 +1,4 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { InformeEnsayoCombustibleEntidad } from '../../../models/infoEnsayoCombustible';
 import { MaestrosService } from '../../../services/maestros.service';
 import { ItemTablaEntidad } from '../../../models/itemTablaEntidad';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -7,6 +6,7 @@ import { AlertService } from '../../../services/alert.service';
 import { GuiaService } from '../../../services/guia.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
+import { InformeEnsayoCombustibleEntidad } from '../../../models/informeEnsayoCombustibleEntidad';
 
 @Component({
   selector: 'app-informe-ensayo-liquido',
@@ -14,9 +14,7 @@ import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/m
   styleUrls: ['./informe-ensayo-liquido.component.css']
 })
 export class InformeEnsayoLiquidoComponent implements OnInit {
-
-  // tslint:disable-next-line:no-input-rename
-  @Input('infoliquido') infoEnsayoCombustible: InformeEnsayoCombustibleEntidad;
+  infoEnsayoCombustible: InformeEnsayoCombustibleEntidad;
   loading: boolean;
   formaLiquido: FormGroup;
 
@@ -98,28 +96,5 @@ export class InformeEnsayoLiquidoComponent implements OnInit {
       'resultadoFinal': new FormControl(),
       'remanenteRetirado': new FormControl()
     });
-  }
-
-  presentarAOsinergmin(EnsayoLiquidoId) {
-    const modalRef = this._modal.open(MessageModalComponent);
-    modalRef.componentInstance.titulo = 'Grabar Ensayo Liquido';
-    modalRef.componentInstance.mensaje = '¿Estás seguro de realizar esta operación?';
-    modalRef.componentInstance.tipoMensaje = TipoMensaje.confirmacion;
-
-    modalRef.result.then((result) => {
-      this.loading = true;
-      this._guiaService.presentarEnsayoLiquido(EnsayoLiquidoId).subscribe(data => {
-        this.loading = false;
-
-        if (data.exito) {
-          this._alertService.success('Se presentó satisfactoriamente el Ensayo Liquido a osinergmin');
-        } else {
-          this._alertService.error(data.mensaje);
-        }
-      });
-
-    }, result => { });
-
-    return false;
-  }
+  }  
 }

@@ -7,6 +7,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContentPopupComponent, TipoContenido } from '../../shared/content-popup/content-popup.component';
 import { TipoMuestraPipe } from '../../../pipes/tipo-muestra.pipe';
 import { AppGlobals } from '../../shared/app.globals';
+import { MessageModalComponent, TipoMensaje } from '../../shared/message-modal/message-modal.component';
+import { AlertService } from '../../../services/alert.service';
+import { Observable } from 'rxjs/Observable';
+import { OsinergminResponse } from '../../../models/osinergminResponse';
 
 @Component({
   selector: 'app-registro-resultado',
@@ -24,7 +28,8 @@ export class RegistroResultadoComponent implements OnInit {
   constructor(
     public _activatedRoute: ActivatedRoute,
     public _guiaService: GuiaService,
-    public _modal: NgbModal) {
+    public _modal: NgbModal,
+    public _alertService: AlertService) {
     this._activatedRoute.params.subscribe(params => {
       this.guiaId = params["id"]
     });
@@ -48,9 +53,33 @@ export class RegistroResultadoComponent implements OnInit {
 
   registrarResultado(tipoMuestra: number) {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
-    var textoTipoMuestra = new TipoMuestraPipe().transform(tipoMuestra);
+    let textoTipoMuestra = new TipoMuestraPipe().transform(tipoMuestra);
 
-    modalRef.componentInstance.tipoContenido = tipoMuestra;    
+    modalRef.componentInstance.tipoContenido = tipoMuestra;
     modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
+
+    modalRef.result.then((result) => {
+      let objetoEnviar = result;
+      let respuestaServicio: Observable<OsinergminResponse>;
+
+      console.log(objetoEnviar);
+      if (tipoMuestra == TipoContenido.informeEnsayoGlp) {
+        respuestaServicio = this._guiaService.presentarEnsayoGLP(objetoEnviar);
+      } else if (tipoMuestra == TipoContenido.informeEnsayoLiquido) {
+        respuestaServicio = this._guiaService.presentarEnsayoLiquido(objetoEnviar);
+      }
+
+      respuestaServicio.subscribe(
+        data => {
+          if (data == null) {
+            this._alertService.error("Ocurrió un error durante la carga de resultados, por favor intente en unos momentos");
+          } else if (data.exito) {
+            this._alertService.success("Se presentó satisfactoriamente el informe de ensayo.");
+          } else {
+            this._alertService.error(data.mensaje);
+          }
+        });
+
+    }, result => { });
   }
 }

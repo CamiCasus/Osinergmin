@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
     this._authenticationService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/listado';
-    console.log(this.returnUrl);
   }
 
   setForm() {
