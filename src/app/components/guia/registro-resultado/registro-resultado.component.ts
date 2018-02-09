@@ -50,7 +50,7 @@ export class RegistroResultadoComponent implements OnInit {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
     var textoTipoMuestra = new TipoMuestraPipe().transform(tipoMuestra);
 
-    modalRef.componentInstance.tipoContenido = 2;    
+    modalRef.componentInstance.tipoContenido = tipoMuestra;    
     modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
   }
 }
