@@ -1,5 +1,6 @@
 export class InformeEnsayoGlpEntidad {
     id: number;
+    detalleGuiaId: number;
     observaciones: string;
     numeroInformeLaboratorio: string;
     densidadRelativa: number;

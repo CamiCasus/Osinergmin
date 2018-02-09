@@ -56,6 +56,7 @@ export class GuiaService {
   }
 
   presentarEnsayoLiquido(informeEnsayoLiquido: InformeEnsayoCombustibleEntidad): Observable<OsinergminResponse> {
+    console.log(informeEnsayoLiquido);
     return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia/registrarInformeEnsayoLiquido`, informeEnsayoLiquido);
   }
 }

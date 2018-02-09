@@ -12,6 +12,7 @@ export class DetalleGuiaEntidad {
     numeroPrescintoLaboratorio: string;
     origenProducto: string;
     tipoEnvase: string;
+    nombreEnvase: string;
     nombreArchivo: string;
     fotoMuestra: string;
     observaciones: string;

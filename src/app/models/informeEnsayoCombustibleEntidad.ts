@@ -1,5 +1,6 @@
 export class InformeEnsayoCombustibleEntidad {
     id: number;
+    detalleGuiaId: number;
     observaciones: string;
     numeroInformeLaboratorio: string;
     octanaje: string;

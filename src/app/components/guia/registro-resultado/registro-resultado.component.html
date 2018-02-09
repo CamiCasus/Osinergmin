@@ -21,7 +21,7 @@
             <td class="text-center">{{ detalle.tipoMuestra | tipoMuestra }}</td>
             <td>{{ detalle.ensayos }}</td>
             <td class="text-center">
-              <button class="btn btn-outline-info btn-sm" (click)="registrarResultado(detalle.tipoMuestra)">
+              <button class="btn btn-outline-info btn-sm" (click)="registrarResultado(detalle.tipoMuestra, detalle.id)">
                 <i class="fas fa-registered"></i>&nbsp;Registrar Resultado</button>
             </td>
           </tr>

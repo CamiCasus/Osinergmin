@@ -51,7 +51,7 @@ export class RegistroResultadoComponent implements OnInit {
       });
   }
 
-  registrarResultado(tipoMuestra: number) {
+  registrarResultado(tipoMuestra: number, detalleGuiaId: number) {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
     let textoTipoMuestra = new TipoMuestraPipe().transform(tipoMuestra);
 
@@ -59,7 +59,11 @@ export class RegistroResultadoComponent implements OnInit {
     modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
 
     modalRef.result.then((result) => {
+      this.loading = true;
+
       let objetoEnviar = result;
+      objetoEnviar.detalleGuiaId = detalleGuiaId;
+
       let respuestaServicio: Observable<OsinergminResponse>;
 
       console.log(objetoEnviar);
@@ -71,6 +75,7 @@ export class RegistroResultadoComponent implements OnInit {
 
       respuestaServicio.subscribe(
         data => {
+          this.loading = false;
           if (data == null) {
             this._alertService.error("Ocurrió un error durante la carga de resultados, por favor intente en unos momentos");
           } else if (data.exito) {
