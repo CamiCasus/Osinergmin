@@ -49,7 +49,7 @@ export class RegistrarComponent implements OnInit {
         this._guiaService.getGuia(this.guiaId).subscribe(data => {
           if (data == null) {
             this._route.navigate(['/listado']);
-            this._alertService.error("Ocurrió un error durante la consulta, por favor intente en unos momentos");
+            this._alertService.error('Ocurrió un error durante la consulta, por favor intente en unos momentos');
             return false;
           }
 
@@ -153,7 +153,7 @@ export class RegistrarComponent implements OnInit {
         this.loading = false;
 
         if (data == null) {
-          this._alertService.error("Ocurrió un error durante el registro, por favor intente en unos momentos");
+          this._alertService.error('Ocurrió un error durante el registro, por favor intente en unos momentos');
         } else if (data.exito) {
           this.cancelar();
         } else {
@@ -164,7 +164,7 @@ export class RegistrarComponent implements OnInit {
       this._guiaService.actualizarGuia(objetoEnviar).subscribe(data => {
         this.loading = false;
         if (data == null) {
-          this._alertService.error("Ocurrió un error durante la actualización, por favor intente en unos momentos");
+          this._alertService.error('Ocurrió un error durante la actualización, por favor intente en unos momentos');
         } else if (data.exito) {
           this.cancelar();
         } else {

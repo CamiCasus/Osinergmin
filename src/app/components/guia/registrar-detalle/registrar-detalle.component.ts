@@ -4,6 +4,7 @@ import { MaestrosService } from '../../../services/maestros.service';
 import { ProductoEntidad } from '../../../models/productoEntidad';
 import { ItemTablaEntidad } from '../../../models/itemTablaEntidad';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {forkJoin} from 'rxjs/observable/forkJoin';
 
 @Component({
   selector: 'app-registrar-detalle',
@@ -18,6 +19,7 @@ export class RegistrarDetalleComponent implements OnInit {
   productos: ProductoEntidad[];
   envases: ItemTablaEntidad[];
   origenesProducto: ItemTablaEntidad[];
+  loading: boolean;
 
   formaDetalle: FormGroup;
 
@@ -30,16 +32,17 @@ export class RegistrarDetalleComponent implements OnInit {
 
     this.setForm(this.detalleGuiaActual);
 
-    this._maestrosService.getProductos().subscribe(data => {
-      this.productos = data;
-    });
+    this.loading = true;
 
-    this._maestrosService.getEnvases().subscribe(data => {
-      this.envases = data;
-    });
+    forkJoin(
+      this._maestrosService.getProductos(),
+      this._maestrosService.getEnvases(),
+      this._maestrosService.getOrigenProducto()).subscribe((results) => {
+        this.productos = results[0];
+        this.envases = results[1];
+        this.origenesProducto = results[2];
 
-    this._maestrosService.getOrigenProducto().subscribe(data => {
-      this.origenesProducto = data;
+        this.loading = false;
     });
   }
 
@@ -59,10 +62,11 @@ export class RegistrarDetalleComponent implements OnInit {
       'origenProducto': new FormControl(detalleGuiaActual.origenProducto, Validators.required),
       'tipoEnvase': new FormControl(detalleGuiaActual.tipoEnvase, Validators.required),
       'observaciones': new FormControl(detalleGuiaActual.observaciones),
-      'nombreArchivo': new FormControl(),
-      'archivoAdjuntoTemp': new FormControl(),
-      'nombreProducto': new FormControl(),
-      'tipoProducto': new FormControl()
+      'nombreArchivo': new FormControl(detalleGuiaActual.nombreArchivo),
+      'archivoAdjuntoTemp': new FormControl(detalleGuiaActual.archivoAdjuntoTemp),
+      'nombreProducto': new FormControl(detalleGuiaActual.nombreProducto),
+      'tipoProducto': new FormControl(detalleGuiaActual.tipoProducto),
+      'nombreEnvase': new FormControl(detalleGuiaActual.nombreEnvase)
     });
   }
 
@@ -81,13 +85,21 @@ export class RegistrarDetalleComponent implements OnInit {
   }
 
   onChangeProducto(event) {
-    const indexProducto = event.target.options.selectedIndex - 1;
+    const indexProducto = event.target.options.selectedIndex;
 
-    if (indexProducto > 0) {
+    this.formaDetalle.patchValue({
+      'nombreProducto': this.productos[indexProducto].nombre,
+      'tipoProducto': this.productos[indexProducto].tipoProducto
+    });
+  }
+
+  onChangeEnvase(event) {
+    const indexEnvase = event.target.options.selectedIndex;
+
+    console.log(this.envases[indexEnvase]);
+
       this.formaDetalle.patchValue({
-        'nombreProducto': this.productos[indexProducto].nombre,
-        'tipoProducto': this.productos[indexProducto].tipoProducto
+        'nombreEnvase': this.envases[indexEnvase].nombre
       });
-    }
   }
 }
