@@ -36,9 +36,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           console.error(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
 
-        if (err.status == 401) {
+        if (err.status === 401) {
           this._router.navigate(['/login', { queryParams: { returnUrl: request.urlWithParams } }]);
-          alertService.error("No tiene acceso a la pantalla solicitada");
+          alertService.error('No tiene acceso a la pantalla solicitada o su sesión ya expiró. Por favor inicie sesión nuevamente.');
         }
 
         return Observable.of(new HttpResponse({ body: null }));

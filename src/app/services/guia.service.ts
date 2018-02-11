@@ -59,4 +59,8 @@ export class GuiaService {
     console.log(informeEnsayoLiquido);
     return this._httpClient.post<OsinergminResponse>(`${AppGlobals.BASE_URL}/api/guia/registrarInformeEnsayoLiquido`, informeEnsayoLiquido);
   }
+
+  obtenerInformeEnsayo(informeId: number) {
+    return this._httpClient.get<any>(`${AppGlobals.BASE_URL}/api/guia/obtenerInformeEnsayo/${informeId}`);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit , Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MaestrosService } from '../../../services/maestros.service';
 import { ItemTablaEntidad } from '../../../models/itemTablaEntidad';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ import { InformeEnsayoCombustibleEntidad } from '../../../models/informeEnsayoCo
   styleUrls: ['./informe-ensayo-liquido.component.css']
 })
 export class InformeEnsayoLiquidoComponent implements OnInit {
+  @Input() detalleGuiaId: number;
   infoEnsayoCombustible: InformeEnsayoCombustibleEntidad;
   loading: boolean;
   formaLiquido: FormGroup;
@@ -26,75 +27,82 @@ export class InformeEnsayoLiquidoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.infoEnsayoCombustible == null) {
-      this.infoEnsayoCombustible = new InformeEnsayoCombustibleEntidad();
-    }
+    this.loading = true;
+    this._guiaService.obtenerInformeEnsayo(this.detalleGuiaId).subscribe(
+      result => {
+        this.loading = false;
+        this.infoEnsayoCombustible = result;
 
-    this.setForm(this.infoEnsayoCombustible);
+        if (this.infoEnsayoCombustible == null) {
+          this.infoEnsayoCombustible = new InformeEnsayoCombustibleEntidad();
+        }
+
+        this.setForm(this.infoEnsayoCombustible);
+      });
   }
 
-  setForm (infoEnsayoCombustible : InformeEnsayoCombustibleEntidad) {
+  setForm(infoEnsayoCombustible: InformeEnsayoCombustibleEntidad) {
     this.formaLiquido = new FormGroup({
-      'observaciones': new FormControl(),
-      'numeroInformeLaboratorio': new FormControl(),
-      'octanaje': new FormControl(),
-      'puntoInflamacion': new FormControl(),
-      'presionVaporReid': new FormControl(),
-      'contenidoAzufre4294': new FormControl(),
-      'contenidoAzufre5453': new FormControl(),
-      'viscosidadCinematica': new FormControl(),
-      'contenidoManganeso': new FormControl(),
-      'puntoEscurrimiento': new FormControl(),
-      'contenidoPlomo': new FormControl(),
-      'contenidoPlomoAstmd3341': new FormControl(),
-      'contenidoPlomoAstmd3237': new FormControl(),
-      'astmd86_pie': new FormControl(),
-      'astmd86_5p': new FormControl(),
-      'astmd86_10p': new FormControl(),
-      'astmd86_20p': new FormControl(),
-      'astmd86_50p': new FormControl(),
-      'astmd86_90p': new FormControl(),
-      'astmd86_95p': new FormControl(),
-      'astmd86_pfe': new FormControl(),
-      'astmd86_recup': new FormControl(),
-      'aastmd86_residuo': new FormControl(),
-      'aastmd86_perdidas': new FormControl(),
-      'gravidadApi': new FormControl(),
-      'densidadRelativa': new FormControl(),
-      'indiceCetano': new FormControl(),
-      'indiceCetanoProcedenciaA': new FormControl(),
-      'indiceCetanoProcedenciaB': new FormControl(),
-      'indiceCetanoBajoAzufre': new FormControl(),
-      'contenidoFameVolumen': new FormControl(),
-      'contenidoEtanolVolumen': new FormControl(),
-      'totalOxigenadosVolumen': new FormControl(),
-      'totalOxigeno': new FormControl(),
-      'contenidoMtbeVolumen': new FormControl(),
-      'contenidoTameVolumen': new FormControl(),
-      'contenidoEtbeVolumen': new FormControl(),
-      'contenidoMetanolVolumen': new FormControl(),
-      'contenidoTertbutanoVolumen': new FormControl(),
-      'contenidoDipeVolumen': new FormControl(),
-      'contenidoMtbeMasa': new FormControl(),
-      'contenidoTameMasa': new FormControl(),
-      'contenidoEtbeMasa': new FormControl(),
-      'contenidoEtanolMasa': new FormControl(),
-      'contenidoMetanolMasa': new FormControl(),
-      'contenidoTertbutanoMasa': new FormControl(),
-      'contenidoDipeMasa': new FormControl(),
-      'totalOxigenadosMasa': new FormControl(),
-      'reaccionAlAgua': new FormControl(),
-      'contenidoSolidos': new FormControl(),
-      'contenidoGomas': new FormControl(),
-      'puntoCongelamiento': new FormControl(),
-      'aguaSedimentos': new FormControl(),
-      'determinacionBenceno': new FormControl(),
-      'aguaPorDestilacion': new FormControl(),
-      'contaminacionParticulas': new FormControl(),
-      'indiceCetanoFme': new FormControl(),
-      'color': new FormControl(),
-      'resultadoFinal': new FormControl(),
-      'remanenteRetirado': new FormControl()
+      'observaciones': new FormControl(infoEnsayoCombustible.observaciones),
+      'numeroInformeLaboratorio': new FormControl(infoEnsayoCombustible.numeroInformeLaboratorio),
+      'octanaje': new FormControl(infoEnsayoCombustible.octanaje),
+      'puntoInflamacion': new FormControl(infoEnsayoCombustible.puntoInflamacion),
+      'presionVaporReid': new FormControl(infoEnsayoCombustible.presionVaporReid),
+      'contenidoAzufre4294': new FormControl(infoEnsayoCombustible.contenidoAzufre4294),
+      'contenidoAzufre5453': new FormControl(infoEnsayoCombustible.contenidoAzufre5453),
+      'viscosidadCinematica': new FormControl(infoEnsayoCombustible.viscosidadCinematica),
+      'contenidoManganeso': new FormControl(infoEnsayoCombustible.contenidoManganeso),
+      'puntoEscurrimiento': new FormControl(infoEnsayoCombustible.puntoEscurrimiento),
+      'contenidoPlomo': new FormControl(infoEnsayoCombustible.contenidoPlomo),
+      'contenidoPlomoAstmd3341': new FormControl(infoEnsayoCombustible.contenidoPlomoAstmd3341),
+      'contenidoPlomoAstmd3237': new FormControl(infoEnsayoCombustible.contenidoPlomoAstmd3237),
+      'astmd86_pie': new FormControl(infoEnsayoCombustible.astmd86_pie),
+      'astmd86_5p': new FormControl(infoEnsayoCombustible.astmd86_5p),
+      'astmd86_10p': new FormControl(infoEnsayoCombustible.astmd86_10p),
+      'astmd86_20p': new FormControl(infoEnsayoCombustible.astmd86_20p),
+      'astmd86_50p': new FormControl(infoEnsayoCombustible.astmd86_50p),
+      'astmd86_90p': new FormControl(infoEnsayoCombustible.astmd86_90p),
+      'astmd86_95p': new FormControl(infoEnsayoCombustible.astmd86_95p),
+      'astmd86_pfe': new FormControl(infoEnsayoCombustible.astmd86_pfe),
+      'astmd86_recup': new FormControl(infoEnsayoCombustible.astmd86_recup),
+      'aastmd86_residuo': new FormControl(infoEnsayoCombustible.aastmd86_residuo),
+      'aastmd86_perdidas': new FormControl(infoEnsayoCombustible.aastmd86_perdidas),
+      'gravidadApi': new FormControl(infoEnsayoCombustible.gravidadApi),
+      'densidadRelativa': new FormControl(infoEnsayoCombustible.densidadRelativa),
+      'indiceCetano': new FormControl(infoEnsayoCombustible.indiceCetano),
+      'indiceCetanoProcedenciaA': new FormControl(infoEnsayoCombustible.indiceCetanoProcedenciaA),
+      'indiceCetanoProcedenciaB': new FormControl(infoEnsayoCombustible.indiceCetanoProcedenciaB),
+      'indiceCetanoBajoAzufre': new FormControl(infoEnsayoCombustible.indiceCetanoBajoAzufre),
+      'contenidoFameVolumen': new FormControl(infoEnsayoCombustible.contenidoFameVolumen),
+      'contenidoEtanolVolumen': new FormControl(infoEnsayoCombustible.contenidoEtanolVolumen),
+      'totalOxigenadosVolumen': new FormControl(infoEnsayoCombustible.totalOxigenadosVolumen),
+      'totalOxigeno': new FormControl(infoEnsayoCombustible.totalOxigeno),
+      'contenidoMtbeVolumen': new FormControl(infoEnsayoCombustible.contenidoMtbeVolumen),
+      'contenidoTameVolumen': new FormControl(infoEnsayoCombustible.contenidoTameVolumen),
+      'contenidoEtbeVolumen': new FormControl(infoEnsayoCombustible.contenidoEtbeVolumen),
+      'contenidoMetanolVolumen': new FormControl(infoEnsayoCombustible.contenidoMetanolVolumen),
+      'contenidoTertbutanoVolumen': new FormControl(infoEnsayoCombustible.contenidoTertbutanoVolumen),
+      'contenidoDipeVolumen': new FormControl(infoEnsayoCombustible.contenidoDipeVolumen),
+      'contenidoMtbeMasa': new FormControl(infoEnsayoCombustible.contenidoMtbeMasa),
+      'contenidoTameMasa': new FormControl(infoEnsayoCombustible.contenidoTameMasa),
+      'contenidoEtbeMasa': new FormControl(infoEnsayoCombustible.contenidoEtbeMasa),
+      'contenidoEtanolMasa': new FormControl(infoEnsayoCombustible.contenidoEtanolMasa),
+      'contenidoMetanolMasa': new FormControl(infoEnsayoCombustible.contenidoMetanolMasa),
+      'contenidoTertbutanoMasa': new FormControl(infoEnsayoCombustible.contenidoTertbutanoMasa),
+      'contenidoDipeMasa': new FormControl(infoEnsayoCombustible.contenidoDipeMasa),
+      'totalOxigenadosMasa': new FormControl(infoEnsayoCombustible.totalOxigenadosMasa),
+      'reaccionAlAgua': new FormControl(infoEnsayoCombustible.reaccionAlAgua),
+      'contenidoSolidos': new FormControl(infoEnsayoCombustible.contenidoSolidos),
+      'contenidoGomas': new FormControl(infoEnsayoCombustible.contenidoGomas),
+      'puntoCongelamiento': new FormControl(infoEnsayoCombustible.puntoCongelamiento),
+      'aguaSedimentos': new FormControl(infoEnsayoCombustible.aguaSedimentos),
+      'determinacionBenceno': new FormControl(infoEnsayoCombustible.determinacionBenceno),
+      'aguaPorDestilacion': new FormControl(infoEnsayoCombustible.aguaPorDestilacion),
+      'contaminacionParticulas': new FormControl(infoEnsayoCombustible.contaminacionParticulas),
+      'indiceCetanoFme': new FormControl(infoEnsayoCombustible.indiceCetanoFme),
+      'color': new FormControl(infoEnsayoCombustible.color),
+      'resultadoFinal': new FormControl(infoEnsayoCombustible.resultadoFinal),
+      'remanenteRetirado': new FormControl(infoEnsayoCombustible.remanenteRetirado)
     });
-  }  
+  }
 }

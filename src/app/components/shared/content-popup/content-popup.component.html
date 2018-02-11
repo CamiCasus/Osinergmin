@@ -19,10 +19,10 @@
 
 <ng-container *ngIf="tipoContenido === tiposContenido.informeEnsayoGlp">
   <div class="modal-body">
-    <app-informe-ensayo-glp #informeGlp></app-informe-ensayo-glp>
+    <app-informe-ensayo-glp #informeGlp [detalleGuiaId]="data" ></app-informe-ensayo-glp>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-info" [disabled]="!informeGlp.formaGlp.valid" (click)="activeModal.close(informeGlp.formaGlp.value)">
+    <button type="button" class="btn btn-info" [disabled]="!informeGlp.formaGlp?.valid" (click)="activeModal.close(informeGlp.formaGlp.value)">
       <i class="fas fa-check"></i>&nbsp;Aceptar</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">
       <i class="fas fa-ban"></i>&nbsp;Cancelar</button>
@@ -31,11 +31,10 @@
 
 <ng-container *ngIf="tipoContenido === tiposContenido.informeEnsayoLiquido">
   <div class="modal-body">
-    <app-informe-ensayo-liquido #informeLiquido></app-informe-ensayo-liquido>
-    
+    <app-informe-ensayo-liquido #informeLiquido [detalleGuiaId]="data"></app-informe-ensayo-liquido>    
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-info" [disabled]="!informeLiquido.formaLiquido.valid" (click)="activeModal.close(informeLiquido.formaLiquido.value)">
+    <button type="button" class="btn btn-info" [disabled]="!informeLiquido.formaLiquido?.valid" (click)="activeModal.close(informeLiquido.formaLiquido.value)">
       <i class="fas fa-check"></i>&nbsp;Aceptar</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">
       <i class="fas fa-ban"></i>&nbsp;Cancelar</button>

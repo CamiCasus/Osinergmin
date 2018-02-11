@@ -31,7 +31,7 @@ export class RegistroResultadoComponent implements OnInit {
     public _modal: NgbModal,
     public _alertService: AlertService) {
     this._activatedRoute.params.subscribe(params => {
-      this.guiaId = params["id"]
+      this.guiaId = params['id'];
     });
   }
 
@@ -53,23 +53,24 @@ export class RegistroResultadoComponent implements OnInit {
 
   registrarResultado(tipoMuestra: number, detalleGuiaId: number) {
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
-    let textoTipoMuestra = new TipoMuestraPipe().transform(tipoMuestra);
+    const textoTipoMuestra = new TipoMuestraPipe().transform(tipoMuestra);
 
     modalRef.componentInstance.tipoContenido = tipoMuestra;
     modalRef.componentInstance.titulo = `Ingreso de Resultado ${textoTipoMuestra}`;
+    modalRef.componentInstance.data = detalleGuiaId;
 
     modalRef.result.then((result) => {
       this.loading = true;
 
-      let objetoEnviar = result;
+      const objetoEnviar = result;
       objetoEnviar.detalleGuiaId = detalleGuiaId;
 
       let respuestaServicio: Observable<OsinergminResponse>;
 
       console.log(objetoEnviar);
-      if (tipoMuestra == TipoContenido.informeEnsayoGlp) {
+      if (tipoMuestra === TipoContenido.informeEnsayoGlp) {
         respuestaServicio = this._guiaService.presentarEnsayoGLP(objetoEnviar);
-      } else if (tipoMuestra == TipoContenido.informeEnsayoLiquido) {
+      } else if (tipoMuestra === TipoContenido.informeEnsayoLiquido) {
         respuestaServicio = this._guiaService.presentarEnsayoLiquido(objetoEnviar);
       }
 
@@ -77,9 +78,9 @@ export class RegistroResultadoComponent implements OnInit {
         data => {
           this.loading = false;
           if (data == null) {
-            this._alertService.error("Ocurrió un error durante la carga de resultados, por favor intente en unos momentos");
+            this._alertService.error('Ocurrió un error durante la carga de resultados, por favor intente en unos momentos');
           } else if (data.exito) {
-            this._alertService.success("Se presentó satisfactoriamente el informe de ensayo.");
+            this._alertService.success('Se presentó satisfactoriamente el informe de ensayo.');
           } else {
             this._alertService.error(data.mensaje);
           }

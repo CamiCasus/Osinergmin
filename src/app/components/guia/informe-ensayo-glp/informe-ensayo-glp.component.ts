@@ -13,6 +13,7 @@ import { InformeEnsayoGlpEntidad } from '../../../models/informeEnsayoGlpEntidad
   styleUrls: ['./informe-ensayo-glp.component.css']
 })
 export class InformeEnsayoGlpComponent implements OnInit {
+  @Input() detalleGuiaId: number;
   infoEnsayoGlp: InformeEnsayoGlpEntidad;
   loading: boolean;
   formaGlp: FormGroup;
@@ -24,11 +25,18 @@ export class InformeEnsayoGlpComponent implements OnInit {
     public _alertService: AlertService) {}
 
   ngOnInit() {
-    if (this.infoEnsayoGlp == null) {
-      this.infoEnsayoGlp = new InformeEnsayoGlpEntidad();
-    }
+    this.loading = true;
+    this._guiaService.obtenerInformeEnsayo(this.detalleGuiaId).subscribe(
+      result => {
+        this.loading = false;
+        this.infoEnsayoGlp = result;
 
-    this.setForm(this.infoEnsayoGlp);
+        if (this.infoEnsayoGlp == null) {
+          this.infoEnsayoGlp = new InformeEnsayoGlpEntidad();
+        }
+
+        this.setForm(this.infoEnsayoGlp);
+      });
   }
 
   setForm(infoEnsayoGlp: InformeEnsayoGlpEntidad) {

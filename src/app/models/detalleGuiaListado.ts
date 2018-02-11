@@ -4,4 +4,5 @@ export class DetalleGuiaListado {
     numeroMuestra: number;
     tipoMuestra: number;
     ensayos: string;
+    informeEnsayoId: number;
   }
