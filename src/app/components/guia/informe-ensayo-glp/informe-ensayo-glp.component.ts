@@ -41,7 +41,7 @@ export class InformeEnsayoGlpComponent implements OnInit {
 
   setForm(infoEnsayoGlp: InformeEnsayoGlpEntidad) {
     this.formaGlp = new FormGroup({
-      'id': new FormControl(),
+      'id': new FormControl(infoEnsayoGlp.id),
       'observaciones': new FormControl(infoEnsayoGlp.observaciones),
       'numeroInformeLaboratorio': new FormControl(infoEnsayoGlp.numeroInformeLaboratorio),
       'densidadRelativa': new FormControl(infoEnsayoGlp.densidadRelativa),
