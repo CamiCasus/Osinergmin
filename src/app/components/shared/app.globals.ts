@@ -42,14 +42,12 @@ export class AppGlobals {
             const myReader: FileReader = new FileReader();
 
             myReader.onloadend = (e) => {
-
-                console.log("se termino de leer el achivo");
-
-                var u = new Uint8Array(myReader.result),
+                let u = new Uint8Array(myReader.result),
                     a = new Array(u.length),
                     i = u.length;
-                while (i--) // map to hex
+                while (i--) { // map to hex
                     a[i] = (u[i] < 16 ? '0' : '') + u[i].toString(16);
+                }
                 u = null; // free memory
 
                 resolve(a.join(''));

@@ -56,7 +56,7 @@ export class RegistrarDetalleComponent implements OnInit {
       ]),
       'fechaMuestreo': new FormControl(detalleGuiaActual.fechaMuestreo, Validators.required),
       'numeroActa': new FormControl(detalleGuiaActual.numeroActa, Validators.required),
-      'numeroMuestra': new FormControl(detalleGuiaActual.numeroMuestra, Validators.required),
+      'numeroMuestra': new FormControl({value: detalleGuiaActual.numeroMuestra, disabled: true}, Validators.required),
       'numeroPrescintoDirimencia': new FormControl(detalleGuiaActual.numeroPrescintoDirimencia, Validators.required),
       'numeroPrescintoLaboratorio': new FormControl(detalleGuiaActual.numeroPrescintoLaboratorio, Validators.required),
       'origenProducto': new FormControl(detalleGuiaActual.origenProducto, Validators.required),
@@ -101,5 +101,10 @@ export class RegistrarDetalleComponent implements OnInit {
       this.formaDetalle.patchValue({
         'nombreEnvase': this.envases[indexEnvase].nombre
       });
+  }
+
+  validar(): boolean {
+    return this.formaDetalle.valid &&
+           this.detalleGuiaActual.nombreArchivo != null;
   }
 }

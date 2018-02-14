@@ -43,6 +43,11 @@ export class RegistrarComponent implements OnInit {
     this._activatedRoute.params.subscribe(params => {
       this.guiaId = params['id'];
 
+      this.guiaActual = new GuiaEntidad();
+      this.guiaActual.detalleGuia = [];
+
+      this.setForm(this.guiaActual);
+
       if (this.guiaId != null) {
         this.loading = true;
 
@@ -57,12 +62,8 @@ export class RegistrarComponent implements OnInit {
           this.guiaActual = data;
 
           this.setForm(this.guiaActual);
+          this.dtTrigger.next();
         });
-      } else {
-        this.guiaActual = new GuiaEntidad();
-        this.guiaActual.detalleGuia = [];
-
-        this.setForm(this.guiaActual);
       }
     });
 
@@ -143,7 +144,6 @@ export class RegistrarComponent implements OnInit {
   }
 
   grabar(objetoEnviar: any) {
-
     objetoEnviar.id = this.guiaId;
     objetoEnviar.detalleGuia = this.guiaActual.detalleGuia;
 
@@ -176,6 +176,7 @@ export class RegistrarComponent implements OnInit {
 
   cargarDetalle(guiaDetalle: DetalleGuiaEntidad, index: number) {
     const guiaAModificar = Object.assign({}, guiaDetalle);
+    guiaAModificar.numeroMuestra = index + 1;
     const modalRef = this._modal.open(ContentPopupComponent, { size: 'lg' });
 
     modalRef.componentInstance.tipoContenido = TipoContenido.agregarDetalleGuia;
@@ -220,5 +221,11 @@ export class RegistrarComponent implements OnInit {
 
   cancelar() {
     this._route.navigate(['/listado']);
+  }
+
+  validar(): boolean {
+    return this.forma.valid &&
+           this.guiaActual.nombreArchivo != null &&
+           this.guiaActual.detalleGuia.length > 0;
   }
 }

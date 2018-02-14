@@ -26,6 +26,9 @@ export class InformeEnsayoGlpComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    this.infoEnsayoGlp = new InformeEnsayoGlpEntidad();
+    this.setForm(this.infoEnsayoGlp);
+
     this._guiaService.obtenerInformeEnsayo(this.detalleGuiaId).subscribe(
       result => {
         this.loading = false;

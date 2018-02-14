@@ -28,6 +28,9 @@ export class InformeEnsayoLiquidoComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    this.infoEnsayoCombustible = new InformeEnsayoCombustibleEntidad();
+    this.setForm(this.infoEnsayoCombustible);
+
     this._guiaService.obtenerInformeEnsayo(this.detalleGuiaId).subscribe(
       result => {
         this.loading = false;

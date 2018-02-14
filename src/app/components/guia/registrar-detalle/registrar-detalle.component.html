@@ -2,6 +2,15 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
+          <div class="col-md-6">
+              <div class="form-group row">
+                <label for="txtNumeroMuestra" class="col-md-5 col-form-label">Número de Muestra</label>
+                <div class="col-md-7">
+                  <input formControlName="numeroMuestra" type="text" class="form-control" id="txtNumeroMuestra">                  
+                </div>
+              </div>
+            </div>
+
         <div class="col-md-6">
           <div class="form-group row">
             <label for="cblproductoId" class="col-md-5 col-form-label">Producto</label>
@@ -16,17 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group row">
-            <label for="txtCodigoEstablecimiento" class="col-md-5 col-form-label">Código de Establecimiento</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" formControlName="codigoEstablecimiento" id="txtCodigoEstablecimiento" [ngClass]="{'is-invalid': !formaDetalle.get('codigoEstablecimiento').valid}">
-              <div class="invalid-feedback">
-                Ingrese código de establecimiento
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
 
       <div class="row">
@@ -68,16 +67,16 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group row">
-            <label for="txtNumeroMuestra" class="col-md-5 col-form-label">Número de Muestra</label>
-            <div class="col-md-7">
-              <input formControlName="numeroMuestra" type="text" class="form-control" id="txtNumeroMuestra" [ngClass]="{'is-invalid': !formaDetalle.get('numeroMuestra').valid}">
-              <div class="invalid-feedback">
-                Ingrese número de muestra
+            <div class="form-group row">
+              <label for="txtCodigoEstablecimiento" class="col-md-5 col-form-label">Código de Establecimiento</label>
+              <div class="col-md-7">
+                <input type="text" class="form-control" formControlName="codigoEstablecimiento" id="txtCodigoEstablecimiento" [ngClass]="{'is-invalid': !formaDetalle.get('codigoEstablecimiento').valid}">
+                <div class="invalid-feedback">
+                  Ingrese código de establecimiento
+                </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
 
       <div class="row">
@@ -143,7 +142,7 @@
             <label for="cblTipoEnvase" class="col-md-5 col-form-label">Foto</label>
             <div class="col-md-7">
               <input #fileDetalle type="file" class="form-control d-sm-none" (change)="getFiles($event)">
-              <button (click)="openFileBrowser()" type="button" class="btn btn-outline-info btn-sm btn-block text-left">
+              <button (click)="openFileBrowser()" type="button" class="btn btn-sm btn-block text-left" [ngClass]="{'btn-outline-info': detalleGuiaActual.nombreArchivo != null, 'btn-outline-danger': detalleGuiaActual.nombreArchivo == null}">
                 <i class="fas fa-file fa-5x"></i>&nbsp;
                 <ng-container *ngIf="detalleGuiaActual.nombreArchivo != null">
                   {{detalleGuiaActual.nombreArchivo}}

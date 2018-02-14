@@ -80,7 +80,7 @@ export class ListComponent implements OnInit {
       this._guiaService.eliminarGuia(guiaId)
         .subscribe(data => {
           this.loading = false;
-          // this.dtTrigger.next();
+
         });
     }, (reason) => { });
 
