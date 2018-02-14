@@ -78,10 +78,15 @@ export class RegistrarComponent implements OnInit {
 
   setForm(guiaActual: GuiaEntidad) {
     this.forma = new FormGroup({
-      'codigo': new FormControl(guiaActual.codigo, Validators.required),
+      'codigo': new FormControl(guiaActual.codigo, [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(15)
+      ]),
       'fechaRecepcion': new FormControl(guiaActual.fechaRecepcion, Validators.required),
       'representanteIntertek': new FormControl(guiaActual.representanteIntertek, [
         Validators.required,
+        Validators.pattern('^[a-zA-Z ]*$'),
         Validators.minLength(10),
         Validators.maxLength(100)
       ]),
@@ -91,6 +96,7 @@ export class RegistrarComponent implements OnInit {
       ]),
       'representanteOsinergmin': new FormControl(guiaActual.representanteOsinergmin, [
         Validators.required,
+        Validators.pattern('^[a-zA-Z ]*$'),
         Validators.minLength(10),
         Validators.maxLength(100)
       ]),
@@ -100,6 +106,7 @@ export class RegistrarComponent implements OnInit {
       ]),
       'supervisorExtraccionMuestra': new FormControl(guiaActual.supervisorExtraccionMuestra, [
         Validators.required,
+        Validators.pattern('^[a-zA-Z ]*$'),
         Validators.minLength(10),
         Validators.maxLength(100)
       ]),

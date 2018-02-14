@@ -49,16 +49,31 @@ export class RegistrarDetalleComponent implements OnInit {
   setForm(detalleGuiaActual: DetalleGuiaEntidad) {
     this.formaDetalle = new FormGroup({
       'productoId': new FormControl(detalleGuiaActual.productoId, Validators.required),
-      'codigoEstablecimiento': new FormControl(detalleGuiaActual.codigoEstablecimiento, Validators.required),
+      'codigoEstablecimiento': new FormControl(detalleGuiaActual.codigoEstablecimiento, [
+        Validators.required,
+        Validators.pattern('^[0-9][0-9]-[0-9]+$'),
+        Validators.minLength(5),
+        Validators.maxLength(12)
+      ]),
       'cantidadMuestras': new FormControl(detalleGuiaActual.cantidadMuestras, [
         Validators.required,
-        Validators.pattern('^[0-9]*$')
+        Validators.pattern('^[0-9]{1}$')
       ]),
       'fechaMuestreo': new FormControl(detalleGuiaActual.fechaMuestreo, Validators.required),
       'numeroActa': new FormControl(detalleGuiaActual.numeroActa, Validators.required),
-      'numeroMuestra': new FormControl({value: detalleGuiaActual.numeroMuestra, disabled: true}, Validators.required),
-      'numeroPrescintoDirimencia': new FormControl(detalleGuiaActual.numeroPrescintoDirimencia, Validators.required),
-      'numeroPrescintoLaboratorio': new FormControl(detalleGuiaActual.numeroPrescintoLaboratorio, Validators.required),
+      'numeroMuestra': new FormControl({value: detalleGuiaActual.numeroMuestra}, Validators.required),
+      'numeroPrescintoDirimencia': new FormControl(detalleGuiaActual.numeroPrescintoDirimencia, [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'),
+        Validators.minLength(5),
+        Validators.maxLength(10)
+      ]),
+      'numeroPrescintoLaboratorio': new FormControl(detalleGuiaActual.numeroPrescintoLaboratorio, [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'),
+        Validators.minLength(5),
+        Validators.maxLength(10)
+      ]),
       'origenProducto': new FormControl(detalleGuiaActual.origenProducto, Validators.required),
       'tipoEnvase': new FormControl(detalleGuiaActual.tipoEnvase, Validators.required),
       'observaciones': new FormControl(detalleGuiaActual.observaciones),
@@ -95,8 +110,6 @@ export class RegistrarDetalleComponent implements OnInit {
 
   onChangeEnvase(event) {
     const indexEnvase = event.target.options.selectedIndex;
-
-    console.log(this.envases[indexEnvase]);
 
       this.formaDetalle.patchValue({
         'nombreEnvase': this.envases[indexEnvase].nombre

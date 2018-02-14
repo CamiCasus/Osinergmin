@@ -7,8 +7,8 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="txtCodigo">Código</label>
-          <input formControlName="codigo" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('codigo').valid}"
-            id="txtCodigo" placeholder="PER-XXXX">
+          <input formControlName="codigo" maxlength="15" type="text" class="form-control" [ngClass]="{'is-invalid': !forma.get('codigo').valid}"
+            id="txtCodigo" placeholder="PER/XXXX">
             <div class="invalid-feedback">
                 Ingrese un código
               </div>
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="form-group col-md-6">
-            <input #fileGuia type="file" class="form-control d-sm-none" id="txtArchivoGuia" (change)="getFiles($event)" >         
+            <input #fileGuia type="file" accept="application/pdf" class="form-control d-sm-none" id="txtArchivoGuia" (change)="getFiles($event)" >         
             <button (click)="openFileBrowser()" type="button" class="btn  btn-sm" [ngClass]="{'btn-outline-info': guiaActual.nombreArchivo != null, 'btn-outline-danger': guiaActual.nombreArchivo == null}"  >
                 <i class="fas fa-file fa-5x"></i>&nbsp;{{guiaActual.nombreArchivo}}</button>  
         </div>
